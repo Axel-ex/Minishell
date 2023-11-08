@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 15:48:03 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:53:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_token	*get_token(char *line)
 			break ;
 		add_new_token(token);
 		token->content = get_token_content(line);
-		// token->type = get_token_type(token->content);
+		token->type = get_token_type(token->content);
 		token->len = ft_strlen(token->content);
 		line += token->len;
 		token = token->next;
