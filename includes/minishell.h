@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 15:13:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:39:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,22 @@
 # include <readline/readline.h>
 # include "../Libft/includes/libft.h"
 # include "init_exit.h"
-# include "parser.h"
+# include "parsing.h"
 
 # define MAX_TOKEN_LEN 100
 
 typedef enum s_type
 {
-	CMD,
+	CMD = 0,
+	REDIR_IN,
+	REDIR_OUT,
+	FILE_NAME,
 	PIPE,
 }	t_type;
 
 typedef struct s_token
 {
 	char			*content;
-	int				len;
 	t_type			type;
 	struct s_token	*next;
 }	t_token;
@@ -53,7 +55,8 @@ typedef struct s_cmd
 typedef struct s_shell
 {
 	t_token	*token;
+	t_cmd	*cmd;
+	char	**path;
 }	t_shell;
-
 
 #endif

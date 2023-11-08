@@ -38,8 +38,8 @@ $(OBJ_DIR):
 	@mkdir obj/
 	@mkdir obj/builtins
 	@mkdir obj/init_exit
-	@mkdir obj/parser
-	@mkdir obj/executor
+	@mkdir obj/parsing
+	@mkdir obj/execution
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
