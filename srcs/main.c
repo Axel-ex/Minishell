@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 15:28:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:46:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	while (true)
 	{
 		line = readline("prompt> ");
-		if (!ft_strncmp("quit", line, 4))
+		if (!ft_strncmp("exit", line, 4))
 		{
 			free(line);
 			break ;
