@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 14:52:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:25:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_token	*get_token(char *line);
 // TOKEN_UTIL.C
 // =============================================================================
 char	*get_token_content(char *s);
-void	add_token(t_token **token);
+void	add_new_token(t_token *token);
 
 #endif

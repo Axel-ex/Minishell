@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 14:48:06 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:26:10 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ char	*get_token_content(char *s)
 	return (content);
 }
 
-void	add_token(t_token **token)
+void	add_new_token(t_token *token)
 {
 	t_token	*new;
 
 	new = (t_token *)malloc(sizeof(t_token));
 	new->next = NULL;
-	(*token)->next = new;
+	token->next = new;
 }
