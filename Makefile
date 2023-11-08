@@ -8,11 +8,12 @@ LIBFT_DIR	=	Libft
 
 LIBFT		=	libft.a
 
-SRCS		=	$(wildcard $(SRCS_DIR)/*.c)
+SRCS		=	$(wildcard $(SRCS_DIR)/*.c)\
+				$(wildcard $(SRCS_DIR)/**/*.c)
 
 OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-CCFLAGS		=	-Wall -Wextra -Werror
+CCFLAGS		=	-Wall -Wextra -Werror -g
 
 FLAGS		=	-lreadline
 
@@ -35,6 +36,10 @@ $(NAME): $(OBJS) $(LIBFT)
 
 $(OBJ_DIR):
 	@mkdir obj/
+	@mkdir obj/builtins
+	@mkdir obj/init_exit
+	@mkdir obj/parser
+	@mkdir obj/executor
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

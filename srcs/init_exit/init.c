@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 15:19:23 by achabrer         ###   ########.fr       */
+/*   Created: 2023/11/08 11:45:38 by achabrer          #+#    #+#             */
+/*   Updated: 2023/11/08 15:10:59 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+t_shell	*init_shell(void)
 {
-	char	*line;
 	t_shell	*shell;
 
-	shell = init_shell();
-	while (true)
-	{
-		line = readline("prompt> ");
-		if (!ft_strncmp("quit", line, 4))
-		{
-			free(line);
-			break ;
-		}
-		shell->token = get_token(line);
-		// while (shell->token)
-		// {
-		// 	ft_printf("%s\n", shell->token->content);
-		// 	shell->token = shell->token->next;
-		// }
-		free (line);
-	}
-	free_shell(shell);
-	return (EXIT_SUCCESS);
+	shell = (t_shell *)malloc(sizeof(t_shell));
+	if (!shell)
+		return (NULL);
+	shell->token = NULL;
+	return (shell);
 }
