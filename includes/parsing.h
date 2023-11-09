@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 12:22:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:54:02 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,10 @@ void	add_new_token(t_token *token);
  * @return false 
  */
 bool	is_command(char *token_content, char **path);
+
+/// ============================================================================
+// PARSER.C
+// =============================================================================
+int		parser(t_shell *shell, char *line);
 
 #endif

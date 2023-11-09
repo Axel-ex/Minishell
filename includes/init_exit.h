@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 12:44:57 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:11:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ typedef struct s_token	t_token;
 /// ============================================================================
 // INIT.C
 // =============================================================================
-t_token	**init_token(char **line);
-t_shell	*init_shell(void);
+t_shell	*init_shell(char **envp);
 
 /// ============================================================================
 // ERROR.C
@@ -44,7 +43,7 @@ void	*alloc_error(char *msg);
 // FREE.C
 // =============================================================================
 void	free_shell(t_shell *shell, bool keep_iterating);
-void	free_tokens(t_token	**token);
+void	free_tokens(t_token	*token);
 void	free_matrix(char **matrix);
 
 #endif
