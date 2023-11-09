@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 17:28:22 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:20:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,22 @@ void	add_new_token(t_token *token)
 bool	is_command(char *token_content, char **path)
 {
 	int		i;
-	char	*cmd;
+	char	*cmd1;
+	char	*cmd2;
 
 	i = 0;
 	while (path[i])
 	{
-		cmd = ft_strjoin(path[i], "/");
-		cmd = ft_strjoin(cmd, token_content);
-		if (!access(cmd, O_EXEC))
+		cmd1 = ft_strjoin(path[i], "/");
+		cmd2 = ft_strjoin(cmd1, token_content);
+		if (!access(cmd2, X_OK))
+		{
+			free(cmd1);
+			free(cmd2);
 			return (true);
-		free(cmd);
+		}
+		free(cmd1);
+		free(cmd2);
 		i++;
 	}
 	return (false);

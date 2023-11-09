@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 17:39:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:36:09 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "../Libft/includes/libft.h"
 # include "init_exit.h"
 # include "parsing.h"
+# include "debug.h"
 
 # define MAX_TOKEN_LEN 100
 
@@ -54,7 +55,8 @@ typedef struct s_cmd
 
 typedef struct s_shell
 {
-	t_token	*token;
+	char	**lines;
+	t_token	**token;
 	t_cmd	*cmd;
 	char	**path;
 }	t_shell;
