@@ -12,7 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-
 t_shell	*init_shell(void)
 {
 	t_shell	*shell;

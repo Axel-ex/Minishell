@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:25:38 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:19:32 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	free_tokens(t_token **tokens)
 	}
 	*tokens = NULL;
 }
-
 
 void	free_matrix(char **matrix)
 {
