@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 09:43:02 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:29:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,28 @@
 # include "parsing.h"
 # include "debug.h"
 
+extern int	g_exit_status;
+
 # define MAX_TOKEN_LEN 100
+
+# define NC		"\e[0m"
+# define RED	"\e[31m"
+# define GREEN	"\e[32m"
+# define PURPLE	"\e[35m"
+# define CYAN	"\e[36m"
 
 typedef enum s_type
 {
-	CMD = 0,
+	OTHER,
+	PIPE,
 	REDIR_IN,
 	REDIR_OUT,
+	REDIR2_IN,
+	REDIR2_OUT,
+	S_QUOTE,
+	D_QUOTE,
+	CMD,
 	FILE_NAME,
-	PIPE,
 }	t_type;
 
 typedef struct s_token

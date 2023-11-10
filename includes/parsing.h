@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:01:01 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:42:19 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef enum s_type		t_type;
 /// ============================================================================
 // LEXER.C
 // =============================================================================
-
 /**
  * @brief returns a pointer to a token list.
  * 
@@ -45,7 +44,7 @@ char	*get_token_content(char *s);
  * @param path to identify comands
  * @return t_type 
  */
-t_type	get_token_type(char *token_content, char **path);
+t_type	get_token_type(char *token_content);
 
 /// ============================================================================
 // LEXER_UTIL.C

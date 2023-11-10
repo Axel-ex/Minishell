@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 10:08:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:20:06 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_token(t_shell *shell, char *line)
 		if (!*line)
 			break ;
 		content = get_token_content(line);
-		type = get_token_type(content, shell->path);
+		type = get_token_type(content);
 		line += ft_strlen(content);
 		add_back_token(&shell->token, content, type);
 	}
@@ -57,16 +57,18 @@ char	*get_token_content(char *s)
 	return (content);
 }
 
-t_type	get_token_type(char *token_content, char **path)
+t_type	get_token_type(char *token_content)
 {
-	if (is_command(token_content, path))
-		return (CMD);
-	if (ft_strncmp("|", token_content, 2))
+	if (!ft_strncmp("|", token_content, 2))
 		return (PIPE);
-	if (ft_strncmp("<", token_content, 2))
+	if (!ft_strncmp("<", token_content, 2))
 		return (REDIR_IN);
-	if (ft_strncmp(">", token_content, 2))
+	if (!ft_strncmp(">", token_content, 2))
 		return (REDIR_OUT);
+	if (!strncmp("<<", token_content, 3))
+		return (REDIR2_IN);
+	if (!strncmp(">>", token_content, 3))
+		return (REDIR2_OUT);
 	else
-		return (FILE_NAME);
+		return (OTHER);
 }

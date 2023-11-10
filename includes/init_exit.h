@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 10:05:41 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:28:09 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_shell	*init_shell(void);
  * 
  * @param msg to_print 
  */
-int		print_error(char *msg);
+int		print_error(char *msg, int exit_status);
 
 /**
  * @brief prints the msg pointed to by *msg and return NULL.

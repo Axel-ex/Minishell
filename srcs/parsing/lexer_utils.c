@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 08:55:18 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:11:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	is_command(char *token_content, char **path)
 	return (false);
 }
 
-void	add_back_token(t_token **tokens, char *content, t_type type)
+void	add_back_token(t_token **token_lst, char *content, t_type type)
 {
 	t_token	*new;
 	t_token	*curr;
@@ -46,11 +46,11 @@ void	add_back_token(t_token **tokens, char *content, t_type type)
 	new->content = content;
 	new->type = type;
 	new->next = NULL;
-	if (!tokens || !*tokens)
-		*tokens = new;
+	if (!token_lst || !*token_lst)
+		*token_lst = new;
 	else
 	{
-		curr = *tokens;
+		curr = *token_lst;
 		while (curr->next)
 			curr = curr->next;
 		curr->next = new;
