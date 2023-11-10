@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 16:41:38 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:26:01 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,14 @@ char	*get_token_content(char *s)
 	int		i;
 
 	size = 0;
+	if (s[size] == '|' || s[size] == '>' || s[size] == '<')
+		return (get_operator(s));
 	if (s[size] == '\"' || s[size] == '\'')
-	{
 		while (s[size] && (s[size] != '\"' || s[size] != '\''))
 			size++;
-	}
 	else
-	{
 		while (s[size] && s[size] != ' ' && size != MAX_TOKEN_LEN)
 			size++;
-	}
 	content = (char *)malloc(sizeof(char) * size + 1);
 	if (!content)
 		return (alloc_error("token content"));
