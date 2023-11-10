@@ -1,27 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/10 16:19:03 by jgomes-v          #+#    #+#             */
+/*   Updated: 2023/11/10 17:13:58 by jgomes-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
-// tested with CMD type. needs further testing will do it when OTHER is implemented
-
-int syntax_checker(t_token *token)
+int	syntax_checker(t_token *token)
 {
-    t_token *temp;
-    t_token *next;
+	t_token	*temp;
+	t_token	*next;
 
-    temp = token;
-
-    //check the type of first node if not command return error.
-    if(temp->type != OTHER) //it will be replace by OTHER)
-        print_error("Sintax Error : First token should be a command",20);
-    while(temp && temp->next)
-    {
-        next = temp->next;
-        //if the current is not Other meas the following has to be Other. so if bot are not it returns and error
-        if(temp->type != OTHER && next->type != OTHER) //it will be replace by OTHER
-            print_error("Syntax Error : unexpect sequence of tokens",20);
-    temp = temp -> next;        
-    }
-    // if last token is separator return error.
-    if(temp->type == PIPE ||temp -> type == REDIR_IN || temp ->type == REDIR_OUT )
-        print_error("Sintax Error: Prompt should not be ended by a separator",20);  
-    return (EXIT_SUCCESS);  
+	temp = token;
+	if (temp->type != OTHER) 
+		return (print_error("Syntax Error : First token should be a command",
+				20));
+	while (temp && temp->next)
+	{
+		next = temp->next;
+		if (temp->type != OTHER && next->type != OTHER)
+			return (print_error("Syntax Error : unexpected sequence of tokens",
+					20));
+		temp = temp->next;
+	}
+	if (temp->type != OTHER)
+		return (print_error("Syntax Error: Prompt should not end as separator",
+				20));
+	return (EXIT_SUCCESS);
 }

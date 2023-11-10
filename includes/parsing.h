@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:42:19 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:18:53 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_token_content(char *s);
  * @brief identifies the token_content type and returns it.
  * 
  * @param token_content 
- * @param path to identify comands
+ * @param path to identify commands
  * @return t_type 
  */
 t_type	get_token_type(char *token_content);
@@ -75,25 +75,25 @@ bool	is_command(char *token_content, char **path);
 // PARSER.C
 // =============================================================================
 /**
- * @brief calls functions needed for tokenisation, synthax check
+ * @brief calls functions needed for tokenization, syntax check
  * expender.
  * 
  * @param shell 
  * @param line 
- * @return int EXIT_SUCESS
+ * @return int EXIT_SUCCESS
  */
 int		parser(t_shell *shell, char *line);
-
+/// ============================================================================
+// SYNTAX_CHECK.C
+// =============================================================================
 /**
- * @brief The funtion checks for syntax on the tokens. 
- *         First checks if first token is other type, if not return error.
- *         Then, iterate the token list and check if there will not be signals next to each other, if there are return error.
- *         After the while loop checks for separator in the end, if there are it return error.
+ * @brief check for syntax errors. e.g if first token is not command
+ *        if two consecutive tokens are separators
+ *        if last token is separator
  * 
- * @param shell 
  * @param token 
+ * @return int exit_status
  */
-
-int syntax_checker(t_token *token);
+int		syntax_checker(t_token *token);
 
 #endif
