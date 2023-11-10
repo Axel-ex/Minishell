@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 12:18:45 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:42:19 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,17 @@ bool	is_command(char *token_content, char **path);
  * @return int EXIT_SUCESS
  */
 int		parser(t_shell *shell, char *line);
+
+/**
+ * @brief The funtion checks for syntax on the tokens. 
+ *         First checks if first token is other type, if not return error.
+ *         Then, iterate the token list and check if there will not be signals next to each other, if there are return error.
+ *         After the while loop checks for separator in the end, if there are it return error.
+ * 
+ * @param shell 
+ * @param token 
+ */
+
+int syntax_checker(t_token *token);
 
 #endif
