@@ -6,36 +6,47 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 10:17:34 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:28:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	has_enclosed_quotes(char *line)
+int	count_quotes(char *line)
 {
-	int	s_quotes;
-	int	d_quotes;
+	int		quotes;
+	int		in_squote;
+	int		in_dquote;
 
-	s_quotes = 0;
-	d_quotes = 0;
+	quotes = 0;
+	in_squote = 0;
+	in_dquote = 0;
 	while (*line)
 	{
-		if (*line == '\'')
-			s_quotes++;
-		if (*line == '\"' )
-			d_quotes++;
+		if (*line == '\'' && in_dquote == 0)
+		{
+			in_squote = 1 - in_squote;
+			quotes++;
+		}
+		else if (*line == '"' && in_squote == 0)
+		{
+			in_dquote = 1 - in_dquote;
+			quotes++;
+		}
 		line++;
 	}
-	if (s_quotes % 2 != 0 || d_quotes % 2 != 0)
-		return (false);
-	return (true);
+	return (quotes);
+}
+
+bool	has_enclosed_quotes(char *line)
+{
+	return (count_quotes(line) % 2 == 0);
 }
 
 int	parser(t_shell *shell, char *line)
 {
 	if (!has_enclosed_quotes(line))
-		return (print_error(ERR_UNCLOSED_QUOTES));
+		return (print_error(ERR_UNCLOSED_QUOTES, 2));
 	get_token(shell, line);
 	//synthax checker
 	//exander
