@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 17:18:53 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:38:44 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,13 @@ t_type	get_token_type(char *token_content);
 void	add_back_token(t_token **tokens, char *content, t_type type);
 
 /**
- * @brief try to access through the path the executable specified
- * by token_content. return true upon success (token_content is a 
- * command).
+ * @brief returns a string containing the operator found in s.
+ * (allocated on the heap)
  * 
- * @param token_content 
- * @param path 
- * @return true
- * @return false 
+ * @param s 
+ * @return char* 
  */
-bool	is_command(char *token_content, char **path);
+char	*get_operator(char *s);
 
 /// ============================================================================
 // PARSER.C
