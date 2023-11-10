@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:02:07 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 10:42:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:15:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ typedef enum s_type		t_type;
 /// ============================================================================
 // TOKEN.C
 // =============================================================================
-void	print_token_content(t_token **token);
+/**
+ * @brief print the contents of the tokens.
+ * 
+ * @param token list to print
+ */
+void	print_token_content(t_token *token);
 
 #endif

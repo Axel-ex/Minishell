@@ -40,6 +40,7 @@ $(OBJ_DIR):
 	@mkdir obj/init_exit
 	@mkdir obj/parsing
 	@mkdir obj/execution
+	@mkdir obj/debug
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 17:11:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:05:41 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@
 typedef struct s_shell	t_shell;
 typedef struct s_token	t_token;
 
+# define ERR_UNCLOSED_QUOTES "command contains unclosed quotes"
+
 /// ============================================================================
 // INIT.C
 // =============================================================================
-t_shell	*init_shell(char **envp);
+/**
+ * @brief init shell structure. Alloc space for shell struct, get path variable.
+ * 
+ * @return t_shell* 
+ */
+t_shell	*init_shell(void);
 
 /// ============================================================================
 // ERROR.C
@@ -42,8 +49,27 @@ void	*alloc_error(char *msg);
 /// ============================================================================
 // FREE.C
 // =============================================================================
+/**
+ * @brief free the shell struct. if keep iterating is true, variables
+ * like path and the shell struct itself are conserved 
+ * 
+ * @param shell 
+ * @param keep_iterating 
+ */
 void	free_shell(t_shell *shell, bool keep_iterating);
-void	free_tokens(t_token	*token);
+
+/**
+ * @brief free the list of tokens (pointers and content).
+ * 
+ * @param token 
+ */
+void	free_tokens(t_token **tokens);
+
+/**
+ * @brief free object of type char **.
+ * 
+ * @param matrix 
+ */
 void	free_matrix(char **matrix);
 
 #endif

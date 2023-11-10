@@ -6,25 +6,21 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:57:11 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 11:07:01 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:16:33 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_token_content(t_token **token)
+void	print_token_content(t_token *token)
 {
-	int		i;
-	t_token	*curr;
+	int	i;
 
-	i = -1;
-	while (token[++i])
+	i = 0;
+	while (token)
 	{
-		curr = token[i];
-		while (curr)
-		{
-			printf("content: %s\n", curr->content);
-			curr = curr->next;
-		}
+		ft_printf("%d Content: %s\n", token->content);
+		token = token->next;
+		i++;
 	}
 }

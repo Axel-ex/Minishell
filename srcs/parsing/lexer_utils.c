@@ -6,43 +6,53 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 12:20:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 08:55:18 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	add_new_token(t_token *token)
-{
-	t_token	*new;
-
-	new = (t_token *)malloc(sizeof(t_token));
-	if (!new)
-		return ;
-	new->next = NULL;
-	token->next = new;
-}
-
 bool	is_command(char *token_content, char **path)
 {
 	int		i;
-	char	*cmd1;
 	char	*cmd2;
+	char	*cmd;
 
 	i = 0;
 	while (path[i])
 	{
-		cmd1 = ft_strjoin(path[i], "/");
-		cmd2 = ft_strjoin(cmd1, token_content);
-		if (!access(cmd2, X_OK))
+		cmd2 = ft_strjoin(path[i], "/");
+		cmd = ft_strjoin(cmd2, token_content);
+		free(cmd2);
+		if (!access(cmd, X_OK))
 		{
-			free(cmd1);
-			free(cmd2);
+			free(cmd);
 			return (true);
 		}
-		free(cmd1);
-		free(cmd2);
+		free(cmd);
 		i++;
 	}
 	return (false);
+}
+
+void	add_back_token(t_token **tokens, char *content, t_type type)
+{
+	t_token	*new;
+	t_token	*curr;
+
+	new = (t_token *)malloc(sizeof(t_token));
+	if (!new)
+		return ;
+	new->content = content;
+	new->type = type;
+	new->next = NULL;
+	if (!tokens || !*tokens)
+		*tokens = new;
+	else
+	{
+		curr = *tokens;
+		while (curr->next)
+			curr = curr->next;
+		curr->next = new;
+	}
 }

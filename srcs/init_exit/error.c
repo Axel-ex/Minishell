@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:13 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/08 16:32:10 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 09:23:02 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_error(char *msg)
 {
-	ft_printf("%s", msg);
+	ft_printf("Error: %s\n", msg);
 	return (EXIT_FAILURE);
 }
 

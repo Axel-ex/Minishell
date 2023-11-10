@@ -6,12 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 17:14:39 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:12:36 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 
 static void	main_loop(t_shell *shell)
 {
@@ -33,13 +32,11 @@ static void	main_loop(t_shell *shell)
 	clear_history();
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(void)
 {
 	t_shell	*shell;
 
-	(void)argc;
-	(void)argv;
-	shell = init_shell(envp);
+	shell = init_shell();
 	main_loop(shell);
 	free_shell(shell, false);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 17:09:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 09:43:02 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_cmd
 
 typedef struct s_shell
 {
-	char	**envp;
 	t_token	*token;
 	t_cmd	*cmd;
 	char	**path;

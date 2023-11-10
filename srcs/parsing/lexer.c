@@ -6,39 +6,28 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/09 12:27:19 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:08:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_token	*get_token(char *line, char **path)
+void	get_token(t_shell *shell, char *line)
 {
-	t_token	*token;
-	t_token	*origin;
+	char	*content;
+	t_type	type;
 
-	token = (t_token *)malloc(sizeof(t_token));
-	if (!token)
-		return (alloc_error("token"));
-	origin = token;
 	while (*line)
 	{
 		while (*line == ' ')
 			line++;
 		if (!*line)
 			break ;
-		token->content = get_token_content(line);
-		token->type = get_token_type(token->content, path);
-		line += ft_strlen(token->content);
-		while (*line == ' ')
-			line++;
-		if (*line)
-		{
-			add_new_token(token);
-			token = token->next;
-		}
+		content = get_token_content(line);
+		type = get_token_type(content, shell->path);
+		line += ft_strlen(content);
+		add_back_token(&shell->token, content, type);
 	}
-	return (origin);
 }
 
 char	*get_token_content(char *s)
@@ -48,8 +37,16 @@ char	*get_token_content(char *s)
 	int		i;
 
 	size = 0;
-	while (s[size] && s[size] != ' ' && size != MAX_TOKEN_LEN)
-		size++;
+	if (s[size] == '\"' || s[size] == '\'')
+	{
+		while (s[size] && (s[size] != '\"' || s[size] != '\''))
+			size++;
+	}
+	else
+	{
+		while (s[size] && s[size] != ' ' && size != MAX_TOKEN_LEN)
+			size++;
+	}
 	content = (char *)malloc(sizeof(char) * size + 1);
 	if (!content)
 		return (alloc_error("token content"));
