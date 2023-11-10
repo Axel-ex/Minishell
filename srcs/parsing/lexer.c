@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 12:20:06 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:39:28 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,14 @@ char	*get_token_content(char *s)
 	int		i;
 
 	size = 0;
+	if (s[size] == '|' || s[size] == '>' || s[size] == '<')
+		return (get_operator(s));
 	if (s[size] == '\"' || s[size] == '\'')
-	{
 		while (s[size] && (s[size] != '\"' || s[size] != '\''))
 			size++;
-	}
 	else
-	{
 		while (s[size] && s[size] != ' ' && size != MAX_TOKEN_LEN)
 			size++;
-	}
 	content = (char *)malloc(sizeof(char) * size + 1);
 	if (!content)
 		return (alloc_error("token content"));
