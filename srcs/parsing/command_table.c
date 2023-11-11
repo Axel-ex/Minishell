@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 09:10:26 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 11:28:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/11 22:41:57 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	split_token_type(t_token *token_lst)
 	t_token	*curr;
 
 	curr = token_lst;
-	while (curr)
+	while (curr->next)
 	{
 		if (curr->type == OTHER)
 			curr->type = CMD;

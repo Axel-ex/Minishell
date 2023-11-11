@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 13:44:04 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/11 22:34:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ extern int	g_exit_status;
 # define GREEN	"\e[32m"
 # define PURPLE	"\e[35m"
 # define CYAN	"\e[36m"
-
-# define SYNTAX_ERROR 20
 
 typedef enum s_type
 {

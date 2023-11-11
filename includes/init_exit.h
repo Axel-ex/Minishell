@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:28:09 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/11 22:35:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef struct s_shell	t_shell;
 typedef struct s_token	t_token;
 
+# define SYNTAX_ERROR 20
 # define ERR_UNCLOSED_QUOTES "command contains unclosed quotes"
 
 /// ============================================================================

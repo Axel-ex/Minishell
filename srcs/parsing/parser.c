@@ -6,11 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/11/10 20:39:56 by jgomes-v         ###   ########.fr       */
-=======
-/*   Updated: 2023/11/11 11:12:36 by achabrer         ###   ########.fr       */
->>>>>>> 7ba973f3153ccd150b3bc420078a6536a76631c8
+/*   Updated: 2023/11/11 22:31:17 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +49,7 @@ int	parser(t_shell *shell, char *line)
 		return (print_error(ERR_UNCLOSED_QUOTES, 2));
 	get_token(shell, line);
 	if (!shell->token)
-<<<<<<< HEAD
-		main_loop(shell);
-=======
 		return (EXIT_FAILURE);
->>>>>>> 7ba973f3153ccd150b3bc420078a6536a76631c8
 	syntax_checker(shell->token);
 	//expander
 	command_table_generator(shell);
