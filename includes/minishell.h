@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 13:11:55 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:44:04 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ typedef enum s_type
 	REDIR_OUT,
 	REDIR2_IN,
 	REDIR2_OUT,
-	S_QUOTE,
-	D_QUOTE,
 	CMD,
-	FILE_NAME,
+	FILE_IN,
+	FILE_TRUNC,
+	FILE_APEND,
+	HEREDOC,
 }	t_type;
 
 typedef struct s_token

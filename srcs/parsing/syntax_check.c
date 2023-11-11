@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:19:03 by jgomes-v          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/11/10 20:37:40 by jgomes-v         ###   ########.fr       */
+=======
+/*   Updated: 2023/11/10 21:55:04 by achabrer         ###   ########.fr       */
+>>>>>>> 7ba973f3153ccd150b3bc420078a6536a76631c8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +22,7 @@ int	syntax_checker(t_token *token)
 	t_token	*next;
 
 	temp = token;
-	if (temp->type != OTHER) 
+	if (temp->type != OTHER)
 		return (print_error("Syntax Error : First token should be a command",
 				SYNTAX_ERROR));
 	while (temp && temp->next)

@@ -6,7 +6,11 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/11/11 13:42:16 by jgomes-v         ###   ########.fr       */
+=======
+/*   Updated: 2023/11/11 11:31:26 by achabrer         ###   ########.fr       */
+>>>>>>> 7ba973f3153ccd150b3bc420078a6536a76631c8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +84,10 @@ char	*get_operator(char *s);
  * @return int EXIT_SUCCESS
  */
 int		parser(t_shell *shell, char *line);
+
+
+int		count_quotes(char *line);
+
 /// ============================================================================
 // SYNTAX_CHECK.C
 // =============================================================================
@@ -108,4 +116,23 @@ void	env_len(t_shell *shell);
 void	init_env(t_shell *shell);
 void	create_env(t_shell *shell, char **my_env);
 
+/// ============================================================================
+// COMMAND_TABLE.C
+// =============================================================================
+/**
+ * @brief 
+ * 
+ * @param shell 
+ */
+void	command_table_generator(t_shell	*shell);
+
+/// ============================================================================
+// COMMAND_TABLE_UTILS.C
+// =============================================================================
+/**
+ * @brief trims tokens from their double or simple quotes.
+ * 
+ * @param token_lst 
+ */
+void	trim_token(t_token *token_lst);
 #endif
