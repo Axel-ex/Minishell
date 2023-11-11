@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 17:38:44 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:42:16 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,20 @@ int		parser(t_shell *shell, char *line);
  * @return int exit_status
  */
 int		syntax_checker(t_token *token);
+
+void	main_loop(t_shell *shell);
+
+/// ============================================================================
+// SIGNALS.C
+// =============================================================================
+void	signals(int sig);
+void	back_to_prompt(int sig);
+void	ctrl_c(int sig);
+void	back_slash(int sig);
+void    rl_replace_line(const char *text);
+
+void	env_len(t_shell *shell);
+void	init_env(t_shell *shell);
+void	create_env(t_shell *shell, char **my_env);
 
 #endif

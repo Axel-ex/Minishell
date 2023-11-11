@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:19:03 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/10 17:25:30 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:37:40 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	syntax_checker(t_token *token)
 	temp = token;
 	if (temp->type != OTHER) 
 		return (print_error("Syntax Error : First token should be a command",
-				20));
+				SYNTAX_ERROR));
 	while (temp && temp->next)
 	{
 		next = temp->next;
 		if (temp->type != OTHER && next->type != OTHER)
 			return (print_error("Syntax Error : unexpected sequence of tokens",
-					20));
+					SYNTAX_ERROR));
 		temp = temp->next;
 	}
 	if (temp->type != OTHER)
 		return (print_error("Syntax Error: Prompt should not end as separator",
-				20));
+				SYNTAX_ERROR));
 	return (EXIT_SUCCESS);
 }

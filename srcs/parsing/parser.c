@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:43:33 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:39:56 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	parser(t_shell *shell, char *line)
 	if (!has_enclosed_quotes(line))
 		return (print_error(ERR_UNCLOSED_QUOTES, 2));
 	get_token(shell, line);
+	if (!shell->token)
+		main_loop(shell);
 	syntax_checker(shell->token);
 	//exander
 	//upon success return SUCCESS
