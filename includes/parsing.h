@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/11/11 13:42:16 by jgomes-v         ###   ########.fr       */
+=======
 /*   Updated: 2023/11/11 11:31:26 by achabrer         ###   ########.fr       */
+>>>>>>> 7ba973f3153ccd150b3bc420078a6536a76631c8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +100,21 @@ int		count_quotes(char *line);
  * @return int exit_status
  */
 int		syntax_checker(t_token *token);
+
+void	main_loop(t_shell *shell);
+
+/// ============================================================================
+// SIGNALS.C
+// =============================================================================
+void	signals(int sig);
+void	back_to_prompt(int sig);
+void	ctrl_c(int sig);
+void	back_slash(int sig);
+void    rl_replace_line(const char *text);
+
+void	env_len(t_shell *shell);
+void	init_env(t_shell *shell);
+void	create_env(t_shell *shell, char **my_env);
 
 /// ============================================================================
 // COMMAND_TABLE.C

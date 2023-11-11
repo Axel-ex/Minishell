@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 11:10:21 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:44:04 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <dirent.h>
 # include <readline/readline.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include "../Libft/includes/libft.h"
 # include "init_exit.h"
 # include "parsing.h"
@@ -36,6 +37,8 @@ extern int	g_exit_status;
 # define GREEN	"\e[32m"
 # define PURPLE	"\e[35m"
 # define CYAN	"\e[36m"
+
+# define SYNTAX_ERROR 20
 
 typedef enum s_type
 {
@@ -67,11 +70,22 @@ typedef struct s_cmd
 	int		fd_out;
 }	t_cmd;
 
+typedef struct s_env
+{
+	char	**env;
+	int		len;
+	char	**key;
+	char	**content;
+	int		index;
+}			t_env;
+
 typedef struct s_shell
 {
 	t_token	*token;
 	t_cmd	*cmd;
 	char	**path;
+	t_env	env;
 }	t_shell;
+
 
 #endif
