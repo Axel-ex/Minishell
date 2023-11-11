@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 17:38:44 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:31:26 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ char	*get_operator(char *s);
  * @return int EXIT_SUCCESS
  */
 int		parser(t_shell *shell, char *line);
+
+
+int		count_quotes(char *line);
+
 /// ============================================================================
 // SYNTAX_CHECK.C
 // =============================================================================
@@ -93,4 +97,23 @@ int		parser(t_shell *shell, char *line);
  */
 int		syntax_checker(t_token *token);
 
+/// ============================================================================
+// COMMAND_TABLE.C
+// =============================================================================
+/**
+ * @brief 
+ * 
+ * @param shell 
+ */
+void	command_table_generator(t_shell	*shell);
+
+/// ============================================================================
+// COMMAND_TABLE_UTILS.C
+// =============================================================================
+/**
+ * @brief trims tokens from their double or simple quotes.
+ * 
+ * @param token_lst 
+ */
+void	trim_token(t_token *token_lst);
 #endif

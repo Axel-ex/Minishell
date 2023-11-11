@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:43:33 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:12:36 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ int	parser(t_shell *shell, char *line)
 	if (!has_enclosed_quotes(line))
 		return (print_error(ERR_UNCLOSED_QUOTES, 2));
 	get_token(shell, line);
+	if (!shell->token)
+		return (EXIT_FAILURE);
 	syntax_checker(shell->token);
-	//exander
-	//upon success return SUCCESS
+	//expander
+	command_table_generator(shell);
 	return (EXIT_SUCCESS);
 }

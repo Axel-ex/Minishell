@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 14:29:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:10:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ typedef enum s_type
 	REDIR_OUT,
 	REDIR2_IN,
 	REDIR2_OUT,
-	S_QUOTE,
-	D_QUOTE,
 	CMD,
-	FILE_NAME,
+	FILE_IN,
+	FILE_TRUNC,
+	FILE_APEND,
+	HEREDOC,
 }	t_type;
 
 typedef struct s_token

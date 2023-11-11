@@ -3,3 +3,4 @@ minishell
 .DS_Store
 obj/
 Libft/libft.a
+*test*
