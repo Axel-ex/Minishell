@@ -1,6 +1,7 @@
 minishell
 .vscode/
 .DS_Store
-obj/
+bin/
 Libft/libft.a
+Libft/obj/
 *test*

@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 22:00:48 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:23:33 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	add_back_token(t_token **token_lst, char *content, t_type type)
+t_token	*scanner(t_operation op)
 {
-	t_token	*new;
-	t_token	*curr;
+	static t_list	*curr = NULL;
 
-	new = (t_token *)malloc(sizeof(t_token));
-	if (!new)
-		return ;
-	new->content = content;
-	new->type = type;
-	new->next = NULL;
-	if (!token_lst || !*token_lst)
-		*token_lst = new;
-	else
-	{
-		curr = *token_lst;
-		while (curr->next)
-			curr = curr->next;
-		curr->next = new;
-	}
+	if (op == RESET)
+		curr = sh()->token_lst;
+	else if (op == READ && curr)
+		return (curr->content);
+	else if (op == NEXT)
+		curr = curr->next;
+	else if (op == AHEAD_NEXT && curr->next)
+		return (curr->next->content);
+	return (NULL);
 }
 
 static char	*ft_alloc_fill(int size, char to_fill)
@@ -57,10 +50,43 @@ char	*get_operator(char *s)
 		return (ft_alloc_fill(2, '<'));
 	if (!ft_strncmp(">", s, 1))
 		return (ft_alloc_fill(1, '>'));
-	if (!ft_strncmp(">", s, 1))
+	if (!ft_strncmp("<", s, 1))
 		return (ft_alloc_fill(1, '<'));
 	if (!ft_strncmp("|", s, 1))
 		return (ft_alloc_fill(1, '|'));
 	else
 		return (NULL);
+}
+
+bool	is_operator(char c)
+{
+	if (c == '|' || c == '>' || c == '<')
+		return (true);
+	return (false);
+}
+
+int	count_quotes(char *line)
+{
+	int		quotes;
+	int		in_squote;
+	int		in_dquote;
+
+	quotes = 0;
+	in_squote = 0;
+	in_dquote = 0;
+	while (*line)
+	{
+		if (*line == '\'' && in_dquote == 0)
+		{
+			in_squote = 1 - in_squote;
+			quotes++;
+		}
+		else if (*line == '"' && in_squote == 0)
+		{
+			in_dquote = 1 - in_dquote;
+			quotes++;
+		}
+		line++;
+	}
+	return (quotes);
 }

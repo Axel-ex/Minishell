@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 22:35:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:38:27 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_token	t_token;
  * 
  * @return t_shell* 
  */
-t_shell	*init_shell(void);
+void	init_shell(void);
 
 /// ============================================================================
 // ERROR.C
@@ -57,7 +57,7 @@ void	*alloc_error(char *msg);
  * @param shell 
  * @param keep_iterating 
  */
-void	free_shell(t_shell *shell, bool keep_iterating);
+void	free_shell(bool keep_iterating);
 
 /**
  * @brief free the list of tokens (pointers and content).

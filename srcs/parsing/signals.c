@@ -22,7 +22,7 @@ void	signals(int sig)
 
 void	back_to_prompt(int sig)
 {
-	g_exit_status = 142;
+	sh()->exit_status = 142;
 	write(1, "\n", 1);
 	//rl_replace_line(""); Need to make this function work
 	rl_on_new_line();
@@ -32,14 +32,14 @@ void	back_to_prompt(int sig)
 
 void	ctrl_c(int sig)
 {
-	g_exit_status = 142;
+	sh()->exit_status = 142;
 	write(1, "\n", 1);
 	(void)sig;
 }
 
 void	back_slash(int sig)
 {
-	g_exit_status = 131;
+	sh()->exit_status = 131;
 	printf("Quit teste (crash)\n");
 	(void)sig;
 }

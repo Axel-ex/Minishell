@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 18:45:10 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:19:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	get_token(t_shell *shell, char *line)
+void	token_add_back(char *content, t_type type)
+{
+	t_token	*new;
+
+	new = (t_token *)malloc(sizeof(t_token));
+	if (!new)
+		return ;
+	new->content = content;
+	new->type = type;
+	ft_lstadd_back(&sh()->token_lst, ft_lstnew(new));
+}
+
+void	get_token(char *line)
 {
 	char	*content;
 	t_type	type;
@@ -26,7 +38,7 @@ void	get_token(t_shell *shell, char *line)
 		content = get_token_content(line);
 		type = get_token_type(content);
 		line += ft_strlen(content);
-		add_back_token(&shell->token, content, type);
+		token_add_back(content, type);
 	}
 }
 
@@ -37,13 +49,15 @@ char	*get_token_content(char *s)
 	int		i;
 
 	size = 0;
-	if (s[size] == '|' || s[size] == '>' || s[size] == '<')
+	if (is_operator(s[size]))
 		return (get_operator(s));
 	if (s[size] == '\"' || s[size] == '\'')
-		while (s[size] && (s[size] != '\"' || s[size] != '\''))
+		while (s[size] && !is_operator(s[size])
+			&& (s[size] != '\"' || s[size] != '\''))
 			size++;
 	else
-		while (s[size] && s[size] != ' ' && size != MAX_TOKEN_LEN)
+		while (s[size] && s[size] != ' ' && !is_operator(s[size])
+			&& size != MAX_TOKEN_LEN)
 			size++;
 	content = (char *)malloc(sizeof(char) * size + 1);
 	if (!content)

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 22:30:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:32:42 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "minishell.h"
 
-typedef struct s_token	t_token;
-typedef enum s_type		t_type;
+typedef struct s_token		t_token;
+typedef enum s_type			t_type;
+typedef enum s_operation	t_operation;
 
 /// ============================================================================
 // LEXER.C
@@ -27,7 +28,7 @@ typedef enum s_type		t_type;
  * @param line to tokenize
  * @return t_token* 
  */
-void	get_token(t_shell *shell, char *line);
+void	get_token(char *line);
 
 /**
  * @brief Get the token pointed to by *s and return a substr of s
@@ -47,28 +48,6 @@ char	*get_token_content(char *s);
 t_type	get_token_type(char *token_content);
 
 /// ============================================================================
-// LEXER_UTIL.C
-// =============================================================================
-/**
- * @brief add token at the back of token list. if **token doesn't
- * exists create it.
- * 
- * @param tokens pointer to the list
- * @param content of new token
- * @param type of new token
- */
-void	add_back_token(t_token **tokens, char *content, t_type type);
-
-/**
- * @brief returns a string containing the operator found in s.
- * (allocated on the heap)
- * 
- * @param s 
- * @return char* 
- */
-char	*get_operator(char *s);
-
-/// ============================================================================
 // PARSER.C
 // =============================================================================
 /**
@@ -79,14 +58,8 @@ char	*get_operator(char *s);
  * @param line 
  * @return int EXIT_SUCCESS
  */
-int		parser(t_shell *shell, char *line);
+int		parser(void);
 
-
-int		count_quotes(char *line);
-
-/// ============================================================================
-// SYNTAX_CHECK.C
-// =============================================================================
 /**
  * @brief check for syntax errors. e.g if first token is not command
  *        if two consecutive tokens are separators
@@ -95,9 +68,44 @@ int		count_quotes(char *line);
  * @param token 
  * @return int exit_status
  */
-int		syntax_checker(t_token *token);
+int		syntax_checker(void);
 
-void	main_loop(t_shell *shell);
+/// ============================================================================
+// PARSER_UTIL.C
+// =============================================================================
+/**
+ * @brief perform operation specified by op code on token list.
+ * 
+ * @param op 
+ * @return t_token* 
+ */
+t_token	*scanner(t_operation op);
+
+/**
+ * @brief returns a string containing the operator found in s.
+ * (allocated on the heap)
+ * 
+ * @param s 
+ * @return char* 
+ */
+char	*get_operator(char *s);
+
+/**
+ * @brief checks if c is an operator.
+ * 
+ * @param c 
+ * @return true 
+ * @return false 
+ */
+bool	is_operator(char c);
+
+/**
+ * @brief count quotes that are not found inside of quotes.
+ * 
+ * @param line 
+ * @return int 
+ */
+int		count_quotes(char *line);
 
 /// ============================================================================
 // SIGNALS.C

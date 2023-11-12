@@ -3,46 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 13:44:29 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:27:40 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	g_exit_status;
+/* variable to have access to the struc during debug*/
+t_shell	*debug_shell;
 
-void	main_loop(t_shell *shell)
+t_shell	*sh(void)
 {
-	char	*line;
+	static t_shell	sh;
 
-	while (true)
+	debug_shell = &sh;
+	return (&sh);
+}
+
+static void	main_loop(void)
+{
+	while (42)
 	{
-		line = readline("prompt> ");
+		sh()->line = readline("prompt> ");
 		signals(1);
-		add_history(line);
-		parser(shell, line);
-		if (!ft_strncmp(line, "exit", 4))
+		add_history(sh()->line);
+		parser();
+		if (!ft_strncmp(sh()->line, "exit", 4))
 		{
-			free(line);
+			free_shell(false);
 			break ;
 		}
-		free_shell(shell, true);
-		free(line);
+		free_shell(true);
 	}
 	clear_history();
 }
 
 int	main(void)
 {
-	t_shell	*shell;
-
-
-	shell = init_shell();
+	init_shell();
 	//create_env(shell, getenv());
-	main_loop(shell);
-	free_shell(shell, false);
+	main_loop();
 	return (EXIT_SUCCESS);
 }

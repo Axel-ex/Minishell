@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/11 22:34:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:41:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "parsing.h"
 # include "debug.h"
 
-extern int	g_exit_status;
+t_shell	*sh(void);
 
 # define MAX_TOKEN_LEN 100
 
@@ -46,27 +46,30 @@ typedef enum s_type
 	REDIR_OUT,
 	REDIR2_IN,
 	REDIR2_OUT,
-	CMD,
-	FILE_IN,
-	FILE_TRUNC,
-	FILE_APEND,
-	HEREDOC,
 }	t_type;
+
+typedef enum s_operation
+{
+	RESET,
+	READ,
+	NEXT,
+	AHEAD_NEXT,
+}	t_operation;
 
 typedef struct s_token
 {
 	char			*content;
 	t_type			type;
-	struct s_token	*next;
 }	t_token;
 
-typedef struct s_cmd
+typedef struct s_ast
 {
-	char	*path;
-	char	**args;
-	int		fd_in;
-	int		fd_out;
-}	t_cmd;
+	t_token			*token;
+	char			**args;
+	int				index;
+	struct s_ast	*left;
+	struct s_ast	*right;
+}	t_ast;
 
 typedef struct s_env
 {
@@ -79,10 +82,12 @@ typedef struct s_env
 
 typedef struct s_shell
 {
-	t_token	*token;
-	t_cmd	*cmd;
+	char	*line;
+	t_list	*token_lst;
+	t_ast	*ast;
 	char	**path;
 	t_env	env;
+	int		exit_status;
 }	t_shell;
 
 

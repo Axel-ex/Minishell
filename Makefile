@@ -2,7 +2,7 @@ NAME		=	minishell
 
 SRCS_DIR	=	srcs
 
-OBJ_DIR		=	obj
+OBJ_DIR		=	bin
 
 LIBFT_DIR	=	Libft
 
@@ -35,12 +35,12 @@ $(NAME): $(OBJS) $(LIBFT)
 	@cc $(CCFLAGS) $(FLAGS) -I $(INC) $(OBJS) $(LIBFT_DIR)/$(LIBFT) -o $(NAME)
 
 $(OBJ_DIR):
-	@mkdir obj/
-	@mkdir obj/builtins
-	@mkdir obj/init_exit
-	@mkdir obj/parsing
-	@mkdir obj/execution
-	@mkdir obj/debug
+	@mkdir $(OBJ_DIR)/
+	@mkdir $(OBJ_DIR)/builtins
+	@mkdir $(OBJ_DIR)/init_exit
+	@mkdir $(OBJ_DIR)/parsing
+	@mkdir $(OBJ_DIR)/execution
+	@mkdir $(OBJ_DIR)/debug
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

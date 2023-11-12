@@ -3,31 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/10 17:19:32 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:33:44 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_tokens(t_token **tokens)
+void	*free_token(t_token *token)
 {
-	t_token	*curr;
-	t_token	*buf;
-
-	if (tokens == NULL || *tokens == NULL)
-		return ;
-	curr = *tokens;
-	while (curr)
-	{
-		buf = curr;
-		curr = curr->next;
-		free(buf->content);
-		free(buf);
-	}
-	*tokens = NULL;
+	if (!token)
+		return (NULL);
+	free(token->content);
+	free(token);
+	return (NULL);
 }
 
 void	free_matrix(char **matrix)
@@ -40,12 +31,12 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
-void	free_shell(t_shell *shell, bool keep_iterating)
+void	free_shell(bool keep_iterating)
 {
-	free_tokens(&shell->token);
+	ft_lstclear(&sh()->token_lst, (void (*))free_token);
+	free(sh()->line);
 	if (!keep_iterating)
 	{
-		free_matrix(shell->path);
-		free(shell);
+		free_matrix(sh()->path);
 	}
 }
