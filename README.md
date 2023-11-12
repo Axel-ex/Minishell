@@ -6,7 +6,7 @@
 
 ### parsing: lexer (tokenization) and synthax analyzer
 	* lexer.c		-> function related to tokenization (get_token)
-	* lexer_util.c	-> subfunctions useful to tokenize
+	* parser_util.c	-> subfunctions useful to tokenize and parse
 
 ###	execution: execution of commands
 

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 15:23:33 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:34:57 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_token	*scanner(t_operation op)
 		return (curr->content);
 	else if (op == NEXT)
 		curr = curr->next;
-	else if (op == AHEAD_NEXT && curr->next)
+	else if (op == GET_NEXT && curr->next)
 		return (curr->next->content);
 	return (NULL);
 }

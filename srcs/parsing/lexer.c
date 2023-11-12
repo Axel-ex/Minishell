@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 15:19:52 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:43:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_token_content(char *s)
 	size = 0;
 	if (is_operator(s[size]))
 		return (get_operator(s));
-	if (s[size] == '\"' || s[size] == '\'')
+	else if (s[size] == '\"' || s[size] == '\'')
 		while (s[size] && !is_operator(s[size])
 			&& (s[size] != '\"' || s[size] != '\''))
 			size++;

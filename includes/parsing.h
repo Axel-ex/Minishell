@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 15:32:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:37:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,6 @@ t_type	get_token_type(char *token_content);
  */
 int		parser(void);
 
-/**
- * @brief check for syntax errors. e.g if first token is not command
- *        if two consecutive tokens are separators
- *        if last token is separator
- * 
- * @param token 
- * @return int exit_status
- */
-int		syntax_checker(void);
-
 /// ============================================================================
 // PARSER_UTIL.C
 // =============================================================================
@@ -107,36 +97,4 @@ bool	is_operator(char c);
  */
 int		count_quotes(char *line);
 
-/// ============================================================================
-// SIGNALS.C
-// =============================================================================
-void	signals(int sig);
-void	back_to_prompt(int sig);
-void	ctrl_c(int sig);
-void	back_slash(int sig);
-void    rl_replace_line(const char *text);
-
-void	env_len(t_shell *shell);
-void	init_env(t_shell *shell);
-void	create_env(t_shell *shell, char **my_env);
-
-/// ============================================================================
-// COMMAND_TABLE.C
-// =============================================================================
-/**
- * @brief 
- * 
- * @param shell 
- */
-void	command_table_generator(t_shell	*shell);
-
-/// ============================================================================
-// COMMAND_TABLE_UTILS.C
-// =============================================================================
-/**
- * @brief trims tokens from their double or simple quotes.
- * 
- * @param token_lst 
- */
-void	trim_token(t_token *token_lst);
 #endif

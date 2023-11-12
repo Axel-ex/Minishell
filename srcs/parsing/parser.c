@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 15:29:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:37:15 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,31 @@ static bool	is_empty(char *line)
 {
 	while (*line)
 	{
-		if (*line != ' ' || *line != '\n')
+		if (*line != ' ' && *line != '\n' && *line != '\t')
 			return (false);
 		line++;
 	}
 	return (true);
 }
 
-int	syntax_checker(void)
+static int	syntax_checker(void)
 {
 	t_token	*next;
 	t_token	*last;
 
 	scanner(RESET);
 	if (scanner(READ)->type != OTHER)
-		return (print_error("Syntax Error : First token should be a command",
-				SYNTAX_ERROR));
+		return (print_error(ERR_OPERATOR_BEGIN, SYNTAX_ERROR));
 	while (scanner(READ))
 	{
-		next = scanner(AHEAD_NEXT);
+		next = scanner(GET_NEXT);
 		if (scanner(READ)->type != OTHER && next && next->type != OTHER)
-			return (print_error("Syntax Error : unexpected sequence of tokens",
-					SYNTAX_ERROR));
+			return (print_error(ERR_TOKEN_SEQ, SYNTAX_ERROR));
 		last = scanner(READ);
 		scanner(NEXT);
 	}
 	if (last->type != OTHER)
-		return (print_error("Syntax Error: Prompt should not end as separator",
-				SYNTAX_ERROR));
+		return (print_error(ERR_OPERATOR_END, SYNTAX_ERROR));
 	return (EXIT_SUCCESS);
 }
 
@@ -61,5 +58,6 @@ int	parser(void)
 	get_token(sh()->line);
 	syntax_checker();
 	//expander
+	//ast_generator();
 	return (EXIT_SUCCESS);
 }

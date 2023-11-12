@@ -41,6 +41,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/parsing
 	@mkdir $(OBJ_DIR)/execution
 	@mkdir $(OBJ_DIR)/debug
+	@mkdir $(OBJ_DIR)/signals
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

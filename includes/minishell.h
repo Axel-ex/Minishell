@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 14:41:34 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:35:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "init_exit.h"
 # include "parsing.h"
 # include "debug.h"
+# include "signals.h"
 
-t_shell	*sh(void);
 
 # define MAX_TOKEN_LEN 100
 
@@ -38,6 +38,17 @@ t_shell	*sh(void);
 # define PURPLE	"\e[35m"
 # define CYAN	"\e[36m"
 
+/**
+ * @brief returns shell structure from anywhere in the code
+ * 
+ * @return t_shell* 
+ */
+t_shell	*sh(void);
+
+/**
+ * @brief categorise the input into types of token.
+ * 
+ */
 typedef enum s_type
 {
 	OTHER,
@@ -48,12 +59,22 @@ typedef enum s_type
 	REDIR2_OUT,
 }	t_type;
 
+/**
+ * @brief operation for the scanner. the scanner scans through the
+ * list of token and execute these operation.
+ * 
+ * RESET: go at beggining of list
+ * READ: get the token pointed by lst
+ * NEXT: move of one element
+ * GET_NEXT: get the next token
+ * 
+ */
 typedef enum s_operation
 {
 	RESET,
 	READ,
 	NEXT,
-	AHEAD_NEXT,
+	GET_NEXT,
 }	t_operation;
 
 typedef struct s_token
@@ -83,6 +104,8 @@ typedef struct s_env
 typedef struct s_shell
 {
 	char	*line;
+	int		fd_in;
+	int		fd_out;
 	t_list	*token_lst;
 	t_ast	*ast;
 	char	**path;
