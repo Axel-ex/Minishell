@@ -25,7 +25,7 @@ void	populate_env_struct(t_env *env)
 	i = 0;
 	while (i < env->len)
 	{
-		equals = strchr(env->env[i], '=');
+		equals = ft_strchr(env->env[i], '=');
 		if (equals != NULL)
 			copy_key_content(env, equals, i);
 		else
