@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 15:52:22 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:34:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	parser(void)
 	if (is_empty(sh()->line))
 		return (EXIT_FAILURE);
 	get_token(sh()->line);
-	syntax_checker();
+	if (syntax_checker() == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	//expander
 	//trim_token
 	ast_generator();

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:35 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 14:54:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:19:42 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_ast	*parse_cmd(void)
 	return (cmd);
 }
 
-t_ast	*parse_pipe(t_ast *ast, t_ast *new_cmd)
+t_ast	*extend_pipe(t_ast *ast, t_ast *new_cmd)
 {
 	t_ast	*root;
 
@@ -68,6 +68,6 @@ void	ast_generator(void)
 	{
 		scanner(NEXT);
 		cmd = parse_cmd();
-		sh()->ast = parse_pipe(sh()->ast, cmd);
+		sh()->ast = extend_pipe(sh()->ast, cmd);
 	}
 }
