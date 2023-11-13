@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 15:33:44 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:02:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,27 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
+void	free_ast(t_ast *ast)
+{
+	t_ast	*left;
+	t_ast	*right;
+
+	if (!ast)
+		return ;
+	free_token(ast->token);
+	free_matrix(ast->args);
+	left = ast->left;
+	right = ast->right;
+	free(ast);
+	free_ast(left);
+	free_ast(right);
+}
+
 void	free_shell(bool keep_iterating)
 {
 	ft_lstclear(&sh()->token_lst, (void (*))free_token);
 	free(sh()->line);
+	free_ast(sh()->ast);
 	if (!keep_iterating)
 	{
 		free_matrix(sh()->path);
