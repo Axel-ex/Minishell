@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 13:05:00 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:11:53 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "parsing.h"
 # include "debug.h"
 # include "signals.h"
+# include "envp.h"
 
 
 # define MAX_TOKEN_LEN 100
@@ -91,6 +92,14 @@ typedef struct s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
+
+typedef struct s_env
+{
+	char	**env;
+	char	**key;
+	char	**content;
+	int		len;
+}			t_env;
 
 typedef struct s_shell
 {
