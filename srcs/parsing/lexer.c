@@ -6,23 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 16:43:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:48:57 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	token_add_back(char *content, t_type type)
-{
-	t_token	*new;
-
-	new = (t_token *)malloc(sizeof(t_token));
-	if (!new)
-		return ;
-	new->content = content;
-	new->type = type;
-	ft_lstadd_back(&sh()->token_lst, ft_lstnew(new));
-}
 
 void	get_token(char *line)
 {

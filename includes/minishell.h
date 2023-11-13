@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 16:35:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:09:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ typedef enum s_operation
 	RESET,
 	READ,
 	NEXT,
+	PREV,
 	GET_NEXT,
+	GET_PREV,
 }	t_operation;
 
 typedef struct s_token

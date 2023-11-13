@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:06:04 by axelc             #+#    #+#             */
-/*   Updated: 2023/11/01 17:45:57 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:43:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
+	struct s_list	*prev;
 }	t_list;
 
 /**

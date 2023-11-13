@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 12:07:04 by axel              #+#    #+#             */
-/*   Updated: 2023/11/01 17:57:43 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:44:48 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new_node)
 	{
 		tmp = ft_lstlast(*lst);
 		tmp->next = new_node;
+		new_node->prev = tmp;
 	}
 }
