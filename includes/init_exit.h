@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 16:14:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:58:27 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef struct s_shell	t_shell;
 typedef struct s_token	t_token;
+
 
 /// ============================================================================
 // ERROR CODE

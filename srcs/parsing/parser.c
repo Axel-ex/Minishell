@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/12 16:37:15 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:52:22 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	parser(void)
 	get_token(sh()->line);
 	syntax_checker();
 	//expander
-	//ast_generator();
+	//trim_token
+	ast_generator();
 	return (EXIT_SUCCESS);
 }
