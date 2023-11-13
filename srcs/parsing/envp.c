@@ -4,13 +4,19 @@
 void	copy_key_content(t_env *env, char *equals, int index)
 {
 	int	key_len;
+	int	content_len;
 
 	key_len = equals - env->env[index];
 	env->key[index] = malloc(key_len + 1);
-	env->content[index] = ft_strdup(equals + 1);
-	if (!env->key[index] || !env->content[index])
+	if (!env->key[index])
 		exit(EXIT_FAILURE);
 	ft_strlcpy(env->key[index], env->env[index], key_len + 1);
+	equals++;
+	content_len = ft_strlen(equals);
+	env->content[index] = malloc(content_len + 1);
+	if (!env->content[index])
+		exit(EXIT_FAILURE);
+	ft_strlcpy(env->content[index], equals, content_len + 1);
 }
 
 void	populate_env_struct(t_env *env)
@@ -18,11 +24,11 @@ void	populate_env_struct(t_env *env)
 	int		i;
 	char	*equals;
 
+	i = 0;
 	env->len = 0;
 	while (env->env[env->len] != NULL)
 		env->len++;
 	allocate_memory(env);
-	i = 0;
 	while (i < env->len)
 	{
 		equals = ft_strchr(env->env[i], '=');
