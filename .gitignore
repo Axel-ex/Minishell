@@ -4,4 +4,4 @@ minishell
 bin/
 Libft/libft.a
 Libft/obj/
-*test*
+a.out
