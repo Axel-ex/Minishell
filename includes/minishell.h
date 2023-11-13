@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 13:09:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:26:43 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "parsing.h"
 # include "debug.h"
 # include "signals.h"
+# include "envp.h"
 
 
 # define MAX_TOKEN_LEN 100
@@ -97,10 +98,9 @@ typedef struct s_ast
 typedef struct s_env
 {
 	char	**env;
-	int		len;
 	char	**key;
 	char	**content;
-	int		index;
+	int		len;
 }			t_env;
 
 typedef struct s_shell
