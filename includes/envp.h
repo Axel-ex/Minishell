@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:31:57 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/14 00:01:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:16:43 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "minishell.h"
 
-typedef struct s_env_var
+typedef struct s_env
 {
 	char	*key;
 	char	*value;
-}	t_env_var;
+}	t_env;
 
 void get_env_list(char **envp);
 

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 23:32:44 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:15:51 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,6 @@ typedef struct s_ast
 	struct s_ast	*right;
 }	t_ast;
 
-typedef struct s_env
-{
-	char	**env;
-	char	**key;
-	char	**content;
-	int		len;
-}			t_env;
-
 typedef struct s_shell
 {
 	char		*line;
@@ -112,7 +104,6 @@ typedef struct s_shell
 	t_ast		*ast;
 	char		**path;
 	t_list		*env_lst;
-	t_env		env;
 	int			exit_status;
 }	t_shell;
 

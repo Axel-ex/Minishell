@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 16:02:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:16:23 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,17 @@ void	free_ast(t_ast *ast)
 	free_ast(right);
 }
 
+void	free_env_lst(t_env *env_lst)
+{
+	free(env_lst->key);
+	// free(env_lst->value);
+	free(env_lst);
+}
+
 void	free_shell(bool keep_iterating)
 {
 	ft_lstclear(&sh()->token_lst, (void (*))free_token);
+	ft_lstclear(&sh()->env_lst, (void (*))free_env_lst);
 	free(sh()->line);
 	free_ast(sh()->ast);
 	if (!keep_iterating)

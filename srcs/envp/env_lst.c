@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:10:03 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 00:10:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:16:23 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ of the string
 
 void	env_add_back(char *key, char *value)
 {
-	t_env_var	*var;
+	t_env	*var;
 
-	var = (t_env_var *)malloc(sizeof(t_env_var));
+	var = (t_env *)malloc(sizeof(t_env));
 	if (!var)
 		return ;
 	var->key = key;
