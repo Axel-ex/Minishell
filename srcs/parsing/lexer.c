@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 14:48:57 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:16:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*get_token_content(char *s)
 	i = -1;
 	while (++i < size)
 		content[i] = s[i];
-	content[++i] = '\0';
+	content[i] = '\0';
 	return (content);
 }
 

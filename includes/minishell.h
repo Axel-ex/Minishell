@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 11:15:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:53:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <dirent.h>
-# include <readline/readline.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../Libft/includes/libft.h"
@@ -29,8 +29,9 @@
 # include "debug.h"
 # include "signals.h"
 # include "envp.h"
+# include "execution.h"
 
-
+# define PROMPT "\e[35m@minishell>\e[0m "
 # define MAX_TOKEN_LEN 100
 
 # define NC		"\e[0m"
@@ -40,7 +41,7 @@
 # define CYAN	"\e[36m"
 
 /**
- * @brief returns shell structure from anywhere in the code
+ * @brief returns shell structure from anywhere in the code.
  * 
  * @return t_shell* 
  */
@@ -75,9 +76,7 @@ typedef enum s_operation
 	RESET,
 	READ,
 	NEXT,
-	PREV,
 	GET_NEXT,
-	GET_PREV,
 }	t_operation;
 
 typedef struct s_token
@@ -90,21 +89,22 @@ typedef struct s_ast
 {
 	t_token			*token;
 	char			**args;
-	int				index;
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
 
 typedef struct s_shell
 {
-	char		*line;
+	pid_t		pid;
 	int			fd_in;
 	int			fd_out;
+	int			exit_status;
+	char		*line;
+	char		**path;
+	char		**envp;
+	t_list		*env_lst;
 	t_list		*token_lst;
 	t_ast		*ast;
-	char		**path;
-	t_list		*env_lst;
-	int			exit_status;
 }	t_shell;
 
 

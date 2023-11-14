@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 23:29:21 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:05:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,22 @@ typedef struct s_token	t_token;
 /// ============================================================================
 // ERROR CODE
 // =============================================================================
-# define SYNTAX_ERROR 2
+# define PERM_DENIED	1
+# define SYNTAX_ERROR	2
+# define DIR_NT_FD		126
+# define CMD_NT_FD		127
+
 
 /// ============================================================================
 // ERROR MSG
 // =============================================================================
 # define ERR_UNCLOSED_QUOTES	"command contains unclosed quotes"
-# define ERR_OPERATOR_END		"Syntax Error: Prompt should not\
- 								end with an operator"
-# define ERR_TOKEN_SEQ			"Syntax Error : unexpected sequence\
-								of tokens"
-# define ERR_OPERATOR_BEGIN		"Syntax Error : First token should be\
-								a command"
+# define ERR_OPERATOR_END		"Syntax Error: unclosed operator sequence"
+# define ERR_TOKEN_SEQ			"Syntax Error : unexpected sequence of tokens"
+# define ERR_OPERATOR_BEGIN		"syntax error near unexpected token "
+# define ERR_CMD				"command not found"
+# define ERR_DIR				"No such file or directory"
+# define ERR_PERM				"Permission denied"
 
 /// ============================================================================
 // INIT.C
@@ -48,11 +52,14 @@ void	init_shell(char **envp);
 // ERROR.C
 // =============================================================================
 /**
- * @brief prints the msg pointed to by *msg and return EXIT_FAILURE.
+ * @brief print error message and set exit value.
  * 
- * @param msg to_print 
+ * @param exit_status 
+ * @param msg 
+ * @param var to print before msg
+ * @return int 
  */
-int		print_error(char *msg, int exit_status);
+int		print_error(int exit_status, char *msg, char *var);
 
 /**
  * @brief prints the msg pointed to by *msg and return NULL.

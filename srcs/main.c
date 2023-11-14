@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 23:30:34 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:17:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ static void	main_loop(void)
 {
 	while (42)
 	{
-		sh()->line = readline("prompt> ");
+		sh()->line = readline(PROMPT);
 		// signals(1);
 		add_history(sh()->line);
 		parser();
+		executor(sh()->ast);
 		if (!ft_strncmp(sh()->line, "exit", 4))
 		{
 			free_shell(false);
 			break ;
 		}
-		print_ast(sh()->ast, 0);
+		print_token_lst();
 		free_shell(true);
 	}
 	clear_history();

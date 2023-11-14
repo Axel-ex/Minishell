@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:10:03 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 11:16:23 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:11:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_key(char *envp)
 	key = (char *)malloc(sizeof(char) * size + 1);
 	if (!key)
 		return (alloc_error("get key."));
-	key[size + 1] = '\0';
+	key[size] = '\0';
 	while (size--)
 		key[size] = envp[size];
 	return (key);
