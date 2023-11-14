@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 17:26:37 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:30:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ static void	main_loop(void)
 	clear_history();
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	init_shell();
+	(void)argc;
+	(void)argv;
+	init_shell(envp);
 	main_loop();
 	return (EXIT_SUCCESS);
 }

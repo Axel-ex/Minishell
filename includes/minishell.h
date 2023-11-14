@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 17:26:43 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:32:44 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,15 @@ typedef struct s_env
 
 typedef struct s_shell
 {
-	char	*line;
-	int		fd_in;
-	int		fd_out;
-	t_list	*token_lst;
-	t_ast	*ast;
-	char	**path;
-	t_env	env;
-	int		exit_status;
+	char		*line;
+	int			fd_in;
+	int			fd_out;
+	t_list		*token_lst;
+	t_ast		*ast;
+	char		**path;
+	t_list		*env_lst;
+	t_env		env;
+	int			exit_status;
 }	t_shell;
 
 

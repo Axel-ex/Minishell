@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 10:58:27 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:29:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ typedef struct s_token	t_token;
 // =============================================================================
 /**
  * @brief init shell structure. Alloc space for shell struct, get path variable.
- * 
+ *
+ * @param envp  
  * @return t_shell* 
  */
-void	init_shell(void);
+void	init_shell(char **envp);
 
 /// ============================================================================
 // ERROR.C

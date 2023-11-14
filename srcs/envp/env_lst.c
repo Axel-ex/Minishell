@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_lst.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 23:10:03 by achabrer          #+#    #+#             */
+/*   Updated: 2023/11/14 00:10:35 by achabrer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/minishell.h"
+
+/*
+It's basically the same as token! they are added onto a list
+and we will be able to go through the list with a scanner!
+*/
+
+char	*get_key(char *envp)
+{
+	char	*key;
+	int		size;
+
+	size = 0;
+	while (envp[size] && envp[size] != '=')
+		size++;
+	key = (char *)malloc(sizeof(char) * size + 1);
+	if (!key)
+		return (alloc_error("get key."));
+	key[size + 1] = '\0';
+	while (size--)
+		key[size] = envp[size];
+	return (key);
+}
+/*
+Skip the char until finding a '=' and return a copy of the rest
+of the string
+*/
+// char	*get_value(char *envp)
+// {
+
+// }
+
+void	env_add_back(char *key, char *value)
+{
+	t_env_var	*var;
+
+	var = (t_env_var *)malloc(sizeof(t_env_var));
+	if (!var)
+		return ;
+	var->key = key;
+	var->value = value;
+	ft_lstadd_back(&sh()->env_lst, ft_lstnew(var));
+}
+
+void	get_env_list(char **envp)
+{
+	char	*key;
+	char	*value;
+	int		i;
+
+	i = -1;
+	while (envp[++i])
+	{
+		key = get_key(envp[i]);
+		value = NULL;
+		// value = get_value(envp[i]);
+		env_add_back(key, value);
+	}
+}

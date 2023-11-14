@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:31:57 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/13 17:32:17 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/14 00:01:32 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define ENVP_H
 
 # include "minishell.h"
+
+typedef struct s_env_var
+{
+	char	*key;
+	char	*value;
+}	t_env_var;
+
+void get_env_list(char **envp);
 
 typedef struct s_env	t_env;
 
