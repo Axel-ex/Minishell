@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 18:16:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/16 23:26:17 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,61 @@ void	get_token(char *line)
 	}
 }
 
-char	*get_token_content(char *s)
+char	*get_quoted_content(char *line)
 {
-	char	*content;
-	int		size;
+	char	*res;
+	char	quote;
 	int		i;
 
-	size = 0;
-	if (is_operator(s[size]))
-		return (get_operator(s));
-	else if (s[size] == '\"' || s[size] == '\'')
-		while (s[size] && !is_operator(s[size])
-			&& (s[size] != '\"' || s[size] != '\''))
-			size++;
-	else
-		while (s[size] && s[size] != ' ' && !is_operator(s[size])
-			&& size != MAX_TOKEN_LEN)
-			size++;
-	content = (char *)malloc(sizeof(char) * size + 1);
-	if (!content)
-		return (alloc_error("token content"));
+	quote = line[0];
+	i = 1;
+	while (line[i] != quote)
+		i++;
+	res = (char *)malloc(sizeof(char) * i + 2);
+	if (!res)
+		return (alloc_error("quoted content"));
+	ft_strlcpy(res, line, i + 2);
+	return (res);
+}
+
+char	*get_other(char *line)
+{
+	bool	in_quotes;
+	char	quote;
+	char	*res;
+	int		i;
+
+	in_quotes = false;
+	quote = '\0';
 	i = -1;
-	while (++i < size)
-		content[i] = s[i];
-	content[i] = '\0';
-	return (content);
+	while (line[++i] && line[i] != quote)
+	{
+		if (line[i] == '\"' || line[i] == '\'')
+		{
+			quote = line[i];
+			in_quotes = true;
+		}
+		if ((line[i] == ' ' || is_operator(line[i])) && !in_quotes)
+			break ;
+	}
+	if (quote != '\0')
+		i++;
+	res = ft_calloc(i + 1, sizeof(char));
+	ft_strlcpy(res, line, i + 1);
+	return (res);
+}
+
+char	*get_token_content(char *line)
+{
+	int		i;
+
+	i = 0;
+	if (is_operator(line[i]))
+		return (get_operator(line));
+	else if (line[i] == '\'' || line[i] == '\"')
+		return (get_quoted_content(line));
+	else
+		return (get_other(line));
 }
 
 t_type	get_token_type(char *token_content)

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 15:45:59 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:20:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ void	ast_generator(void);
  * @return t_ast* 
  */
 t_ast	*new_ast_node(t_token *token);
+
+int	get_matrix_len(char **matrix);
 
 /**
  * @brief creates a new matrix containing the element *to_append,

@@ -13,16 +13,22 @@ SRCS		=	$(wildcard $(SRCS_DIR)/*.c)\
 
 OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-CCFLAGS		=	-Wall -Wextra -Werror -g
+CCFLAGS		=	-Wall -Wextra -Werror
 
 FLAGS		=	-lreadline
 
 INC			=	includes
 
+MODE		=	normal
+
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
 RED			= \033[38;5;196m
 RESET 		= \033[0m
+
+ifeq ($(MODE), debug)
+	FLAGS += -fsanitize=adress -g
+endif
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
 	@cc $(CCFLAGS) -c $< -o $@

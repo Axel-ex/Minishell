@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 11:16:23 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:28:13 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	free_matrix(char **matrix)
 {
 	int	i;
 
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
+	i = -1;
+	while (++i < get_matrix_len(matrix))
+		free(matrix[i]);
 	free(matrix);
 }
 

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 16:53:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/17 23:37:32 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include "envp.h"
 # include "execution.h"
 
-# define PROMPT "\e[35m@minishell>\e[0m "
+# define PROMPT "@minishell> "
 # define MAX_TOKEN_LEN 100
 
 # define NC		"\e[0m"
