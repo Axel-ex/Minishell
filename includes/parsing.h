@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/17 00:20:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:45:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ typedef enum s_operation	t_operation;
 void	get_token(char *line);
 
 /**
- * @brief Get the token pointed to by *s and return a substr of s
+ * @brief Get the token content pointed to by *s and return a substr of s
+ * depending on the char pointed to by *line, get_operater, get_quoted_content
+ * and get_other functions are called.
  * 
  * @param s 
  * @return char* token content
  */
-char	*get_token_content(char *s);
+char	*get_token_content(char *line);
 
 /**
  * @brief identifies the token_content type and returns it.
@@ -47,6 +49,22 @@ char	*get_token_content(char *s);
  * @return t_type 
  */
 t_type	get_token_type(char *token_content);
+
+/**
+ * @brief Get content in the case of a quoted string
+ * 
+ * @param line 
+ * @return char* 
+ */
+char	*get_quoted_content(char *line);
+
+/**
+ * @brief Get content if it's neither an operator or quoted string
+ * 
+ * @param line 
+ * @return char* 
+ */
+char	*get_other(char *line);
 
 /// ============================================================================
 // TOKEN_UTILS.C

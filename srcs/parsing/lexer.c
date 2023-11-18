@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/16 23:26:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:41:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ void	get_token(char *line)
 		line += ft_strlen(content);
 		token_add_back(content, type);
 	}
+}
+
+char	*get_token_content(char *line)
+{
+	int		i;
+
+	i = 0;
+	if (is_operator(line[i]))
+		return (get_operator(line));
+	else if (line[i] == '\'' || line[i] == '\"')
+		return (get_quoted_content(line));
+	else
+		return (get_other(line));
+}
+
+t_type	get_token_type(char *token_content)
+{
+	if (!ft_strncmp("|", token_content, 2))
+		return (PIPE);
+	if (!ft_strncmp("<", token_content, 2))
+		return (REDIR_IN);
+	if (!ft_strncmp(">", token_content, 2))
+		return (REDIR_OUT);
+	if (!strncmp("<<", token_content, 3))
+		return (REDIR2_IN);
+	if (!strncmp(">>", token_content, 3))
+		return (REDIR2_OUT);
+	else
+		return (OTHER);
 }
 
 char	*get_quoted_content(char *line)
@@ -74,31 +103,3 @@ char	*get_other(char *line)
 	return (res);
 }
 
-char	*get_token_content(char *line)
-{
-	int		i;
-
-	i = 0;
-	if (is_operator(line[i]))
-		return (get_operator(line));
-	else if (line[i] == '\'' || line[i] == '\"')
-		return (get_quoted_content(line));
-	else
-		return (get_other(line));
-}
-
-t_type	get_token_type(char *token_content)
-{
-	if (!ft_strncmp("|", token_content, 2))
-		return (PIPE);
-	if (!ft_strncmp("<", token_content, 2))
-		return (REDIR_IN);
-	if (!ft_strncmp(">", token_content, 2))
-		return (REDIR_OUT);
-	if (!strncmp("<<", token_content, 3))
-		return (REDIR2_IN);
-	if (!strncmp(">>", token_content, 3))
-		return (REDIR2_OUT);
-	else
-		return (OTHER);
-}

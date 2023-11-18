@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/17 00:29:33 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:57:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_ast	*new_ast_node(t_token *token)
 	if (!new_node || !new_node->args)
 		return (alloc_error("new ast node"));
 	new_node->token = token;
+	new_node->left = NULL;
+	new_node->right = NULL;
 	return (new_node);
 }
 
@@ -42,12 +44,13 @@ char	**matrix_append(char **matrix, char *to_append)
 	char	**new;
 
 	i = -1;
-	new = (char **)malloc(sizeof(char *) * (get_matrix_len(matrix) + 1));
+	new = (char **)malloc(sizeof(char *) * (get_matrix_len(matrix) + 2));
 	if (!new)
 		return (alloc_error("new matrix"));
 	while (matrix[++i])
 		new[i] = ft_strdup(matrix[i]);
 	new[i] = to_append;
+	new[++i] = NULL;
 	free_matrix(matrix);
 	return (new);
 }
