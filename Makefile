@@ -27,7 +27,7 @@ RED			= \033[38;5;196m
 RESET 		= \033[0m
 
 ifeq ($(MODE), debug)
-	FLAGS += -fsanitize=adress -g
+	FLAGS += -fsanitize=address -g
 endif
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
