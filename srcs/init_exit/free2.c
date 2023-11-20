@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   free2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 11:45:38 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 14:55:44 by achabrer         ###   ########.fr       */
+/*   Created: 2023/11/20 14:44:42 by achabrer          #+#    #+#             */
+/*   Updated: 2023/11/20 14:50:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	init_shell(char **envp)
+void	free_pipes(int **pipes)
 {
-	ft_bzero(sh(), sizeof(t_shell));
-	sh()->envp = envp;
-	get_env_list(envp);
-	sh()->path = ft_split(getenv("PATH"), ':');
-	sh()->fd_in = STDIN_FILENO;
-	sh()->fd_out = STDOUT_FILENO;
-	sh()->nb_cmds = 0;
-	sh()->exit_status = 0;
+	int	i;
+
+	i = -1;
+	while (++i < sh()->nb_cmds)
+		free(pipes[i]);
+	free(pipes);
 }

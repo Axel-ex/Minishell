@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:35 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 17:19:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:42:07 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_ast	*parse_cmd(void)
 	cmd = new_ast_node(token_dup(scanner(READ)));
 	if (!cmd)
 		return (NULL);
+	cmd->pos = sh()->nb_cmds++;
 	while (scanner(READ) && scanner(READ)->type != PIPE)
 	{
 		if (scanner(READ)->type >= REDIR_IN

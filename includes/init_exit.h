@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 17:05:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:49:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	free_shell(bool keep_iterating);
  * 
  * @param token 
  */
-void	free_tokens(t_token **tokens);
+void	*free_token(t_token *token);
 
 /**
  * @brief free object of type char **.
@@ -94,5 +94,7 @@ void	free_tokens(t_token **tokens);
  * @param matrix 
  */
 void	free_matrix(char **matrix);
+
+void	free_pipes(int **pipes);
 
 #endif

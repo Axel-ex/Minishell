@@ -6,28 +6,37 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 17:52:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:39:02 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	is_not_operator(t_token *token)
+void	match_cmd(t_ast *ast)
+{
+	if (!ft_strncmp(ast->token->content, "exit", 5))
+		free_shell(false);
+	// if (ft_strncmp(ast->token->content, "echo", 5))
+	// 	echo(ast->args);
+	else
+		execute_cmd(ast);
+}
+
+bool	is_forkable(char *cmd)
+{
+	if (!ft_strncmp(cmd, "cd", 3) || !ft_strncmp(cmd, "export", 7)
+		|| !ft_strncmp(cmd, "unset", 6) || !ft_strncmp(cmd, "exit", 5))
+		return (false);
+	return (true);
+}
+
+bool	is_operator(t_token *token)
 {
 	if (token->type == OTHER)
-		return (true);
-	return (false);
+		return (false);
+	return (true);
 }
 
-char	*get_relative_path(char *cmd)
-{
-	char	*cwd;
-	char	*path;
-
-	cwd = getenv("PWD");
-	path = ft_strjoin(cwd, cmd);
-	return (path);
-}
 
 char	*get_absolute_path(char *cmd)
 {
@@ -51,9 +60,13 @@ char	*get_absolute_path(char *cmd)
 char	*get_cmd_path(char *cmd)
 {
 	char	*path;
+	char	*cwd;
 
 	if (*cmd == '.')
-		path = get_relative_path(++cmd);
+	{
+		cwd = getenv("PWD");
+		path = ft_strjoin(cwd, cmd);
+	}
 	else
 		path = get_absolute_path(cmd);
 	return (path);
