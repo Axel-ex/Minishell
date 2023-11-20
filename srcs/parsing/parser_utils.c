@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 10:33:47 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/19 11:52:55 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ char	*get_operator(char *s)
 		return (ft_alloc_fill(1, '|'));
 	else
 		return (NULL);
-}
-
-bool	is_operator(char c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (true);
-	return (false);
 }
 
 int	count_quotes(char *line)

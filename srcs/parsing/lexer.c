@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/18 11:41:21 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:55:22 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_token_content(char *line)
 	int		i;
 
 	i = 0;
-	if (is_operator(line[i]))
+	if (line[i] == '>' || line[i] == '<' || line[i] == '|')
 		return (get_operator(line));
 	else if (line[i] == '\'' || line[i] == '\"')
 		return (get_quoted_content(line));
@@ -93,7 +93,8 @@ char	*get_other(char *line)
 			quote = line[i];
 			in_quotes = true;
 		}
-		if ((line[i] == ' ' || is_operator(line[i])) && !in_quotes)
+		if ((line[i] == ' ' || line[i] == '>' || line[i] == '<'
+				|| line[i] == '|') && !in_quotes)
 			break ;
 	}
 	if (quote != '\0')

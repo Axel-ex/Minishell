@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/17 23:37:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:35:23 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 # include "../Libft/includes/libft.h"
 # include "init_exit.h"
 # include "parsing.h"
@@ -88,6 +89,7 @@ typedef struct s_token
 typedef struct s_ast
 {
 	t_token			*token;
+	int				pos;
 	char			**args;
 	struct s_ast	*left;
 	struct s_ast	*right;
@@ -105,6 +107,8 @@ typedef struct s_shell
 	t_list		*env_lst;
 	t_list		*token_lst;
 	t_ast		*ast;
+	int			**pipes;
+	int			nb_cmds;
 }	t_shell;
 
 

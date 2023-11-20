@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:46:22 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 15:20:33 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:06:10 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	print_ast_node(t_ast *node)
 	i = 0;
 	if (!node)
 		return ;
-	color = NC;
-	args = "args:";
 	type = get_type(node->token->type);
+	color = NC;
+	args = "";
 	if (!ft_strncmp(type, "PIPE", 5))
 	{
 		color = CYAN;
 		args = "";
 	}
-	printf("[%s%s%s]\t%s\t", color, type, NC, args);
+	printf("[%s%s%s]\tpos: %d\t%s", color, type, NC, node->pos, args);
 	while (node->args[i])
 	{
 		printf("%s", node->args[i]);

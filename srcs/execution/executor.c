@@ -6,36 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 17:32:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:20:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*redir_output(t_ast *ast)
-{
-	t_ast	*temp;
-
-	temp = ast->left;
-	if (!temp)
-		return (NULL);
-	if (temp->token->type == REDIR_OUT)
-	{
-		sh()->fd_out = open(ast->left->args[0], O_CREAT | O_TRUNC
-			| O_WRONLY, 0777);
-		if (!sh()->fd_out)
-			return (NULL);
-	}
-	else if (temp->token->type == REDIR2_OUT)
-	{
-		sh()->fd_out = open(ast->left->args[0], O_CREAT | O_APPEND
-			| O_WRONLY, 0777);
-		if (!sh()->fd_out)
-			return (NULL);
-	}
-	dup2(sh()->fd_out, STDOUT_FILENO);
-	return (ast->left->args[0]);
-}
 
 int	execute_cmd(t_ast *ast)
 {
@@ -49,27 +24,42 @@ int	execute_cmd(t_ast *ast)
 	stat(cmd_path, &path);
 	if (S_ISDIR(path.st_mode))
 		return (print_error(DIR_NT_FD, ERR_DIR, cmd_path));
-	sh()->pid = fork();
-	if (!sh()->pid)
-	{
-		file_name = redir_output(ast);
-		if (execve(cmd_path, ast->args, sh()->envp))
-			return (print_error(PERM_DENIED, ERR_PERM, file_name));
-	}
-	wait(NULL);
+	file_name = redir_output(ast);
+	if (execve(cmd_path, ast->args, sh()->envp))
+		return (print_error(PERM_DENIED, ERR_PERM, file_name));
 	free(cmd_path);
 	return (EXIT_SUCCESS);
 }
 
-void	executor(t_ast *ast)
+pid_t	execute_ast(t_ast *ast)
 {
-	if (!is_not_operator(ast->token))
-		return ;
-		// execute_pipe(ast);
-	else
+	pid_t	last_child;
+
+	if (!ast)
+		return (-1);
+	last_child = execute_ast(ast->left);
+	last_child = execute_ast(ast->right);
+	if (!is_operator(ast->token))
 	{
-		// if (!exec_builtin(ast))
-		// 	return ;
-		execute_cmd(ast);
+		if (!is_forkable(ast->token->content))
+			match_cmd(ast);
+		else
+			last_child = execute_forkable(ast);
 	}
+	return (last_child);
+}
+
+void	executor(void)
+{
+	pid_t	last_child;
+	int		status;
+
+	status = 0;
+	pipe_create();
+	last_child = execute_ast(sh()->ast);
+	last_child = waitpid(last_child, &status, 0);
+	while (wait(NULL) > 0)
+		continue ;
+	if (WIFEXITED(status))
+		sh()->exit_status = WEXITSTATUS(status);
 }

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/18 11:45:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/19 11:53:07 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,6 @@ t_token	*scanner(t_operation op);
  * @return char* 
  */
 char	*get_operator(char *s);
-
-/**
- * @brief checks if c is an operator.
- * 
- * @param c 
- * @return true 
- * @return false 
- */
-bool	is_operator(char c);
 
 /**
  * @brief count quotes that are not found inside of quotes.
