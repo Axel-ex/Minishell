@@ -6,20 +6,20 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 14:39:02 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:45:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	match_cmd(t_ast *ast)
+bool	is_builtin(char *cmd)
 {
-	if (!ft_strncmp(ast->token->content, "exit", 5))
-		free_shell(false);
-	// if (ft_strncmp(ast->token->content, "echo", 5))
-	// 	echo(ast->args);
-	else
-		execute_cmd(ast);
+	if (!ft_strncmp(cmd, "echo", 5) || !ft_strncmp(cmd, "cd", 3)
+		|| !ft_strncmp(cmd, "pwd", 4) || !ft_strncmp(cmd, "export", 7)
+		|| !ft_strncmp(cmd, "unset", 6) || !ft_strncmp("env", cmd, 4)
+		|| !ft_strncmp(cmd, "exit", 5))
+		return (true);
+	return (false);
 }
 
 bool	is_forkable(char *cmd)

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 10:35:23 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:14:01 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "signals.h"
 # include "envp.h"
 # include "execution.h"
+# include "builtins.h"
 
 # define PROMPT "@minishell> "
 # define MAX_TOKEN_LEN 100

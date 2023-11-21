@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/18 12:57:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:22:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_ast	*new_ast_node(t_token *token)
 	if (!new_node || !new_node->args)
 		return (alloc_error("new ast node"));
 	new_node->token = token;
+	new_node->pos = 0;
 	new_node->left = NULL;
 	new_node->right = NULL;
 	return (new_node);
