@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 14:49:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:04:07 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 typedef struct s_shell	t_shell;
 typedef struct s_token	t_token;
-
 
 /// ============================================================================
 // ERROR CODE
@@ -86,7 +85,7 @@ void	free_shell(bool keep_iterating);
  * 
  * @param token 
  */
-void	*free_token(t_token *token);
+void	free_token(t_token *token);
 
 /**
  * @brief free object of type char **.

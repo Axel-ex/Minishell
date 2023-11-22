@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/19 11:53:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:19:06 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void	token_add_back(char *content, t_type type);
  * @return int EXIT_SUCCESS
  */
 int		parser(void);
+
+bool	is_empty(char *line);
 
 /// ============================================================================
 // PARSER_UTILS.C
