@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:10:03 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/14 18:11:24 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:53:04 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,37 @@ char	*get_key(char *envp)
 		key[size] = envp[size];
 	return (key);
 }
+
 /*
 Skip the char until finding a '=' and return a copy of the rest
 of the string
 */
-// char	*get_value(char *envp)
-// {
+char	*get_value(char *envp)
+{
+	char	*value;
+	int		size;
+	int		start;
+	int		i;
 
-// }
+	size = 0;
+	i = 0;
+	while (envp[size] && envp[size] != '=')
+		size++;
+	start = size + 1;
+	while (envp[size])
+		size++;
+	value = (char *)malloc(sizeof(char) * ((size - start) + 1));
+	if (!value)
+		return ((alloc_error("get value.")));
+	while (start < size)
+	{
+		value[i] = envp[start];
+		i++;
+		start++;
+	}
+	value[i] = '\0';
+	return (value);
+}
 
 void	env_add_back(char *key, char *value)
 {
@@ -65,7 +88,7 @@ void	get_env_list(char **envp)
 	{
 		key = get_key(envp[i]);
 		value = NULL;
-		// value = get_value(envp[i]);
+		value = get_value(envp[i]);
 		env_add_back(key, value);
 	}
 }
