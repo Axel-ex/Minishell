@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 09:51:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:34:48 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	execute_child(t_ast *ast);
 /// ============================================================================
 // REDIRECTIONS.C
 // =============================================================================
-char	*redir_output(t_ast *ast);
+void	redir_output(t_ast *ast);
 void	redirect_io(void);
 void	restore_io(int node_pos);
 
