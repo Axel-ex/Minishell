@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/16 23:33:16 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:33:52 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	parser(void)
 	get_token(sh()->line);
 	if (syntax_checker() == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	//expander
+	expander();
 	//trim_token
 	ast_generator();
 	return (EXIT_SUCCESS);

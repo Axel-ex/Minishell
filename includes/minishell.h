@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 10:35:23 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:37:23 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include "signals.h"
 # include "envp.h"
 # include "execution.h"
+# include "expander.h"
 
 # define PROMPT "@minishell> "
 # define MAX_TOKEN_LEN 100
