@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/21 17:07:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:28:53 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,17 @@ void	free_env_lst(t_env *env_lst)
 
 void	free_shell(bool keep_iterating)
 {
-	print_token_lst();
 	ft_lstclear(&sh()->token_lst, (void (*))free_token);
-	ft_lstclear(&sh()->env_lst, (void (*))free_env_lst);
 	free(sh()->line);
-	print_token_lst();
 	free_ast(sh()->ast);
 	free_pipes(sh()->pipes);
+	sh()->token_lst = NULL;
+	sh()->ast = NULL;
+	sh()->pipes = NULL;
 	sh()->nb_cmds = 0;
 	if (!keep_iterating)
 	{
+		ft_lstclear(&sh()->env_lst, (void (*))free_env_lst);
 		free_matrix(sh()->path);
 		exit(EXIT_SUCCESS);
 	}

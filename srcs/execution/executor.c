@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/21 14:53:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:54:42 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	match_cmd(t_ast *ast)
 	if (!ft_strncmp("cd", args[0], 3))
 		return ;
 	else if (!ft_strncmp("echo", args[0], 5))
-		echo(args);
+		echo(ast);
 	else if (!ft_strncmp("exit", args[0], 5))
 		free_shell(false);
 	else if (!ft_strncmp("pwd", args[0], 4))
@@ -29,7 +29,7 @@ void	match_cmd(t_ast *ast)
 		execute_cmd(ast);
 }
 
-void	execute_fork(t_ast *ast)
+void	execute_child(t_ast *ast)
 {
 	sh()->pid = fork();
 	if (!sh()->pid)
@@ -46,14 +46,10 @@ int	execute_cmd(t_ast *ast)
 {
 	char		*cmd_path;
 	char		*file_name;
-	struct stat	path;
 
-	cmd_path = get_cmd_path(ast->token->content);
-	if (!cmd_path)
-		return (print_error(CMD_NT_FD, ERR_CMD, ast->token->content));
-	stat(cmd_path, &path);
-	if (S_ISDIR(path.st_mode))
-		return (print_error(DIR_NT_FD, ERR_DIR, cmd_path));
+	cmd_path = get_cmd_path(ast->args[0]);
+	if (check_cmd_path(cmd_path) != EXIT_SUCCESS)
+		return (EXIT_FAILURE);
 	file_name = redir_output(ast);
 	if (execve(cmd_path, ast->args, sh()->envp))
 		return (print_error(PERM_DENIED, ERR_PERM, file_name));
@@ -72,7 +68,7 @@ void	execute_ast(t_ast *ast)
 		if (!is_forkable(ast->token->content))
 			match_cmd(ast);
 		else
-			execute_fork(ast);
+			execute_child(ast);
 	}
 }
 
