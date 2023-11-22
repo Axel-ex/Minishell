@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:06:04 by axelc             #+#    #+#             */
-/*   Updated: 2023/11/13 12:43:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:44:05 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -445,5 +445,7 @@ char	*get_next_line(int fd);
  * @return int nb of char printed upon success, negative upon error
  */
 int		ft_printf(char const *format, ...);
+
+void	*ft_realloc(void *ptr, size_t new_size);
 
 #endif

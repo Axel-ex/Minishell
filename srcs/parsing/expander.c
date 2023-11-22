@@ -6,36 +6,11 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/22 17:06:46 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:16:57 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	*ft_realloc(void *ptr, size_t new_size)
-{
-	void	*new_ptr;
-
-	if (new_size == 0)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	new_ptr = malloc(new_size);
-	if (new_ptr)
-	{
-		if (ptr)
-		{
-			ft_memcpy(new_ptr, ptr, new_size);
-			free(ptr);
-		}
-		return (new_ptr);
-	}
-	else
-	{
-		return (NULL);
-	}
-}
 
 char	*get_key_expansion(char **temp)
 {
@@ -50,13 +25,33 @@ char	*get_key_expansion(char **temp)
 	return (key);
 }
 
+char	*append_value_to_content(char *new_content, char *value)
+{
+	size_t	old_len;
+
+	old_len = ft_strlen(new_content);
+	new_content = ft_realloc(new_content, old_len + ft_strlen(value) + 1);
+	ft_strlcat(new_content, value, old_len + ft_strlen(value) + 1);
+	return (new_content);
+}
+
+char	*append_char_to_content(char *new_content, char c)
+{
+	size_t	old_len;
+
+	old_len = ft_strlen(new_content);
+	new_content = ft_realloc(new_content, old_len + 2);
+	new_content[old_len] = c;
+	new_content[old_len + 1] = '\0';
+	return (new_content);
+}
+
 void	expand_variables(t_token *token)
 {
 	char	*temp;
 	char	*new_content;
 	char	*key;
 	char	*value;
-	size_t	old_len;
 
 	temp = token->content;
 	new_content = ft_strdup("");
@@ -68,20 +63,11 @@ void	expand_variables(t_token *token)
 			value = getenv(key);
 			free(key);
 			if (value)
-			{
-				old_len = ft_strlen(new_content);
-				new_content = ft_realloc(new_content, old_len + ft_strlen(value)
-						+ 1);
-				ft_strlcat(new_content, value, old_len + ft_strlen(value) + 1);
-			}
+				new_content = append_value_to_content(new_content, value);
+
 		}
 		else
-		{
-			old_len = ft_strlen(new_content);
-			new_content = ft_realloc(new_content, old_len + 2);
-			new_content[old_len] = *temp;
-			new_content[old_len + 1] = '\0';
-		}
+			new_content = append_char_to_content(new_content, *temp);
 		temp++;
 	}
 	free(token->content);
@@ -104,21 +90,3 @@ void	expander(void)
 		temp = temp->next;
 	}
 }
-
-// int	main(int argc, char *argv[])
-// {
-// 	if (argc < 2)
-// 	{
-// 		printf("Please provide a string as an argument.\n");
-// 		return (1);
-// 	}
-
-// 	for (int i = 1; i < argc; i++)
-// 	{
-// 		t_token token;
-// 		token.content = argv[i];
-// 		printf("Original: %s, Expanded: %s\n", argv[i], token.content);
-// 	}
-
-// 	return (0);
-// }
