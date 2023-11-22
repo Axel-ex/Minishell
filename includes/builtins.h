@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 10:01:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 09:56:40 by achabrer         ###   ########.fr       */
+/*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
+/*   Updated: 2023/11/22 09:59:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-int	echo(t_ast *ast)
-{
-	int		i;
-	bool	new_line;
+# include "minishell.h"
 
-	i = 1;
-	new_line = true;
-	redir_output(ast);
-	if (!ast->args[i])
-		return (printf("\n"));
-	if (!ft_strncmp(ast->args[i], "-n", 3))
-	{
-		new_line = false;
-		i++;
-	}
-	while (ast->args[i])
-	{
-		printf("%s", ast->args[i++]);
-		if (ast->args[i])
-			printf(" ");
-	}
-	if (new_line)
-		printf("\n");
-	return (EXIT_SUCCESS);
-}
+int	echo(t_ast *ast);
+
+#endif

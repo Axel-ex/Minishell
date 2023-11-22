@@ -6,9 +6,10 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 14:37:23 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:48:01 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -32,6 +33,7 @@
 # include "envp.h"
 # include "execution.h"
 # include "expander.h"
+# include "builtins.h"
 
 # define PROMPT "@minishell> "
 # define MAX_TOKEN_LEN 100

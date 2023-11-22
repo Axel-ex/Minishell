@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 14:40:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:51:07 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,30 @@
 /// ============================================================================
 // EXECUTOR.C
 // =============================================================================
-void	executor();
+void	match_cmd(t_ast *ast);
 int		execute_cmd(t_ast *ast);
-char	*redir_output(t_ast *ast);
+void	executor(void);
 
 /// ============================================================================
 // EXECUTOR_UTIL.C
 // =============================================================================
-void	match_cmd(t_ast *ast);
-bool	is_forkable(char *cmd);
+int		check_cmd_path(char *cmd_path);
 bool	is_operator(t_token *token);
 char	*get_cmd_path(char *cmd);
+bool	is_forkable(char *cmd);
 
 /// ============================================================================
 // PIPES.C
 // =============================================================================
 void	pipe_create(void);
-pid_t	execute_forkable(t_ast *ast);
 void	pipe_connect(int ast_pos);
+void	execute_child(t_ast *ast);
 
 /// ============================================================================
 // REDIRECTIONS.C
 // =============================================================================
+char	*redir_output(t_ast *ast);
 void	redirect_io(void);
-void	restore_io(void);
+void	restore_io(int node_pos);
 
 #endif

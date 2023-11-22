@@ -6,20 +6,23 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 14:39:02 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:52:16 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	match_cmd(t_ast *ast)
+int	check_cmd_path(char *cmd_path)
 {
-	if (!ft_strncmp(ast->token->content, "exit", 5))
-		free_shell(false);
-	// if (ft_strncmp(ast->token->content, "echo", 5))
-	// 	echo(ast->args);
+	struct stat	stats;
+
+	if (!cmd_path)
+		return (print_error(CMD_NT_FD, ERR_CMD, cmd_path));
+	stat(cmd_path, &stats);
+	if (S_ISDIR(stats.st_mode))
+		return (print_error(DIR_NT_FD, ERR_DIR, cmd_path));
 	else
-		execute_cmd(ast);
+		return (EXIT_SUCCESS);
 }
 
 bool	is_forkable(char *cmd)

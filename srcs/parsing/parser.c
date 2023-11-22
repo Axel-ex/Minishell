@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 14:33:52 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:46:52 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@ static bool	has_enclosed_quotes(char *line)
 	return (count_quotes(line) % 2 != 0);
 }
 
-static bool	is_empty(char *line)
+bool	is_empty(char *line)
 {
-	while (*line)
-	{
-		if (*line != ' ' && *line != '\n' && *line != '\t')
-			return (false);
-		line++;
-	}
-	return (true);
+	if (*line == '\0' || *line == '\n' || *line == '\t')
+		return (true);
+	return (false);
 }
 
 static int	syntax_checker(void)
@@ -52,10 +48,10 @@ static int	syntax_checker(void)
 
 int	parser(void)
 {
-	if (has_enclosed_quotes(sh()->line))
-		return (print_error(SYNTAX_ERROR, ERR_UNCLOSED_QUOTES, NULL));
 	if (is_empty(sh()->line))
 		return (EXIT_FAILURE);
+	if (has_enclosed_quotes(sh()->line))
+		return (print_error(SYNTAX_ERROR, ERR_UNCLOSED_QUOTES, NULL));
 	get_token(sh()->line);
 	if (syntax_checker() == EXIT_FAILURE)
 		return (EXIT_FAILURE);
