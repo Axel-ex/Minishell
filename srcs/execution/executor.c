@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 09:54:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:41:31 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	match_cmd(t_ast *ast)
 
 void	execute_child(t_ast *ast)
 {
+	char		*cmd_path;
+
+	cmd_path = get_cmd_path(ast->args[0]);
+	if (check_cmd_path(cmd_path) != EXIT_SUCCESS)
+		return ;
 	sh()->pid = fork();
 	if (!sh()->pid)
 	{
@@ -45,14 +50,10 @@ void	execute_child(t_ast *ast)
 int	execute_cmd(t_ast *ast)
 {
 	char		*cmd_path;
-	char		*file_name;
 
 	cmd_path = get_cmd_path(ast->args[0]);
-	if (check_cmd_path(cmd_path) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
-	file_name = redir_output(ast);
-	if (execve(cmd_path, ast->args, sh()->envp))
-		return (print_error(PERM_DENIED, ERR_PERM, file_name));
+	redir_output(ast);
+	execve(cmd_path, ast->args, sh()->envp);
 	free(cmd_path);
 	return (EXIT_SUCCESS);
 }
