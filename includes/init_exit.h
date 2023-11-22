@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/21 17:04:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:37:14 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct s_token	t_token;
 /// ============================================================================
 // ERROR CODE
 // =============================================================================
-# define PERM_DENIED	1
 # define SYNTAX_ERROR	2
 # define DIR_NT_FD		126
 # define CMD_NT_FD		127
@@ -34,7 +33,6 @@ typedef struct s_token	t_token;
 # define ERR_OPERATOR_BEGIN		"syntax error near unexpected token "
 # define ERR_CMD				"command not found"
 # define ERR_DIR				"No such file or directory"
-# define ERR_PERM				"Permission denied"
 
 /// ============================================================================
 // INIT.C
