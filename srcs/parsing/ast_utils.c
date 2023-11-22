@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/21 13:22:38 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:30:45 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ t_ast	*new_ast_node(t_token *token)
 {
 	t_ast	*new_node;
 
-	new_node = (t_ast *)malloc(sizeof(t_ast));
-	new_node->args = ft_calloc(1, sizeof(char *));
-	if (!new_node || !new_node->args)
+	new_node = ft_calloc(1, sizeof(t_ast));
+	if (!new_node)
 		return (alloc_error("new ast node"));
+	new_node->args = ft_calloc(1, sizeof(char *));
+	if (!new_node->args)
+		return (alloc_error("args of new ast node"));
 	new_node->token = token;
 	new_node->pos = 0;
 	new_node->left = NULL;

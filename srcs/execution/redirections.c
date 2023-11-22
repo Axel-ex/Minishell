@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/21 14:33:24 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:32:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	restore_io(int node_pos)
 		close(sh()->fd_out);
 	if (node_pos > 0)
 		close(sh()->pipes[node_pos - 1][0]);
-	if (node_pos == sh()->nb_cmds - 1 && sh()->nb_cmds > 1)
-		close(sh()->pipes[node_pos -1][1]);
+	if (node_pos != sh()->nb_cmds - 1)
+		close(sh()->pipes[node_pos][1]);
 	sh()->fd_in = STDIN_FILENO;
 	sh()->fd_out = STDOUT_FILENO;
 }
