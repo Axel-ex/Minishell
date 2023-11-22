@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/22 18:16:57 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:27:45 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,16 @@ void	expand_variables(t_token *token)
 
 void	expander(void)
 {
-	t_list	*temp;
 	t_token	*token;
 
-	temp = sh()->token_lst;
-	while (temp)
+	scanner(RESET);
+	while (scanner(READ))
 	{
-		token = ((t_token *)temp->content);
+		token = ((t_token *)scanner(READ));
 		if (token->type == REDIR2_OUT)
-			temp = temp->next;
+			scanner(NEXT);
 		else if (token->type == OTHER)
 			expand_variables(token);
-		temp = temp->next;
+		scanner(NEXT);
 	}
 }
