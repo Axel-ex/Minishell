@@ -6,49 +6,86 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/22 14:41:58 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:06:46 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+void	*ft_realloc(void *ptr, size_t new_size)
+{
+	void	*new_ptr;
+
+	if (new_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	new_ptr = malloc(new_size);
+	if (new_ptr)
+	{
+		if (ptr)
+		{
+			ft_memcpy(new_ptr, ptr, new_size);
+			free(ptr);
+		}
+		return (new_ptr);
+	}
+	else
+	{
+		return (NULL);
+	}
+}
+
+char	*get_key_expansion(char **temp)
+{
+	char	*start;
+	char	*key;
+
+	start = ++(*temp);
+	while (**temp && (ft_isalnum(**temp) || **temp == '_'))
+		(*temp)++;
+	key = ft_strdup(start);
+	key[*temp - start] = '\0';
+	return (key);
+}
+
 void	expand_variables(t_token *token)
 {
+	char	*temp;
+	char	*new_content;
 	char	*key;
 	char	*value;
-	char	*result;
-	char	*temp;
-	char	*start;
+	size_t	old_len;
 
 	temp = token->content;
-	result = malloc(ft_strlen(token->content) + 1);
-	result[0] = '\0';
+	new_content = ft_strdup("");
 	while (*temp)
 	{
 		if (*temp == '$' && (ft_isalpha(*(temp + 1))))
 		{
-			temp++;
-			start = temp;
-			while (*temp && (ft_isalnum(*temp) || *temp == '_'))
-				temp++;
-			key = strdup(start);
-			key[temp - start] = '\0';
+			key = get_key_expansion(&temp);
 			value = getenv(key);
 			free(key);
 			if (value)
-				ft_strlcat(result, value, ft_strlen(result) + ft_strlen(value)
+			{
+				old_len = ft_strlen(new_content);
+				new_content = ft_realloc(new_content, old_len + ft_strlen(value)
 						+ 1);
-			else
-				ft_strlcat(result, "$", ft_strlen(result) + 2);
+				ft_strlcat(new_content, value, old_len + ft_strlen(value) + 1);
+			}
 		}
 		else
 		{
-			result[ft_strlen(result)] = *temp;
-			result[ft_strlen(result) + 1] = '\0';
+			old_len = ft_strlen(new_content);
+			new_content = ft_realloc(new_content, old_len + 2);
+			new_content[old_len] = *temp;
+			new_content[old_len + 1] = '\0';
 		}
 		temp++;
 	}
-	token->content = result;
+	free(token->content);
+	token->content = new_content;
 }
 
 void	expander(void)
