@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:34:32 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/22 17:01:50 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/23 09:13:26 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char *get_key_expansion(char **temp);
  * 
  * @param token The token to expand variables in.
  */
-void expand_variables(t_token *token);
+void expand_variable(t_token *token);
 
 /**
  * @brief Expands variables in the token list.
@@ -50,5 +50,6 @@ void expand_variables(t_token *token);
  * It skips tokens of type REDIR2_OUT.
  */
 void expander(void);
+
 
 #endif

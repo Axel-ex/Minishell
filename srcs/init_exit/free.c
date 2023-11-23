@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 09:28:53 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/23 09:43:28 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_matrix(char **matrix)
 {
 	int	i;
 
-	if (!matrix || !*matrix)
+	if (!matrix)
 		return ;
 	i = -1;
 	while (matrix[++i])
@@ -46,7 +46,7 @@ void	free_ast(t_ast *ast)
 void	free_env_lst(t_env *env_lst)
 {
 	free(env_lst->key);
-	// free(env_lst->value);
+	free(env_lst->value);
 	free(env_lst);
 }
 

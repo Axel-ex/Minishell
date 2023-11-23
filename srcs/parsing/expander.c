@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/22 18:27:45 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/23 09:40:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ char	*append_char_to_content(char *new_content, char c)
 	return (new_content);
 }
 
-void	expand_variables(t_token *token)
+void	expand_variable(t_token *token)
 {
 	char	*temp;
 	char	*new_content;
+	char	*env_value;
 	char	*key;
-	char	*value;
 
 	temp = token->content;
 	new_content = ft_strdup("");
@@ -60,11 +60,10 @@ void	expand_variables(t_token *token)
 		if (*temp == '$' && (ft_isalpha(*(temp + 1))))
 		{
 			key = get_key_expansion(&temp);
-			value = getenv(key);
+			env_value = getenv_var(key);
 			free(key);
-			if (value)
-				new_content = append_value_to_content(new_content, value);
-
+			if (env_value)
+				new_content = append_value_to_content(new_content, env_value);
 		}
 		else
 			new_content = append_char_to_content(new_content, *temp);
@@ -72,6 +71,7 @@ void	expand_variables(t_token *token)
 	}
 	free(token->content);
 	token->content = new_content;
+
 }
 
 void	expander(void)
@@ -85,7 +85,17 @@ void	expander(void)
 		if (token->type == REDIR2_OUT)
 			scanner(NEXT);
 		else if (token->type == OTHER)
-			expand_variables(token);
+			expand_variable(token);
 		scanner(NEXT);
 	}
 }
+// void	expander(void)
+// {
+// 	scanner(RESET);
+// 	while (scanner(READ))
+// 	{
+// 		if (scanner(READ)->type == OTHER)
+// 			expand_variables(scanner(READ));
+// 		scanner(NEXT);
+// 	}
+// }
