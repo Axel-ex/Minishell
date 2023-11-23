@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/23 09:40:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:48:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 char	*get_key_expansion(char **temp)
 {
 	char	*start;
-	char	*key;
 
 	start = ++(*temp);
 	while (**temp && (ft_isalnum(**temp) || **temp == '_'))
 		(*temp)++;
-	key = ft_strdup(start);
-	key[*temp - start] = '\0';
-	return (key);
+	return (start);
 }
 
 char	*append_value_to_content(char *new_content, char *value)
@@ -51,7 +48,6 @@ void	expand_variable(t_token *token)
 	char	*temp;
 	char	*new_content;
 	char	*env_value;
-	char	*key;
 
 	temp = token->content;
 	new_content = ft_strdup("");
@@ -59,9 +55,7 @@ void	expand_variable(t_token *token)
 	{
 		if (*temp == '$' && (ft_isalpha(*(temp + 1))))
 		{
-			key = get_key_expansion(&temp);
-			env_value = getenv_var(key);
-			free(key);
+			env_value = getenv_var(get_key_expansion(&temp));
 			if (env_value)
 				new_content = append_value_to_content(new_content, env_value);
 		}
@@ -71,31 +65,15 @@ void	expand_variable(t_token *token)
 	}
 	free(token->content);
 	token->content = new_content;
-
 }
 
 void	expander(void)
 {
-	t_token	*token;
-
 	scanner(RESET);
 	while (scanner(READ))
 	{
-		token = ((t_token *)scanner(READ));
-		if (token->type == REDIR2_OUT)
-			scanner(NEXT);
-		else if (token->type == OTHER)
-			expand_variable(token);
+		if (scanner(READ)->type == OTHER)
+			expand_variable(scanner(READ));
 		scanner(NEXT);
 	}
 }
-// void	expander(void)
-// {
-// 	scanner(RESET);
-// 	while (scanner(READ))
-// 	{
-// 		if (scanner(READ)->type == OTHER)
-// 			expand_variables(scanner(READ));
-// 		scanner(NEXT);
-// 	}
-// }
