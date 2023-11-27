@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/23 15:48:21 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:43:08 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 char	*get_key_expansion(char **temp)
 {
 	char	*start;
+	char	*key;
 
 	start = ++(*temp);
 	while (**temp && (ft_isalnum(**temp) || **temp == '_'))
 		(*temp)++;
-	return (start);
+	key = ft_strdup(start);
+	key[*temp - start] = '\0';
+	return (key);
 }
 
 char	*append_value_to_content(char *new_content, char *value)
@@ -58,6 +61,8 @@ void	expand_variable(t_token *token)
 			env_value = getenv_var(get_key_expansion(&temp));
 			if (env_value)
 				new_content = append_value_to_content(new_content, env_value);
+			if (!ft_isalnum(*temp) && *temp != '_')
+				temp--;
 		}
 		else
 			new_content = append_char_to_content(new_content, *temp);
