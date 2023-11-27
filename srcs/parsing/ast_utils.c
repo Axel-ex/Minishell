@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 12:30:45 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:53:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,12 @@ char	**matrix_append(char **matrix, char *to_append)
 	char	**new;
 
 	i = -1;
-	new = (char **)malloc(sizeof(char *) * (get_matrix_len(matrix) + 2));
+	new = ft_calloc(get_matrix_len(matrix) + 2, sizeof(char *));
 	if (!new)
 		return (alloc_error("new matrix"));
 	while (matrix[++i])
 		new[i] = ft_strdup(matrix[i]);
 	new[i] = to_append;
-	new[++i] = NULL;
 	free_matrix(matrix);
 	return (new);
 }
