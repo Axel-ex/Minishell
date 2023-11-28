@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/27 13:53:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:14:16 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ t_ast	*new_ast_node(t_token *token)
 		return (alloc_error("args of new ast node"));
 	new_node->token = token;
 	new_node->pos = 0;
-	new_node->left = NULL;
-	new_node->right = NULL;
 	return (new_node);
 }
+
 
 int	get_matrix_len(char **matrix)
 {
