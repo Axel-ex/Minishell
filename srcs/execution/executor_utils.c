@@ -6,23 +6,31 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 09:52:16 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:40:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_cmd_path(char *cmd_path)
+int	check_cmd_path(char *cmd)
 {
+	char		*cmd_path;
 	struct stat	stats;
 
+	cmd_path = get_cmd_path(cmd);
 	if (!cmd_path)
-		return (print_error(CMD_NT_FD, ERR_CMD, cmd_path));
+	{
+		free(cmd_path);
+		return (print_error(CMD_NT_FD, ERR_CMD, cmd));
+	}
 	stat(cmd_path, &stats);
 	if (S_ISDIR(stats.st_mode))
+	{
+		free(cmd_path);
 		return (print_error(DIR_NT_FD, ERR_DIR, cmd_path));
-	else
-		return (EXIT_SUCCESS);
+	}
+	free(cmd_path);
+	return (EXIT_SUCCESS);
 }
 
 bool	is_forkable(char *cmd)

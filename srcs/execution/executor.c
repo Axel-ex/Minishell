@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/23 09:53:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:44:13 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ void	match_cmd(t_ast *ast)
 
 void	execute_child(t_ast *ast)
 {
-	char		*cmd_path;
-
-	cmd_path = get_cmd_path(ast->args[0]);
-	if (check_cmd_path(cmd_path) != EXIT_SUCCESS)
-		return (free(cmd_path));
-	free(cmd_path);
+	if (handle_redir(ast) != EXIT_SUCCESS)
+		return ;
+	if (check_cmd_path(ast->args[0]) == EXIT_FAILURE)
+		return ;
 	sh()->pid = fork();
 	if (!sh()->pid)
 	{
@@ -53,7 +51,6 @@ int	execute_cmd(t_ast *ast)
 	char		*cmd_path;
 
 	cmd_path = get_cmd_path(ast->args[0]);
-	redir_output(ast);
 	execve(cmd_path, ast->args, sh()->envp);
 	free(cmd_path);
 	return (EXIT_SUCCESS);

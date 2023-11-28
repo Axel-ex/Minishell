@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/20 10:55:22 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:52:01 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_type	get_token_type(char *token_content)
 	if (!ft_strncmp(">", token_content, 2))
 		return (REDIR_OUT);
 	if (!strncmp("<<", token_content, 3))
-		return (REDIR2_IN);
+		return (HEREDOC);
 	if (!strncmp(">>", token_content, 3))
 		return (REDIR2_OUT);
 	else

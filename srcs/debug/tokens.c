@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 08:57:11 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 15:17:52 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:52:01 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_type(t_type type)
 		return ("<");
 	else if (type == REDIR_OUT)
 		return (">");
-	else if (type == REDIR2_IN)
+	else if (type == HEREDOC)
 		return ("<<");
 	else if (type == REDIR2_OUT)
 		return (">>");
