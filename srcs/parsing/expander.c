@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/23 19:43:08 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:17:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,39 +46,45 @@ char	*append_char_to_content(char *new_content, char c)
 	return (new_content);
 }
 
-void	expand_variable(t_token *token)
+char	*expand_variable(char *content)
 {
-	char	*temp;
 	char	*new_content;
 	char	*env_value;
+	char	*key;
 
-	temp = token->content;
 	new_content = ft_strdup("");
-	while (*temp)
+	while (*content)
 	{
-		if (*temp == '$' && (ft_isalpha(*(temp + 1))))
+		if (*content == '$' && (ft_isalpha(*(content + 1))))
 		{
-			env_value = getenv_var(get_key_expansion(&temp));
+			key = get_key_expansion((&content));
+			env_value = getenv_var(key);
+			free(key);
 			if (env_value)
 				new_content = append_value_to_content(new_content, env_value);
-			if (!ft_isalnum(*temp) && *temp != '_')
-				temp--;
+			if (!ft_isalnum(*content) && *content != '_')
+				content--;
 		}
 		else
-			new_content = append_char_to_content(new_content, *temp);
-		temp++;
+			new_content = append_char_to_content(new_content, *content);
+		content++;
 	}
-	free(token->content);
-	token->content = new_content;
+	return (new_content);
 }
 
 void	expander(void)
 {
+	char	*temp;
+
 	scanner(RESET);
 	while (scanner(READ))
 	{
 		if (scanner(READ)->type == OTHER)
-			expand_variable(scanner(READ));
+		{
+			temp = expand_variable(scanner(READ)->content);
+			free(scanner(READ)->content);
+			scanner(READ)->content = temp;
+		}
 		scanner(NEXT);
 	}
 }

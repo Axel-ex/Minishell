@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:01:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 11:12:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:22:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	echo(t_ast *ast)
 
 	i = 1;
 	new_line = true;
-	handle_redir(ast);
 	if (!ast->args[i])
 		return (printf("\n"));
 	if (!ft_strncmp(ast->args[i], "-n", 3))

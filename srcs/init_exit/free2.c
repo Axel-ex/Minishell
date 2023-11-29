@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:44:42 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/23 09:40:47 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:18:42 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,3 @@ void	free_pipes(int **pipes)
 		free(pipes[i]);
 	free(pipes);
 }
-
-// void	free_ast_node(t_ast *ast)
-// {
-// 	free_token(ast->token);
-// 	free_matrix(ast->args);
-// }
-
-// void	free_ast(t_ast *ast, void (*del)(t_ast *))
-// {
-// 	if (!ast)
-// 		return ;
-// 	free_ast(ast->left, del);
-// 	free_ast(ast->right, del);
-// 	del(ast);
-// 	free(ast);
-// }

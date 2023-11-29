@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:34:32 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/23 09:13:26 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:58:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
  * @param temp A pointer to the string containing the variable.
  * @return The key for variable expansion.
  */
-char *get_key_expansion(char **temp);
+char	*get_key_expansion(char **temp);
 
 /**
  * @brief Expands variables in a token's content.
@@ -41,7 +41,7 @@ char *get_key_expansion(char **temp);
  * 
  * @param token The token to expand variables in.
  */
-void expand_variable(t_token *token);
+char	*expand_variable(char *content);
 
 /**
  * @brief Expands variables in the token list.

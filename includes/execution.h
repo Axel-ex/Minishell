@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 11:24:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:49:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,10 @@ void	execute_child(t_ast *ast);
 int		handle_redir(t_ast *ast);
 void	redirect_io(void);
 void	restore_io(int node_pos);
+
+/// ============================================================================
+// HEREDOC.C
+// =============================================================================
+void	handle_heredoc(t_ast *ast);
 
 #endif

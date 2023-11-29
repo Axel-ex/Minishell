@@ -6,13 +6,13 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 22:07:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:17:55 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	handle_redir_in(t_ast *ast)
+int	check_file_path(t_ast *ast)
 {
 	struct stat	stats;
 	char		*file;
@@ -20,32 +20,7 @@ int	handle_redir_in(t_ast *ast)
 	file = ast->args[0];
 	if (stat(file, &stats))
 		return (print_error(DIR_NT_FD, ERR_DIR, file));
-	sh()->fd_in = open(file, O_RDONLY);
 	return (EXIT_SUCCESS);
-}
-
-void	handle_heredoc(t_ast *ast)
-{
-	char	*line;
-	char	*end_of_file;
-	int		fd_temp;
-
-	end_of_file = ast->args[0];
-	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
-	while (ft_strncmp(line, end_of_file, ft_strlen(end_of_file) + 1) != 0)
-	{
-		line = readline("> ");
-		if (!ft_strncmp(line, end_of_file, ft_strlen(end_of_file) + 1))
-		{
-			free(line);
-			break ;
-		}
-		ft_putendl_fd(line, fd_temp);
-		free(line);
-	}
-	close(fd_temp);
-	fd_temp = open("tempfile", O_RDONLY);
-	sh()->fd_in = fd_temp;
 }
 
 int	handle_redir(t_ast *ast)
@@ -63,12 +38,40 @@ int	handle_redir(t_ast *ast)
 			| O_WRONLY, 0777);
 	else if (temp->token->type == REDIR_IN)
 	{
-		if (handle_redir_in(temp) != EXIT_SUCCESS)
+		if (check_file_path(ast))
 			return (EXIT_FAILURE);
+		sh()->fd_in = open(temp->args[0], O_RDONLY);
 	}
 	else if (temp->token->type == HEREDOC)
 		handle_heredoc(temp);
 	return (EXIT_SUCCESS);
+}
+
+void	handle_heredoc(t_ast *ast)
+{
+	char	*line;
+	char	*temp;
+	char	*end_of_file;
+	int		fd_temp;
+
+	end_of_file = ast->args[0];
+	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
+	while (42)
+	{
+		line = readline("> ");
+		if (!ft_strncmp(line, end_of_file, ft_strlen(end_of_file) + 1))
+		{
+			free(line);
+			break ;
+		}
+		temp = expand_variable(line);
+		free(line);
+		ft_putendl_fd(temp, fd_temp);
+		free(temp);
+	}
+	close(fd_temp);
+	fd_temp = open("tempfile", O_RDONLY);
+	sh()->fd_in = fd_temp;
 }
 
 void	redirect_io(void)
