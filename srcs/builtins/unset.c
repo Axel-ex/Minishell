@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:30:06 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/29 13:38:04 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:43:07 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	run_unset(t_ast *ast)
 	int		i;
 	t_list	*curr;
 
+	if (!ast->args[1])
+		return (EXIT_SUCCESS);
 	i = 1;
 	scanner_env(RESET);
 	curr = sh()->env_lst;
@@ -25,14 +27,14 @@ int	run_unset(t_ast *ast)
 		if (ft_strncmp(ast->args[i], ((t_env *)(curr->content))->key,
 				ft_strlen(ast->args[i]) + 1) == 0)
 		{
-			removeCurrentNode(&sh()->env_lst, curr);
+			remove_current_node(&sh()->env_lst, curr);
 		}
 		curr = curr->next;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
-void	removeCurrentNode(t_list **head, t_list *current)
+void	remove_current_node(t_list **head, t_list *current)
 {
 	t_list	*prev;
 
@@ -46,9 +48,7 @@ void	removeCurrentNode(t_list **head, t_list *current)
 	}
 	prev = *head;
 	while (prev->next != NULL && prev->next != current)
-	{
 		prev = prev->next;
-	}
 	if (prev->next == NULL)
 		return ;
 	prev->next = current->next;
