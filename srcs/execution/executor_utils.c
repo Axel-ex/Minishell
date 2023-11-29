@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 11:40:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:55:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ bool	is_operator(t_token *token)
 		return (false);
 	return (true);
 }
-
 
 char	*get_absolute_path(char *cmd)
 {

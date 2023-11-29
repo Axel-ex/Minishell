@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:02:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 16:25:55 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:59:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	pipe_create(void)
 	int	i;
 
 	i = -1;
-	sh()->pipes = (int **)malloc(sizeof(int *));
+	sh()->pipes = ft_calloc(sizeof(int *), sh()->nb_cmds - 1);
 	if (!sh()->pipes)
 		return ;
 	while (++i < sh()->nb_cmds - 1)
 	{
-		sh()->pipes[i] = (int *)malloc(sizeof(int) * 2);
+		sh()->pipes[i] = ft_calloc(sizeof(int), 2);
 		if (pipe(sh()->pipes[i]))
 			print_error(errno, "pipe call", NULL);
 	}
