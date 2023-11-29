@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 16:34:57 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:30:25 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,27 @@ static int	syntax_checker(void)
 	return (EXIT_SUCCESS);
 }
 
+void	trim_tokens(void)
+{
+	char	*quote;
+	char	*new_content;
+
+	quote = ft_calloc(sizeof(char), 2);
+	scanner(RESET);
+	while (scanner(READ))
+	{
+		*quote = scanner(READ)->content[0];
+		if (*quote == '\'' || *quote == '\"')
+		{
+			new_content = ft_strtrim(scanner(READ)->content, quote);
+			free(scanner(READ)->content);
+			scanner(READ)->content = new_content;
+		}
+		scanner(NEXT);
+	}
+	free(quote);
+}
+
 int	parser(void)
 {
 	if (is_empty(sh()->line))
@@ -56,7 +77,7 @@ int	parser(void)
 	if (syntax_checker() == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	expander();
-	//trim_token
+	trim_tokens();
 	ast_generator();
 	return (EXIT_SUCCESS);
 }
