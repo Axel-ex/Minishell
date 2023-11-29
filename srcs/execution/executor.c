@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 12:35:49 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:25:26 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	match_cmd(t_ast *ast)
 		run_env();
 	else if (!ft_strncmp("unset", args[0], 6))
 		run_unset(ast);
+	else if (!ft_strncmp("export", args[0], 7))
+		run_export(ast);
 	else
 		execute_cmd(ast);
 }

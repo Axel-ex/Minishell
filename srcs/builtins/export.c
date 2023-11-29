@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 10:01:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 16:44:57 by jgomes-v         ###   ########.fr       */
+/*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
+/*   Updated: 2023/11/29 16:37:51 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	echo(t_ast *ast)
+int	print_all_export(void)
 {
-	int		i;
-	bool	new_line;
-
-	i = 1;
-	new_line = true;
-	if (!ast->args[i])
-		return (printf("\n"));
-	if (!ft_strncmp(ast->args[i], "-n", 3))
+	scanner_env(RESET);
+	while (scanner_env(READ))
 	{
-		new_line = false;
-		i++;
+		ft_printf("declare -x ");
+		ft_printf("%s=", scanner_env(READ)->key);
+		ft_printf("\"%s\"\n", scanner_env(READ)->value);
+		scanner_env(NEXT);
 	}
-	while (ast->args[i])
-	{
-		printf("%s", ast->args[i++]);
-		if (ast->args[i])
-			printf(" ");
-	}
-	if (new_line)
-		printf("\n");
 	return (EXIT_SUCCESS);
+}
+
+void	run_export(t_ast *ast)
+{
+	if (!ast->args[1])
+		print_all_export();
 }
