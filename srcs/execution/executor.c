@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:33:15 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:35:49 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	match_cmd(t_ast *ast)
 		free_shell(false);
 	else if (!ft_strncmp("pwd", args[0], 4))
 		printf("%s\n", getenv("PWD"));
+	else if (!ft_strncmp("env", args[0], 3))
+		run_env();
+	else if (!ft_strncmp("unset", args[0], 6))
+		run_unset(ast);
 	else
 		execute_cmd(ast);
 }
