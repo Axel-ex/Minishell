@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 11:22:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:50:33 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@ t_token	*scanner(t_operation op)
 	else if (op == GET_NEXT && curr->next)
 		return (curr->next->content);
 	return (NULL);
-}
-
-static char	*ft_alloc_fill(int size, char to_fill)
-{
-	char	*res;
-	int		i;
-
-	i = 0;
-	res = (char *)malloc(sizeof(char) * size + 1);
-	if (!res)
-		return (alloc_error("operator token"));
-	while (i < size)
-		res[i++] = to_fill;
-	res[i] = '\0';
-	return (res);
 }
 
 char	*get_operator(char *s)
@@ -82,4 +67,43 @@ int	count_quotes(char *line)
 		line++;
 	}
 	return (quotes);
+}
+
+char	*remove_quotes(char *content)
+{
+	char	*res;
+	char	quote;
+	int		i;
+	int		j;
+	int		count;
+
+	i = -1;
+	count = 0;
+	quote = get_first_quote(content);
+	i = -1;
+	while (content[++i])
+		if (content[i] == quote)
+			count++;
+	res = ft_calloc(sizeof(char), ft_strlen(content) - count);
+	i = -1;
+	j = 0;
+	while (content[++i])
+	{
+		if (content[i] == quote)
+			i++;
+		res[j] = content[i];
+		j++;
+	}
+	return (res);
+}
+
+char	get_first_quote(char *line)
+{
+	while (*line)
+	{
+		if (*line == '\'' || *line == '\"')
+			return (*line);
+		line++;
+	}
+	return (*line);
 }

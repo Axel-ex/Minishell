@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:06:04 by axelc             #+#    #+#             */
-/*   Updated: 2023/11/29 13:09:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:50:17 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -446,5 +446,6 @@ char	*get_next_line(int fd);
 int		ft_printf(char const *format, ...);
 
 void	*ft_realloc(void *ptr, size_t new_size);
+char	*ft_alloc_fill(int size, char to_fill);
 
 #endif
