@@ -1,12 +1,14 @@
 # List of commands to execute
 valid_commands = [
-    "ls -l",        # Replace with your desired commands
+    "ls | ls | ls | ls | ls",        # Replace with your desired commands
     "pwd",
-    "echo 'Hello, World!'"
+    "echo 'Hello, World!'",
+	"echo $USER $PWD"
 ]
 
 invalid_commands = [
     "ce",
     "echo\"helloworld\"",
-    "| cat"
+    "| cat",
+	"echo $GUIOK"
 ]
