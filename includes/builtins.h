@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 16:44:32 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:21:22 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@ int		run_unset(t_ast *ast);
 
 void	remove_current_node(t_list **head, t_list *current);
 
+/**
+ * @brief Runs the export command.
+ * 
+ * This function is responsible for executing the export command in the shell.
+ * It takes an abstract syntax tree (AST) as input and performs the necessary operations.
+ * If no arguments are provided, it prints all the exported variables.
+ * If the first character of the argument is not a letter, it displays an error message.
+ * If the argument contains an equal sign '=', it adds the variable to the environment.
+ * 
+ * @param ast The abstract syntax tree representing the export command.
+ */
 void	run_export(t_ast *ast);
 
 #endif
