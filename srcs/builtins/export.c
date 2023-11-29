@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/29 18:21:03 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:23:07 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ void	run_export(t_ast *ast)
 		return ;
 	}
 	if (!ft_isalpha(ast->args[1][0]))
-	{
-		ft_printf("export: ");
-		ft_printf("`%c': not a valid identifier\n", ast->args[1][0]);
-	}
+		ft_printf("export: `%c': not a valid identifier\n", ast->args[1][0]);
+
 	if (ft_strchr(ast->args[1], '=') != NULL)
 	{
 		to_add = (t_list *)malloc(sizeof(t_list));
