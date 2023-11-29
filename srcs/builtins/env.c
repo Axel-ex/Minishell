@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 12:53:57 by jgomes-v         ###   ########.fr       */
+/*   Created: 2023/11/29 12:20:55 by jgomes-v          #+#    #+#             */
+/*   Updated: 2023/11/29 12:27:25 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../../includes/minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-# include "minishell.h"
-
-int	echo(t_ast *ast);
-int	run_env(void);
-int	run_unset(t_ast *ast);
-void removeCurrentNode(t_list **head, t_list *current);
-
-#endif
+int	run_env(void)
+{
+	scanner_env(RESET);
+	while (scanner_env(READ))
+	{
+		printf("%s=%s\n", scanner_env(READ)->key, scanner_env(READ)->value);
+		scanner_env(NEXT);
+	}
+	return (EXIT_SUCCESS);
+}
