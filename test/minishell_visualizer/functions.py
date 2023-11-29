@@ -2,7 +2,7 @@ import pexpect
 import subprocess
 from styles import *
 
-EXEC_DIR = '../../minishell'
+EXEC_DIR = './minishell'
 PROMPT   = '@minishell> ' 
 
 def execute_valid_cmds(command_list):
