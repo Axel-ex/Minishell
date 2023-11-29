@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:47:53 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/13 14:53:55 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:23:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_token	*token_dup(t_token *token)
 	new->type = token->type;
 	return (new);
 }
-
 
 void	token_add_back(char *content, t_type type)
 {

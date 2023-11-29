@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:14:16 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:21:09 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_ast	*new_ast_node(t_token *token)
 	new_node->pos = 0;
 	return (new_node);
 }
-
 
 int	get_matrix_len(char **matrix)
 {

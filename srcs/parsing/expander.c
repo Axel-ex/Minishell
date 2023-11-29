@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/29 11:17:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:02:17 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*get_key_expansion(char **temp)
 		(*temp)++;
 	key = ft_strdup(start);
 	key[*temp - start] = '\0';
+	(*temp)--;
 	return (key);
 }
 
@@ -48,11 +49,11 @@ char	*append_char_to_content(char *new_content, char c)
 
 char	*expand_variable(char *content)
 {
-	char	*new_content;
+	char	*new;
 	char	*env_value;
 	char	*key;
 
-	new_content = ft_strdup("");
+	new = ft_strdup("");
 	while (*content)
 	{
 		if (*content == '$' && (ft_isalpha(*(content + 1))))
@@ -61,15 +62,18 @@ char	*expand_variable(char *content)
 			env_value = getenv_var(key);
 			free(key);
 			if (env_value)
-				new_content = append_value_to_content(new_content, env_value);
-			if (!ft_isalnum(*content) && *content != '_')
-				content--;
+				new = append_value_to_content(new, env_value);
+		}
+		else if (*content == '$' && *(content + 1) == '?')
+		{
+			new = append_value_to_content(new, ft_itoa(sh()->exit_status));
+			content++;
 		}
 		else
-			new_content = append_char_to_content(new_content, *content);
+			new = append_char_to_content(new, *content);
 		content++;
 	}
-	return (new_content);
+	return (new);
 }
 
 void	expander(void)
