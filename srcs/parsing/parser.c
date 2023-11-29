@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 11:41:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:32:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,16 @@ static int	syntax_checker(void)
 
 void	trim_tokens(void)
 {
-	char	*quote;
 	char	*new_content;
 
-	quote = ft_calloc(sizeof(char), 2);
 	scanner(RESET);
 	while (scanner(READ))
 	{
-		*quote = scanner(READ)->content[0];
-		if (*quote == '\'' || *quote == '\"')
-		{
-			new_content = ft_strtrim(scanner(READ)->content, quote);
-			free(scanner(READ)->content);
-			scanner(READ)->content = new_content;
-		}
+		new_content = remove_quotes(scanner(READ)->content);
+		free(scanner(READ)->content);
+		scanner(READ)->content = new_content;
 		scanner(NEXT);
 	}
-	free(quote);
 }
 
 int	parser(void)

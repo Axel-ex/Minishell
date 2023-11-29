@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:14:21 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:44:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,10 @@ char	*get_operator(char *s);
  */
 int		count_quotes(char *line);
 
+char	*remove_quotes(char *content);
+char	get_first_quote(char *line);
+
+
 /// ============================================================================
 // AST_GENERATOR.C
 // =============================================================================
@@ -160,7 +164,7 @@ void	ast_generator(void);
 t_ast	*new_ast_node(t_token *token);
 
 
-int	get_matrix_len(char **matrix);
+int		get_matrix_len(char **matrix);
 
 /**
  * @brief creates a new matrix containing the element *to_append,
