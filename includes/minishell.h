@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 13:36:26 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:56:45 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include <limits.h>
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>

@@ -6,14 +6,13 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:20:55 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/29 16:40:08 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:24:30 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
-
 
 int	run_env(void)
 {
@@ -25,3 +24,24 @@ int	run_env(void)
 	}
 	return (EXIT_SUCCESS);
 }
+
+int	update_env_if_key_found(char *key, char *new_value)
+{
+	t_list	*curr;
+
+	scanner_env(RESET);
+	curr = sh()->env_lst;
+	while (curr)
+	{
+		if (ft_strncmp(key, ((t_env *)(curr->content))->key, ft_strlen(key)
+				+ 1) == 0)
+		{
+				ft_memdel((void **)&(((t_env *)(curr->content))->value));
+			((t_env *)(curr->content))->value = ft_strdup(new_value);
+			return (EXIT_SUCCESS);
+		}
+		curr = curr->next;
+	}
+	return (EXIT_FAILURE);
+}
+
