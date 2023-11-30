@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:31:57 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/29 12:29:20 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:32:13 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	get_env_list(char **envp);
 char	*getenv_var(char *key);
 
 t_env	*scanner_env(t_operation op);
+
+int	update_env_if_key_found(char *key, char *new_value);
 
 
 #endif
