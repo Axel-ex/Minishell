@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/22 14:37:14 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/30 08:50:09 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ typedef struct s_token	t_token;
 // ERROR MSG
 // =============================================================================
 # define ERR_UNCLOSED_QUOTES	"command contains unclosed quotes"
+# define SYNTH_ERR_TOKEN		"syntax error near unexpected token "
 # define ERR_OPERATOR_END		"Syntax Error: unclosed operator sequence"
 # define ERR_TOKEN_SEQ			"Syntax Error : unexpected sequence of tokens"
-# define ERR_OPERATOR_BEGIN		"syntax error near unexpected token "
 # define ERR_CMD				"command not found"
 # define ERR_DIR				"No such file or directory"
 

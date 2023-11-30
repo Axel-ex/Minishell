@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 13:32:38 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/30 08:51:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ static int	syntax_checker(void)
 
 	scanner(RESET);
 	if (scanner(READ)->type != OTHER)
-		return (print_error(SYNTAX_ERROR, ERR_OPERATOR_BEGIN,
+		return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN,
 				scanner(READ)->content));
 	while (scanner(READ))
 	{
 		next = scanner(GET_NEXT);
 		if (scanner(READ)->type != OTHER && next && next->type != OTHER)
-			return (print_error(SYNTAX_ERROR, ERR_TOKEN_SEQ, NULL));
+			return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN,
+					scanner(READ)->content));
 		last = scanner(READ);
 		scanner(NEXT);
 	}
 	if (last->type != OTHER)
-		return (print_error(SYNTAX_ERROR, ERR_OPERATOR_END, NULL));
+		return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN, last->content));
 	return (EXIT_SUCCESS);
 }
 
