@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:30:04 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/23 09:29:36 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:11:13 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*getenv_var(char *key)
 	scanner_env(RESET);
 	while (scanner_env(READ))
 	{
-		if (!ft_strncmp(scanner_env(READ)->key, key, ft_strlen(key)))
+		if (!ft_strncmp(scanner_env(READ)->key, key,ft_strlen(scanner_env(READ)->key) + 1))
 			return (scanner_env(READ)->value);
 		scanner_env(NEXT);
 	}
