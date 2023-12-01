@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:46:48 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/30 18:55:50 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:39:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,8 @@ int	cd_update_old_pwd(void)
 	oldpwd = ft_strdup(cwd);
 	if (!oldpwd)
 		return (EXIT_FAILURE);
-	if (update_env_if_key_found("OLDPWD", oldpwd) == EXIT_FAILURE)
-	{
-		env_add_back("OLDPWD", oldpwd);
-		free(oldpwd);
-	}
-	else
-		free(oldpwd);
+	update_env_if_key_found("OLDPWD", oldpwd);
+	free(oldpwd);
 	return (EXIT_SUCCESS);
 }
 
