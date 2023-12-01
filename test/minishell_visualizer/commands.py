@@ -2,8 +2,9 @@
 valid_commands = [
     "ls | ls | ls | ls | ls",        # Replace with your desired commands
     "pwd",
-    "echo 'Hello, World!'",
-	"echo $USER $PWD"
+	"echo $USER $PWD",
+	"ls | grep minishell | wc",
+	"cat README.md >> outfile | cat outfile | wc -l"
 ]
 
 invalid_commands = [
