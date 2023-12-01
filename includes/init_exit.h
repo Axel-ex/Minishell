@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/30 08:50:09 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:22:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ typedef struct s_token	t_token;
 # define DIR_NT_FD		126
 # define CMD_NT_FD		127
 
-
 /// ============================================================================
 // ERROR MSG
 // =============================================================================
 # define ERR_UNCLOSED_QUOTES	"command contains unclosed quotes"
 # define SYNTH_ERR_TOKEN		"syntax error near unexpected token "
-# define ERR_OPERATOR_END		"Syntax Error: unclosed operator sequence"
-# define ERR_TOKEN_SEQ			"Syntax Error : unexpected sequence of tokens"
 # define ERR_CMD				"command not found"
 # define ERR_DIR				"No such file or directory"
+
+
 
 /// ============================================================================
 // INIT.C
@@ -44,6 +43,8 @@ typedef struct s_token	t_token;
  * @return t_shell* 
  */
 void	init_shell(char **envp);
+
+
 
 /// ============================================================================
 // ERROR.C
@@ -65,6 +66,8 @@ int		print_error(int exit_status, char *msg, char *var);
  * @return void* NULL
  */
 void	*alloc_error(char *msg);
+
+
 
 /// ============================================================================
 // FREE.C
@@ -92,6 +95,11 @@ void	free_token(t_token *token);
  */
 void	free_matrix(char **matrix);
 
+/**
+ * @brief free pipes
+ * 
+ * @param pipes 
+ */
 void	free_pipes(int **pipes);
 
 #endif

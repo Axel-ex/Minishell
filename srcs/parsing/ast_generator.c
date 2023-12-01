@@ -6,13 +6,13 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:35 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:14:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:44:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	extend_cmd(t_ast *cmd)
+void	insert_redir(t_ast *cmd)
 {
 	t_ast	*redir;
 
@@ -37,7 +37,7 @@ t_ast	*parse_cmd(void)
 	{
 		if (scanner(READ)->type >= REDIR_IN
 			&& scanner(READ)->type <= REDIR2_OUT)
-			extend_cmd(cmd);
+			insert_redir(cmd);
 		else
 			cmd->args = matrix_append(cmd->args,
 					ft_strdup(scanner(READ)->content));
@@ -46,7 +46,7 @@ t_ast	*parse_cmd(void)
 	return (cmd);
 }
 
-t_ast	*extend_pipe(t_ast *ast, t_ast *new_cmd)
+t_ast	*insert_pipe(t_ast *ast, t_ast *new_cmd)
 {
 	t_ast	*root;
 
@@ -69,6 +69,6 @@ void	ast_generator(void)
 	{
 		scanner(NEXT);
 		cmd = parse_cmd();
-		sh()->ast = extend_pipe(sh()->ast, cmd);
+		sh()->ast = insert_pipe(sh()->ast, cmd);
 	}
 }

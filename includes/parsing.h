@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 14:44:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:13:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_ast		t_ast;
 typedef enum s_type			t_type;
 typedef enum s_operation	t_operation;
 
+
+
 /// ============================================================================
 // LEXER.C
 // =============================================================================
@@ -32,8 +34,8 @@ typedef enum s_operation	t_operation;
 void	get_token(char *line);
 
 /**
- * @brief Get the token content pointed to by *s and return a substr of s
- * depending on the char pointed to by *line, get_operater, get_quoted_content
+ * @brief Get the token content pointed to by *line and return a substr of line
+ * depending on the char pointed to by *line, get_operator, get_quoted_content
  * and get_other functions are called.
  * 
  * @param s 
@@ -66,11 +68,13 @@ char	*get_quoted_content(char *line);
  */
 char	*get_other(char *line);
 
+
+
 /// ============================================================================
 // TOKEN_UTILS.C
 // =============================================================================
 /**
- * @brief creates a new_token.
+ * @brief creates a new_token containing content and type.
  * 
  * @param content 
  * @param type 
@@ -94,12 +98,15 @@ t_token	*token_dup(t_token *token);
  */
 void	token_add_back(char *content, t_type type);
 
+
+
 /// ============================================================================
 // PARSER.C
 // =============================================================================
 /**
- * @brief calls functions needed for tokenization, syntax check
- * expender.
+ * @brief tokenize the content of the read line, perform synthax checks
+ * and lexical analysis, remove the quotes and expand variable inside
+ * of the line. The output is a tidy ast ready to be executed
  * 
  * @param shell 
  * @param line 
@@ -107,13 +114,23 @@ void	token_add_back(char *content, t_type type);
  */
 int		parser(void);
 
+/**
+ * @brief  check if the line is empty
+ * 
+ * @param line 
+ * @return true 
+ * @return false 
+ */
 bool	is_empty(char *line);
+
+
 
 /// ============================================================================
 // PARSER_UTILS.C
 // =============================================================================
 /**
- * @brief perform operation specified by op code on token list.
+ * @brief scans through the token list perform and operation specified by op
+ * code on token list. READ returns a token, RESET resets pointer to list
  * 
  * @param op 
  * @return t_token* 
@@ -137,8 +154,23 @@ char	*get_operator(char *s);
  */
 int		count_quotes(char *line);
 
+/**
+ * @brief Removes the quotes from token content
+ * 
+ * @param content 
+ * @return char* 
+ */
 char	*remove_quotes(char *content);
-char	get_first_quote(char *line);
+
+/**
+ * @brief Get the first occuring quote to remove quotes of the line
+ * 
+ * @param line 
+ * @return char 
+ */
+char	get_first_quote(char *content);
+
+
 
 
 /// ============================================================================
@@ -150,6 +182,8 @@ char	get_first_quote(char *line);
  * 
  */
 void	ast_generator(void);
+
+
 
 /// ============================================================================
 // AST_UTILS.C
@@ -163,9 +197,6 @@ void	ast_generator(void);
  */
 t_ast	*new_ast_node(t_token *token);
 
-
-int		get_matrix_len(char **matrix);
-
 /**
  * @brief creates a new matrix containing the element *to_append,
  * free the old matrix and returns the new.
@@ -175,5 +206,52 @@ int		get_matrix_len(char **matrix);
  * @return char** 
  */
 char	**matrix_append(char **matrix, char *to_append);
+
+/**
+ * @brief Get the len of a matrix.
+ * 
+ * @param matrix 
+ * @return int 
+ */
+int		get_matrix_len(char **matrix);
+
+
+
+/// ============================================================================
+// EXPANDER.C
+// =============================================================================
+/**
+ * @brief Retrieves the key for variable expansion.
+ * 
+ * This function takes a pointer to a string and extracts the key
+ * for variable expansion. The key consists of alphanumeric characters
+ * and underscores.
+ * 
+ * @param temp A pointer to the string containing the variable.
+ * @return The key for variable expansion.
+ */
+char	*get_key_expansion(char **temp);
+
+/**
+ * @brief Expands variables in a token's content.
+ * 
+ * This function expands variables in a token's content by replacing
+ * them with their corresponding values. The variables are identified
+ * by a dollar sign ($) followed by an alphabetic character. The expanded
+ * content is stored in a new string and replaces the original content of
+ * the token.
+ * 
+ * @param token The token to expand variables in.
+ */
+char	*expand_variable(char *content);
+
+/**
+ * @brief Expands variables in the token list.
+ * 
+ * This function iterates over the token list and expands variables in tokens
+ * of type OTHER.
+ * It skips tokens of type REDIR2_OUT.
+ */
+void	expander(void);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:31:57 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/30 13:32:13 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:21:16 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ typedef struct s_env
 	char	*value;
 }	t_env;
 
+
+
+/// ============================================================================
+// ENV_LST.C
+// =============================================================================
 /**
  * @brief Get the key from an environment variable string.
  * 
@@ -52,11 +57,37 @@ void	env_add_back(char *key, char *value);
  */
 void	get_env_list(char **envp);
 
-char	*getenv_var(char *key);
 
+
+
+/// ============================================================================
+// ENV_MANIP.C
+// =============================================================================
+/**
+ * @brief scans trhough the list of environment variable and perform
+ * the operatiuon specified by op.
+ * 
+ * @param op 
+ * @return t_env* 
+ */
 t_env	*scanner_env(t_operation op);
 
-int	update_env_if_key_found(char *key, char *new_value);
+/**
+ * @brief Get value of the variable associated with the key in our
+ * envlist. equivalent of getenv for our own environment
+ * 
+ * @param key 
+ * @return char* 
+ */
+char	*getenv_var(char *key);
 
+/**
+ * @brief updates the value associated with the key if it exists
+ * 
+ * @param key 
+ * @param new_value 
+ * @return int 
+ */
+int		update_env_if_key_found(char *key, char *new_value);
 
 #endif
