@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/01 11:20:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:51:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <errno.h>
+# include <sys/wait.h>
 # include "../Libft/includes/libft.h"
 # include "init_exit.h"
 # include "parsing.h"

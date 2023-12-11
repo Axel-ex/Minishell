@@ -38,7 +38,7 @@ all: $(NAME)
 	@echo "$(GREEN)$(NAME) executable created$(RESET)"
 
 $(NAME): $(OBJS) $(LIBFT)
-	@cc $(CCFLAGS) $(FLAGS) -I $(INC) $(OBJS) $(LIBFT_DIR)/$(LIBFT) -o $(NAME)
+	@cc $(CCFLAGS) -I $(INC) $(OBJS) $(LIBFT_DIR)/$(LIBFT) $(FLAGS) -o $(NAME)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/
