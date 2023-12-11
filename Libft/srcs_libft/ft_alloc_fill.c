@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:40:39 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 14:41:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:03:31 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ char	*ft_alloc_fill(int size, char to_fill)
 	if (!res)
 		return (NULL);
 	res = (char *)ft_memset(res, to_fill, size);
+	res[size + 1] = '\0';
 	return (res);
 }
