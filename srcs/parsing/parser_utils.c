@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/01 11:47:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:16:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,16 @@ char	*remove_quotes(char *content)
 	while (content[++i])
 		if (content[i] == quote)
 			count++;
-	res = ft_calloc(sizeof(char), ft_strlen(content) - count);
-	i = -1;
-	j = -1;
-	while (content[++i])
+	res = ft_calloc(sizeof(char), i - count + 1);
+	i = 0;
+	j = 0;
+	while (content[i])
 	{
 		if (content[i] == quote)
 			i++;
-		res[++j] = content[i];
+		res[j++] = content[i++];
 	}
+	res[j] = '\0';
 	return (res);
 }
 

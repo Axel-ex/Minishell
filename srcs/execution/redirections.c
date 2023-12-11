@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 11:17:55 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:35:22 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	handle_redir(t_ast *ast)
 		return (EXIT_SUCCESS);
 	if (temp->token->type == REDIR_OUT)
 		sh()->fd_out = open(temp->args[0], O_CREAT | O_TRUNC
-			| O_WRONLY, 0777);
+			| O_WRONLY, 0666);
 	else if (temp->token->type == REDIR2_OUT)
 		sh()->fd_out = open(temp->args[0], O_CREAT | O_APPEND
-			| O_WRONLY, 0777);
+			| O_WRONLY, 0666);
 	else if (temp->token->type == REDIR_IN)
 	{
 		if (check_file_path(ast))
