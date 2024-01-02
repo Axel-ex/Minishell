@@ -15,7 +15,7 @@ OBJS		=	$(patsubst $(SRCS_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
 CCFLAGS		=	-Wall -Wextra -Werror -g
 
-FLAGS		=	-lreadline
+FLAGS		=	-lreadline -L /opt/homebrew/Cellar/readline/8.2.1/lib -I /opt/homebrew/Cellar/readline/8.2.1/include
 
 INC			=	includes
 

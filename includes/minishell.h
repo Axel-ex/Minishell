@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/11 14:51:52 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/02 11:55:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define GREEN	"\e[32m"
 # define PURPLE	"\e[35m"
 # define CYAN	"\e[36m"
+
 
 /**
  * @brief returns shell structure from anywhere in the code.
