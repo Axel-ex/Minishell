@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:06:04 by axelc             #+#    #+#             */
-/*   Updated: 2023/11/30 13:58:24 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:37:28 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -448,5 +448,6 @@ int		ft_printf(char const *format, ...);
 void	*ft_realloc(void *ptr, size_t new_size);
 char	*ft_alloc_fill(int size, char to_fill);
 void	ft_memdel(void **ap);
+int		ft_isnumeric(char *str);
 
 #endif

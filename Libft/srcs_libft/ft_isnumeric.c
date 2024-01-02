@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_envp.c                                        :+:      :+:    :+:   */
+/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:55:22 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/18 14:01:58 by jgomes-v         ###   ########.fr       */
+/*   Created: 2024/01/02 13:33:36 by achabrer          #+#    #+#             */
+/*   Updated: 2024/01/02 14:05:47 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_isnumeric(char *str)
 {
-	int	i;
-	int	j;
-
-	(void)argc;
-	(void)argv;
-	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
-	return (0);
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }

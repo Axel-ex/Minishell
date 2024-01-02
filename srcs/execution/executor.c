@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/30 14:07:54 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:00:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	match_cmd(t_ast *ast)
 	if (!ft_strncmp("cd", args[0], 3))
 		run_cd(ast);
 	else if (!ft_strncmp("echo", args[0], 5))
-		echo(ast);
+		run_echo(ast);
 	else if (!ft_strncmp("exit", args[0], 5))
-		free_shell(false);
+		run_exit(ast);
 	else if (!ft_strncmp("pwd", args[0], 4))
 		run_pwd();
 	else if (!ft_strncmp("env", args[0], 3))

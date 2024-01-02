@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/30 11:35:15 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:44:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	run_export(t_ast *ast)
 		((t_env *)to_add->content)->value = get_value(ast->args[1]);
 		((t_env *)to_add->content)->key = get_key(ast->args[1]);
 		env_add_back(((t_env *)to_add->content)->key,
-				((t_env *)to_add->content)->value);
+			((t_env *)to_add->content)->value);
 		free(to_add->content);
 		free(to_add);
 	}

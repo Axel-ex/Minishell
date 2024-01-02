@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/30 14:08:11 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:00:00 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * @param ast The abstract syntax tree containing the arguments.
  * @return Returns EXIT_SUCCESS if the function executes successfully.
  */
-int		echo(t_ast *ast);
+int		run_echo(t_ast *ast);
 
 /**
  * @brief Runs the "env" command, which displays the environment variables.
@@ -121,5 +121,7 @@ int	cd_goto_home(void);
 int	run_cd(t_ast *ast);
 
 int	run_pwd(void);
+
+void	run_exit(t_ast *ast);
 
 #endif

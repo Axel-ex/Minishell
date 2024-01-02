@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/28 16:50:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:48:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void	free_shell(bool keep_iterating)
 	{
 		ft_lstclear(&sh()->env_lst, (void (*))free_env_lst);
 		free_matrix(sh()->path);
-		exit(EXIT_SUCCESS);
+		exit(sh()->exit_status);
 	}
 }

@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 10:01:08 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 15:59:54 by achabrer         ###   ########.fr       */
+/*   Created: 2024/01/02 12:49:54 by achabrer          #+#    #+#             */
+/*   Updated: 2024/01/02 15:59:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	run_echo(t_ast *ast)
+void	run_exit(t_ast *ast)
 {
-	int		i;
-	bool	new_line;
-
-	i = 1;
-	new_line = true;
-	if (!ast->args[i])
-		return (printf("\n"));
-	if (!ft_strncmp(ast->args[i], "-n", 3))
+	if (ast->args[2])
 	{
-		new_line = false;
-		i++;
+		print_error(1, "too many arguments", "exit");
+		return ;
 	}
-	while (ast->args[i])
-	{
-		printf("%s", ast->args[i++]);
-		if (ast->args[i])
-			printf(" ");
-	}
-	if (new_line)
-		printf("\n");
-	return (EXIT_SUCCESS);
+	if (ast->args[1] && ft_isnumeric(ast->args[1]))
+		sh()->exit_status = ft_atoi(ast->args[1]) % 256;
+	else if (ast->args[1] && !ft_isnumeric(ast->args[1]))
+		print_error(255, "numeric argument required", ast->args[1]);
+	free_shell(false);
 }

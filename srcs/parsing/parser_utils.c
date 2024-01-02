@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/11 14:16:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:37:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ char	*remove_quotes(char *content)
 	{
 		if (content[i] == quote)
 			i++;
-		res[j++] = content[i++];
+		else
+			res[j++] = content[i++];
 	}
 	res[j] = '\0';
 	return (res);
