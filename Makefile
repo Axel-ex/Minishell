@@ -24,6 +24,7 @@ MODE		=	normal
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
 RED			= \033[38;5;196m
+CYAN 		= \033[1;36m
 RESET 		= \033[0m
 
 ifeq ($(MODE), debug)
@@ -32,10 +33,10 @@ endif
 
 $(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
 	@cc $(CCFLAGS) -c $< -o $@
-	@echo "[$(GREEN)compiling$(RESET)]: $<"
+	@echo "[$(CYAN)compiling$(RESET)]:\t $<"
 
 all: $(NAME)
-	@echo "$(GREEN)$(NAME) executable created$(RESET)"
+	@echo "[$(GREEN)DONE$(RESET)]:\t\t $(GREEN)minishell$(RESET)"
 
 $(NAME): $(OBJS) $(LIBFT)
 	@cc $(CCFLAGS) -I $(INC) $(OBJS) $(LIBFT_DIR)/$(LIBFT) $(FLAGS) -o $(NAME)
@@ -51,6 +52,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/envp
 
 $(LIBFT):
+	@echo "[$(CYAN)compiling$(RESET)]:\t $@"
 	@make -C $(LIBFT_DIR)
 
 clean:

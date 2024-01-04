@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 11:35:41 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:31:08 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	parser(void)
 	if (has_enclosed_quotes(sh()->line))
 		return (print_error(SYNTAX_ERROR, ERR_UNCLOSED_QUOTES, NULL));
 	get_token(sh()->line);
-	if (syntax_checker() == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	if (syntax_checker() != EXIT_SUCCESS)
+		return (sh()->exit_status);
 	trim_tokens();
 	expander();
 	ast_generator();

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 14:51:08 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:41:26 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	init_shell(envp);
 	main_loop();
-	return (EXIT_SUCCESS);
+	return (sh()->exit_status);
 }

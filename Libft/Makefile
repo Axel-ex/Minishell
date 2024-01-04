@@ -28,12 +28,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
 	@ar rcs $@ $^
-	@echo "[$(GREEN)DONE$(RESET)]: $(NAME)"	
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "[$(GREEN)compiling$(RESET)]: $<"
 
 clean:
 	@rm -rf $(OBJ_DIR)

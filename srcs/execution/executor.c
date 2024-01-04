@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 16:00:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:36:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	execute_child(t_ast *ast)
 {
 	if (handle_redir(ast) != EXIT_SUCCESS)
 		return ;
-	if (check_cmd_path(ast->args[0]) == EXIT_FAILURE)
+	if (check_cmd_path(ast->args[0]) != EXIT_SUCCESS)
 		return ;
 	sh()->pid = fork();
 	if (!sh()->pid)
