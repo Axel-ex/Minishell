@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/04 13:31:08 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:31:34 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	syntax_checker(void)
 		last = scanner(READ);
 		scanner(NEXT);
 	}
-	if (last->type != OTHER)
+	if (last->type != OTHER && last->type != SIMPLE_QUOTE)
 		return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN, last->content));
 	return (EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 14:36:02 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:02:27 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_type	get_token_type(char *token_content)
 		return (HEREDOC);
 	if (!strncmp(">>", token_content, 3))
 		return (REDIR2_OUT);
+	if(!strncmp("\'",token_content,1))
+		return(SIMPLE_QUOTE);	
 	else
 		return (OTHER);
 }

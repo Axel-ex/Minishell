@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 11:55:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:05:17 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef enum s_type
 	REDIR_OUT,
 	HEREDOC,
 	REDIR2_OUT,
+	SIMPLE_QUOTE,
 }	t_type;
 
 /**
