@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/02 13:44:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:28:55 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	run_export(t_ast *ast)
 		return ;
 	}
 	if (!ft_isalpha(ast->args[1][0]))
-		ft_printf("export: `%c': not a valid identifier\n", ast->args[1][0]);
+		print_error(1, "not a valid identifier\n", &ast->args[1][0]);
 
 	if (ft_strchr(ast->args[1], '=') != NULL)
 	{
