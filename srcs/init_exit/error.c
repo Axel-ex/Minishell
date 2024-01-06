@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:13 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/04 13:29:09 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:24:47 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	print_error(int exit_status, char *msg, char *var)
 	printf("%s", msg);
 	if (var && exit_status == SYNTAX_ERROR)
 		printf(": %s", var);
-	printf("\n");
 	return (sh()->exit_status);
 }
 
