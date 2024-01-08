@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/04 13:36:52 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:32:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	executor(void)
 	status = 127;
 	pipe_create();
 	execute_ast(sh()->ast);
-	while (waitpid(-1, &status, 0) > 0)
+	while (wait(&status) > 0)
 		continue ;
 	if (WIFEXITED(status))
 		sh()->exit_status = WEXITSTATUS(status);

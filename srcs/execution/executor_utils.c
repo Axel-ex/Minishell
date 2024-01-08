@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 09:55:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/08 15:35:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ char	*get_cmd_path(char *cmd)
 
 	if (*cmd == '.')
 	{
-		cwd = getenv("PWD");
+		cmd++;
+		cwd = getenv_var("PWD");
 		path = ft_strjoin(cwd, cmd);
 	}
 	else
