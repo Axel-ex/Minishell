@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:49:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 15:59:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:36:10 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	run_exit(t_ast *ast)
 {
-	if (ast->args[2])
+	if (get_matrix_len(ast->args) > 2)
 	{
 		print_error(1, "too many arguments", "exit");
 		return ;
