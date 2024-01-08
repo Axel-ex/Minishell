@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/05 12:31:34 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:17:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	trim_tokens(void)
 
 int	parser(void)
 {
-	if (is_empty(sh()->line))
-		return (EXIT_FAILURE);
+	// if (is_empty(sh()->line))
+	// 	return (EXIT_FAILURE);
 	if (has_enclosed_quotes(sh()->line))
 		return (print_error(SYNTAX_ERROR, ERR_UNCLOSED_QUOTES, NULL));
 	get_token(sh()->line);
