@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/05 11:05:17 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:18:36 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include "execution.h"
 # include "builtins.h"
 
-# define PROMPT "@minishell> "
+# define PROMPT "@minishell: "
 # define MAX_TOKEN_LEN 100
 
 # define NC		"\e[0m"

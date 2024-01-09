@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:13 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/08 12:36:40 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:18:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_error(int exit_status, char *msg, char *var)
 {
 	dup2(STDERR_FILENO, STDOUT_FILENO);
 	sh()->exit_status = exit_status;
-	// printf("%sminishell%s: ", RED, NC);
+	printf("minishell: ");
 	if (var && exit_status != SYNTAX_ERROR)
 		printf("%s: ", var);
 	printf("%s", msg);

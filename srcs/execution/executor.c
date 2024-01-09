@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/08 15:32:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:38:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ void	match_cmd(t_ast *ast)
 
 void	execute_child(t_ast *ast)
 {
-	if (handle_redir(ast) != EXIT_SUCCESS)
-		return ;
-	if (check_cmd_path(ast->args[0]) != EXIT_SUCCESS)
-		return ;
+	check_cmd_path(ast->args[0]);
 	sh()->pid = fork();
 	if (!sh()->pid)
 	{
@@ -75,6 +72,8 @@ void	execute_ast(t_ast *ast)
 		else
 			execute_child(ast);
 	}
+	else if (is_operator(ast->token))
+		handle_redir(ast);
 }
 
 void	executor(void)

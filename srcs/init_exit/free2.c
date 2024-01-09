@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:44:42 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 11:18:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:38:53 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_pipes(int **pipes)
 	if (!pipes)
 		return ;
 	i = -1;
-	while (++i < sh()->nb_cmds - 1)
+	while (++i < sh()->nb_cmds)
 		free(pipes[i]);
 	free(pipes);
 }

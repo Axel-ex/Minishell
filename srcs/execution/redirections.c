@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 15:14:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:35:44 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,20 @@ int	check_file_path(t_ast *ast)
 
 int	handle_redir(t_ast *ast)
 {
-	t_ast	*temp;
-
-	temp = ast->left;
-	if (!temp)
-		return (EXIT_SUCCESS);
-	if (temp->token->type == REDIR_OUT)
-		sh()->fd_out = open(temp->args[0], O_CREAT | O_TRUNC
+	if (ast->token->type == REDIR_OUT)
+		sh()->fd_out = open(ast->args[0], O_CREAT | O_TRUNC
 			| O_WRONLY, 0666);
-	else if (temp->token->type == REDIR2_OUT)
-		sh()->fd_out = open(temp->args[0], O_CREAT | O_APPEND
+	else if (ast->token->type == REDIR2_OUT)
+		sh()->fd_out = open(ast->args[0], O_CREAT | O_APPEND
 			| O_WRONLY, 0666);
-	else if (temp->token->type == REDIR_IN)
+	else if (ast->token->type == REDIR_IN)
 	{
-		if (check_file_path(temp))
+		if (check_file_path(ast))
 			return (EXIT_FAILURE);
-		sh()->fd_in = open(temp->args[0], O_RDONLY);
+		sh()->fd_in = open(ast->args[0], O_RDONLY);
 	}
-	else if (temp->token->type == HEREDOC)
-		handle_heredoc(temp);
+	else if (ast->token->type == HEREDOC)
+		handle_heredoc(ast);
 	return (EXIT_SUCCESS);
 }
 
