@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/01 11:22:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:45:25 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_token	t_token;
 # define SYNTH_ERR_TOKEN		"syntax error near unexpected token "
 # define ERR_CMD				"command not found"
 # define ERR_DIR				"No such file or directory"
+# define PERM_DEN				"Permission denied"
 
 
 

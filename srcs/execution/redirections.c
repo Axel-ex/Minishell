@@ -6,39 +6,38 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/09 14:35:44 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:49:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_file_path(t_ast *ast)
+int	handle_redir_error(char *file)
 {
 	struct stat	stats;
-	char		*file;
 
-	file = ast->args[0];
-	if (stat(file, &stats))
+	stat(file, &stats);
+	if (!access(file, F_OK) && access(file, X_OK))
+		return (print_error(1, PERM_DEN, file));
+	else
 		return (print_error(DIR_NT_FD, ERR_DIR, file));
-	return (EXIT_SUCCESS);
 }
 
 int	handle_redir(t_ast *ast)
 {
+	char	*file;
+
+	file = ast->args[0];
 	if (ast->token->type == REDIR_OUT)
-		sh()->fd_out = open(ast->args[0], O_CREAT | O_TRUNC
-			| O_WRONLY, 0666);
+		sh()->fd_out = open(file, O_CREAT | O_TRUNC | O_WRONLY, 0666);
 	else if (ast->token->type == REDIR2_OUT)
-		sh()->fd_out = open(ast->args[0], O_CREAT | O_APPEND
-			| O_WRONLY, 0666);
+		sh()->fd_out = open(file, O_CREAT | O_APPEND | O_WRONLY, 0666);
 	else if (ast->token->type == REDIR_IN)
-	{
-		if (check_file_path(ast))
-			return (EXIT_FAILURE);
-		sh()->fd_in = open(ast->args[0], O_RDONLY);
-	}
+		sh()->fd_in = open(file, O_RDONLY);
 	else if (ast->token->type == HEREDOC)
 		handle_heredoc(ast);
+	if (sh()->fd_in == -1 || sh()->fd_out == -1)
+		return (handle_redir_error(file));
 	return (EXIT_SUCCESS);
 }
 

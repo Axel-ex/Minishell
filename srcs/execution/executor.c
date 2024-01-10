@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/09 14:38:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:59:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,27 @@ int	execute_cmd(t_ast *ast)
 
 void	execute_ast(t_ast *ast)
 {
+	static int	fail_redir = EXIT_SUCCESS;
+
 	if (!ast)
 		return ;
 	execute_ast(ast->left);
 	execute_ast(ast->right);
 	if (!is_operator(ast->token))
 	{
+		if (fail_redir != EXIT_SUCCESS)
+		{
+			fail_redir = EXIT_SUCCESS;
+			restore_io(ast->pos);
+			return ;
+		}
 		if (!is_forkable(ast->token->content))
 			match_cmd(ast);
 		else
 			execute_child(ast);
 	}
-	else if (is_operator(ast->token))
-		handle_redir(ast);
+	else if (is_operator(ast->token) && !fail_redir)
+		fail_redir = handle_redir(ast);
 }
 
 void	executor(void)
