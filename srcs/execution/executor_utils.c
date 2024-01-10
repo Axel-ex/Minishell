@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/10 10:50:19 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:10:32 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ int	check_cmd_path(char *cmd)
 	char		*cmd_path;
 	struct stat	stats;
 
+	if (ft_strchr(cmd, '/'))
+	{
+		stat(cmd, &stats);
+		if (!S_ISDIR(stats.st_mode))
+			return (print_error(127, ERR_DIR, cmd));
+	}
 	cmd_path = get_cmd_path(cmd);
 	if (!cmd_path)
 		print_error(CMD_NT_FD, ERR_CMD, cmd);
 	stat(cmd_path, &stats);
-	if (S_ISDIR(stats.st_mode))
-		print_error(DIR_NT_FD, ERR_DIR, cmd_path);
 	if (!access(cmd_path, F_OK) && access(cmd_path, X_OK))
 		print_error(126, PERM_DEN, cmd_path);
 	free(cmd_path);
