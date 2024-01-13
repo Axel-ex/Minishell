@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:20:55 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/12/01 10:33:45 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/13 14:46:30 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,16 @@ int	update_env_if_key_found(char *key, char *new_value)
 		scanner_env(NEXT);
 	}
 	return (EXIT_FAILURE);
+}
+
+t_env	*env_find(char *key)
+{
+	scanner_env(RESET);
+	while (scanner_env(READ))
+	{
+		if (ft_strncmp(scanner_env(READ)->key, key, ft_strlen(key) + 1) == 0)
+			return (scanner_env(READ));
+		scanner_env(NEXT);
+	}
+	return (NULL);
 }

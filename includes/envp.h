@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:31:57 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/12/01 11:21:16 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/13 14:37:40 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_value(char *envp);
  * @param key The key of the environment variable.
  * @param value The value of the environment variable.
  */
-void	env_add_back(char *key, char *value);
+int	env_add_back(char *key, char *value);
 
 /**
  * @brief Populate the environment variable list from an array of strings.
@@ -56,6 +56,8 @@ void	env_add_back(char *key, char *value);
  * @param envp The array of environment variable strings.
  */
 void	get_env_list(char **envp);
+
+t_env	*env_find(char *key);
 
 
 

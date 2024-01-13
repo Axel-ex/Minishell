@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_exit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/10 10:45:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:21:16 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,8 @@ void	free_matrix(char **matrix);
  * @param pipes 
  */
 void	free_pipes(int **pipes);
+
+int	print_error_export(int exit_status, char *msg, char *var,char *arg);
+
 
 #endif

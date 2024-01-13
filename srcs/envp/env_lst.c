@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:10:03 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/30 18:42:41 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:53:16 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,17 @@ char	*get_value(char *envp)
 	return (value);
 }
 
-void	env_add_back(char *key, char *value)
+int	env_add_back(char *key, char *value)
 {
 	t_env	*var;
 
 	var = (t_env *)malloc(sizeof(t_env));
 	if (!var)
-		return ;
+		return 0;
 	var->key = key;
 	var->value = value;
 	ft_lstadd_back(&sh()->env_lst, ft_lstnew(var));
+	return 1;
 }
 
 void	get_env_list(char **envp)
