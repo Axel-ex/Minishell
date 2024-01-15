@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/10 15:10:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:48:40 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	check_cmd_path(char *cmd)
 		stat(cmd, &stats);
 		if (!S_ISDIR(stats.st_mode))
 			return (print_error(127, ERR_DIR, cmd));
+		return (print_error(126, "is a directory", cmd));
 	}
 	cmd_path = get_cmd_path(cmd);
 	if (!cmd_path)
@@ -55,14 +56,14 @@ char	*get_absolute_path(char *cmd)
 	int		i;
 
 	i = -1;
-	if (!access(cmd, R_OK | F_OK))
+	if (!access(cmd, R_OK | F_OK | X_OK))
 		return (ft_strdup(cmd));
 	while (sh()->path[++i])
 	{
 		path1 = ft_strjoin(sh()->path[i], "/");
 		path = ft_strjoin(path1, cmd);
 		free(path1);
-		if (!access(path, R_OK | F_OK))
+		if (!access(path, R_OK | F_OK | X_OK))
 			return (path);
 		free(path);
 	}

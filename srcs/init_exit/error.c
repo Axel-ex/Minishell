@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:36:13 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/10 14:25:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:44:59 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	print_error(int exit_status, char *msg, char *var)
 	if (var && exit_status == SYNTAX_ERROR)
 		printf(": %s", var);
 	printf("\n");
-	dup2(STDOUT_FILENO, STDERR_FILENO);
 	return (sh()->exit_status);
 }
 

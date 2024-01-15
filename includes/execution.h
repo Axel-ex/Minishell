@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/01 11:37:01 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:44:32 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	execute_child(t_ast *ast);
  * @param ast 
  * @return int 
  */
-int		execute_cmd(t_ast *ast);
+void		execute_cmd(t_ast *ast);
 
 
 
@@ -120,9 +120,8 @@ void	pipe_connect(int ast_pos);
  * @brief handle the four different types of redirection
  * 
  * @param ast 
- * @return int 
  */
-int		handle_redir(t_ast *ast);
+int	handle_redir(t_ast *ast);
 
 /**
  * @brief calls dup2 on fd_in and fd_out that has been set previously
@@ -146,5 +145,6 @@ void	restore_io(int node_pos);
  * @param ast 
  */
 void	handle_heredoc(t_ast *ast);
+bool	is_redirection(t_token *token);
 
 #endif

@@ -6,11 +6,18 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/10 14:49:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:47:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+bool	is_redirection(t_token *token)
+{
+	if (is_operator(token) && token->type != PIPE)
+		return (true);
+	return (false);
+}
 
 int	handle_redir_error(char *file)
 {
@@ -19,8 +26,7 @@ int	handle_redir_error(char *file)
 	stat(file, &stats);
 	if (!access(file, F_OK) && access(file, X_OK))
 		return (print_error(1, PERM_DEN, file));
-	else
-		return (print_error(DIR_NT_FD, ERR_DIR, file));
+	return (print_error(1, ERR_DIR, file));
 }
 
 int	handle_redir(t_ast *ast)
@@ -41,32 +47,6 @@ int	handle_redir(t_ast *ast)
 	return (EXIT_SUCCESS);
 }
 
-void	handle_heredoc(t_ast *ast)
-{
-	char	*line;
-	char	*temp;
-	char	*end_of_file;
-	int		fd_temp;
-
-	end_of_file = ast->args[0];
-	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
-	while (42)
-	{
-		line = readline("> ");
-		if (!ft_strncmp(line, end_of_file, ft_strlen(end_of_file) + 1))
-		{
-			free(line);
-			break ;
-		}
-		temp = expand_variable(line);
-		free(line);
-		ft_putendl_fd(temp, fd_temp);
-		free(temp);
-	}
-	close(fd_temp);
-	fd_temp = open("tempfile", O_RDONLY);
-	sh()->fd_in = fd_temp;
-}
 
 void	redirect_io(void)
 {
