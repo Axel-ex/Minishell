@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/29 12:02:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/13 18:26:11 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*expand_variable(char *content)
 	new = ft_strdup("");
 	while (*content)
 	{
-		if (*content == '$' && (ft_isalpha(*(content + 1))))
+		if (*content == '$' && ((ft_isalpha(*(content + 1))) || *(content + 1) == '_'))
 		{
 			key = get_key_expansion((&content));
 			env_value = getenv_var(key);
