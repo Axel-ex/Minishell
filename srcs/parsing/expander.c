@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/13 18:26:11 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:57:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*append_value_to_content(char *new_content, char *value)
 {
 	size_t	old_len;
 
+	// if (!value)
+	// 	return (ft_strdup(""));
 	old_len = ft_strlen(new_content);
 	new_content = ft_realloc(new_content, old_len + ft_strlen(value) + 1);
 	ft_strlcat(new_content, value, old_len + ft_strlen(value) + 1);
