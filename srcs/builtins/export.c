@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/16 16:13:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:14:36 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	run_export(t_ast *ast)
 		print_all_export();
 		return ;
 	}
+	if (sh()->nb_cmds > 1)
+		return ;
 	validate_identifier(ast);
 	to_add = (t_list *)malloc(sizeof(t_list));
 	to_add->content = malloc(sizeof(t_env));
