@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:49:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/09 15:03:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:31:31 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	run_exit(t_ast *ast)
 		sh()->exit_status = ft_atoi(ast->args[1]) % 256;
 	else if (ast->args[1] && !ft_isnumeric(ast->args[1]))
 		print_error(255, "numeric argument required", ast->args[1]);
+	printf("exit\n");
 	free_shell(false);
 }

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/09 13:18:36 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:49:51 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include "execution.h"
 # include "builtins.h"
 
-# define PROMPT "@minishell: "
+# define PROMPT "minishell> "
 # define MAX_TOKEN_LEN 100
 
 # define NC		"\e[0m"
