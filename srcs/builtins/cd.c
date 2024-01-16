@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:46:48 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/16 14:48:00 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:10:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	run_cd(t_ast *ast)
 	else
 	{
 		if (chdir(ast->args[1]) != 0)
-			return (print_error(DIR_NT_FD, ERR_DIR, ast->args[1]));
+			return (print_error(1, ERR_DIR, ast->args[1]));
 		cd_update_old_pwd();
 	}
 	return (EXIT_SUCCESS);
