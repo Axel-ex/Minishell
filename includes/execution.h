@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/11 13:44:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:41:44 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	pipe_connect(int ast_pos);
  * 
  * @param ast 
  */
-int	handle_redir(t_ast *ast);
+int	handle_redir(t_ast *ast, bool *first);
 
 /**
  * @brief calls dup2 on fd_in and fd_out that has been set previously

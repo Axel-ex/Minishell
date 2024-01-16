@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/15 16:15:07 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:54:28 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	execute_cmd(t_ast *ast)
 
 void	execute_ast(t_ast *ast)
 {
+	static bool	fail_redir = false;
 
 	if (!ast)
 		return ;
@@ -73,9 +74,10 @@ void	execute_ast(t_ast *ast)
 			match_cmd(ast);
 		else
 			execute_child(ast);
+		fail_redir = false;
 	}
 	else if (is_redirection(ast->token))
-		handle_redir(ast);
+		handle_redir(ast, &fail_redir);
 }
 
 void	executor(void)

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/11 13:48:40 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:26:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ int	check_cmd_path(char *cmd)
 	if (ft_strchr(cmd, '/'))
 	{
 		stat(cmd, &stats);
+		if (!S_ISDIR(stats.st_mode) && !access(cmd, F_OK))
+			return (print_error(126, PERM_DEN, cmd));
 		if (!S_ISDIR(stats.st_mode))
 			return (print_error(127, ERR_DIR, cmd));
 		return (print_error(126, "is a directory", cmd));
 	}
 	cmd_path = get_cmd_path(cmd);
-	if (!cmd_path)
-		print_error(CMD_NT_FD, ERR_CMD, cmd);
 	stat(cmd_path, &stats);
-	if (!access(cmd_path, F_OK) && access(cmd_path, X_OK))
-		print_error(126, PERM_DEN, cmd_path);
+	if (!cmd_path || (S_ISDIR(stats.st_mode)))
+		return (print_error(CMD_NT_FD, ERR_CMD, cmd));
+	// if (!access(cmd_path, F_OK) && !access(cmd_path, X_OK))
+	// 	return (print_error(126, PERM_DEN, cmd_path));
 	free(cmd_path);
 	return (EXIT_SUCCESS);
 }

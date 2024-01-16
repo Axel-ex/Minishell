@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/15 16:14:47 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:04:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int	handle_redir_error(char *file)
 	return (print_error(1, ERR_DIR, file));
 }
 
-int	handle_redir(t_ast *ast)
+int	handle_redir(t_ast *ast, bool *fail_redir)
 {
 	char	*file;
 
+	if (*fail_redir == true)
+		return (EXIT_SUCCESS);
 	file = ast->args[0];
 	if (ast->token->type == REDIR_OUT)
 		sh()->fd_out = open(file, O_CREAT | O_TRUNC | O_WRONLY, 0666);
@@ -43,7 +45,10 @@ int	handle_redir(t_ast *ast)
 	else if (ast->token->type == HEREDOC)
 		handle_heredoc(ast);
 	if (sh()->fd_in == -1 || sh()->fd_out == -1)
+	{
+		*fail_redir = true;
 		return (handle_redir_error(file));
+	}
 	return (EXIT_SUCCESS);
 }
 
