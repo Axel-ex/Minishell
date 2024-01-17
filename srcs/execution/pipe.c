@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:02:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/08 14:35:28 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:37:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ void	pipe_connect(int ast_pos)
 	if (sh()->nb_cmds < 2)
 		return ;
 	if (ast_pos && sh()->fd_in == STDIN_FILENO)
+	{
 		sh()->fd_in = sh()->pipes[ast_pos - 1][0];
+		close(sh()->pipes[ast_pos - 1][1]);
+	}
 	if (ast_pos != sh()->nb_cmds - 1 && sh()->fd_out == STDOUT_FILENO)
+	{
 		sh()->fd_out = sh()->pipes[ast_pos][1];
+		close(sh()->pipes[ast_pos][0]);
+	}
 }
