@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/05 12:02:27 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/18 09:10:20 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,13 @@ t_type	get_token_type(char *token_content)
 char	*get_quoted_content(char *line)
 {
 	char	*res;
-	char	quote;
-	int		i;
+	int		last_quote_pos;
 
-	quote = line[0];
-	i = 1;
-	while (line[i] != quote)
-		i++;
-	res = (char *)malloc(sizeof(char) * i + 2);
+	last_quote_pos = get_last_quote_pos(line);
+	res = (char *)malloc(sizeof(char) * last_quote_pos + 1);
 	if (!res)
 		return (alloc_error("quoted content"));
-	ft_strlcpy(res, line, i + 2);
+	ft_strlcpy(res, line, last_quote_pos + 2);
 	return (res);
 }
 

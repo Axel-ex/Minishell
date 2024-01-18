@@ -6,11 +6,26 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:47:53 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 11:23:03 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 08:55:05 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_token	*scanner(t_operation op)
+{
+	static t_list	*curr = NULL;
+
+	if (op == RESET)
+		curr = sh()->token_lst;
+	else if (op == READ && curr)
+		return (curr->content);
+	else if (op == NEXT && curr)
+		curr = curr->next;
+	else if (op == GET_NEXT && curr->next)
+		return (curr->next->content);
+	return (NULL);
+}
 
 t_token	*new_token(char *content, t_type type)
 {

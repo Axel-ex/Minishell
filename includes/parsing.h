@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2023/12/01 11:13:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 09:01:18 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ char	*get_other(char *line);
 // TOKEN_UTILS.C
 // =============================================================================
 /**
+ * @brief scans through the token list perform and operation specified by op
+ * code on token list. READ returns a token, RESET resets pointer to list
+ * 
+ * @param op 
+ * @return t_token* 
+ */
+t_token	*scanner(t_operation op);
+
+/**
  * @brief creates a new_token containing content and type.
  * 
  * @param content 
@@ -128,15 +137,9 @@ bool	is_empty(char *line);
 /// ============================================================================
 // PARSER_UTILS.C
 // =============================================================================
-/**
- * @brief scans through the token list perform and operation specified by op
- * code on token list. READ returns a token, RESET resets pointer to list
- * 
- * @param op 
- * @return t_token* 
- */
-t_token	*scanner(t_operation op);
 
+
+int	get_last_quote_pos(char *line);
 /**
  * @brief returns a string containing the operator found in s.
  * (allocated on the heap)

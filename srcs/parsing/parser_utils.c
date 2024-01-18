@@ -6,26 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 12:37:37 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 09:24:17 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-t_token	*scanner(t_operation op)
-{
-	static t_list	*curr = NULL;
-
-	if (op == RESET)
-		curr = sh()->token_lst;
-	else if (op == READ && curr)
-		return (curr->content);
-	else if (op == NEXT && curr)
-		curr = curr->next;
-	else if (op == GET_NEXT && curr->next)
-		return (curr->next->content);
-	return (NULL);
-}
 
 char	*get_operator(char *s)
 {
@@ -106,4 +91,29 @@ char	get_first_quote(char *line)
 		line++;
 	}
 	return (*line);
+}
+
+int	get_last_quote_pos(char *line)
+{
+	int		i;
+	char	quote;
+	int		pos;
+	int		quotes_count;
+
+	quotes_count = 0;
+	quote = get_first_quote(line);
+	pos = 0;
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == quote)
+		{
+			pos = i;
+			quotes_count++;
+		}
+		if ((line[i] == ' ' || line[i] == '>' || line[i] == '<'
+			|| line[i] == '|') && quotes_count % 2 == 0)
+				break ;
+	}
+	return (pos);
 }
