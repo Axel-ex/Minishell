@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/18 11:26:59 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:04:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	check_cmd_path(char *cmd)
 		free(cmd_path);
 		return (print_error(CMD_NT_FD, ERR_CMD, cmd));
 	}
+	if (!cmd_path || (S_ISDIR(stats.st_mode)))
+		return (print_error(CMD_NT_FD, ERR_CMD, cmd));
 	free(cmd_path);
 	return (EXIT_SUCCESS);
 }

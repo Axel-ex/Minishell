@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 16:00:00 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:57:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ int		run_env(void);
 	* @brief Removes environment variables specified by the arguments from the environment list.
  * 
  * @param ast The abstract syntax tree representing the command.
- * @return Returns 0 on success
  */
 
-int		run_unset(t_ast *ast);
+void	run_unset(t_ast *ast);
 
 /**
  * @brief Removes the current node from a linked list.
