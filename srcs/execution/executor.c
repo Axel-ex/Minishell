@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/16 15:24:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:06:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	execute_child(t_ast *ast)
 		match_cmd(ast);
 		free_shell(false);
 	}
+	if (!ft_strncmp(ast->args[0], "sleep", 5) && sh()->pid > 0)
+		waitpid(sh()->pid, NULL, 0);
 	restore_io(ast->pos);
 }
 
