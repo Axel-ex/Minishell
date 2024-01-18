@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/17 19:41:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:29:42 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ int	handle_redir_error(char *file)
 {
 	struct stat	stats;
 
-	stat(file, &stats);
+	if (stat(file, &stats) == -1)
+		return (print_error(1, ERR_DIR, file));
 	if (!access(file, F_OK) && access(file, X_OK))
 		return (print_error(1, PERM_DEN, file));
 	if (S_ISDIR(stats.st_mode))
 		return(print_error(1, "Is a directory", file));
-	return (print_error(1, ERR_DIR, file));
+	return (EXIT_SUCCESS);
 }
 
 int	handle_redir(t_ast *ast, bool *fail_redir)
