@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/18 09:10:20 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:11:08 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_quoted_content(char *line)
 	int		last_quote_pos;
 
 	last_quote_pos = get_last_quote_pos(line);
-	res = (char *)malloc(sizeof(char) * last_quote_pos + 1);
+	res = (char *)malloc(sizeof(char) * last_quote_pos + 2);
 	if (!res)
 		return (alloc_error("quoted content"));
 	ft_strlcpy(res, line, last_quote_pos + 2);
