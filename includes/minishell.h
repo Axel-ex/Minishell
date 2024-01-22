@@ -6,10 +6,9 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/16 13:41:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:58:20 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -44,7 +43,6 @@
 # define GREEN	"\e[32m"
 # define PURPLE	"\e[35m"
 # define CYAN	"\e[36m"
-
 
 /**
  * @brief returns shell structure from anywhere in the code.
@@ -116,6 +114,5 @@ typedef struct s_shell
 	int			**pipes;
 	int			nb_cmds;
 }	t_shell;
-
 
 #endif

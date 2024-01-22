@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 10:14:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:02:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ void	execute_child(t_ast *ast);
  * @param ast 
  * @return int 
  */
-void		execute_cmd(t_ast *ast);
-
-
+void	execute_cmd(t_ast *ast);
 
 /// ============================================================================
 // EXECUTOR_UTIL.C
@@ -92,8 +90,6 @@ char	*get_cmd_path(char *cmd);
  */
 bool	is_forkable(char *cmd);
 
-
-
 /// ============================================================================
 // PIPES.C
 // =============================================================================
@@ -110,9 +106,6 @@ void	pipe_create(void);
  */
 void	pipe_connect(int ast_pos);
 
-
-
-
 /// ============================================================================
 // REDIRECTIONS.C
 // =============================================================================
@@ -121,7 +114,7 @@ void	pipe_connect(int ast_pos);
  * 
  * @param ast 
  */
-int	handle_redir(t_ast *ast, bool *first);
+int		handle_redir(t_ast *ast, bool *first);
 
 /**
  * @brief calls dup2 on fd_in and fd_out that has been set previously
@@ -145,6 +138,14 @@ void	restore_io(int node_pos);
  * @param ast 
  */
 void	handle_heredoc(t_ast *ast);
+
+/**
+ * @brief return true if token type is a redirection.
+ * 
+ * @param token 
+ * @return true 
+ * @return false 
+ */
 bool	is_redirection(t_token *token);
 
 #endif

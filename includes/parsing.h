@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/18 09:01:18 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:01:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ typedef struct s_token		t_token;
 typedef struct s_ast		t_ast;
 typedef enum s_type			t_type;
 typedef enum s_operation	t_operation;
-
-
 
 /// ============================================================================
 // LEXER.C
@@ -68,8 +66,6 @@ char	*get_quoted_content(char *line);
  */
 char	*get_other(char *line);
 
-
-
 /// ============================================================================
 // TOKEN_UTILS.C
 // =============================================================================
@@ -107,8 +103,6 @@ t_token	*token_dup(t_token *token);
  */
 void	token_add_back(char *content, t_type type);
 
-
-
 /// ============================================================================
 // PARSER.C
 // =============================================================================
@@ -132,14 +126,19 @@ int		parser(void);
  */
 bool	is_empty(char *line);
 
-
-
 /// ============================================================================
 // PARSER_UTILS.C
 // =============================================================================
 
+/**
+ * @brief Get the last quote position. the last quote is the same type
+ * as the first one.
+ * 
+ * @param line 
+ * @return int 
+ */
+int		get_last_quote_pos(char *line);
 
-int	get_last_quote_pos(char *line);
 /**
  * @brief returns a string containing the operator found in s.
  * (allocated on the heap)
@@ -173,9 +172,6 @@ char	*remove_quotes(char *content);
  */
 char	get_first_quote(char *content);
 
-
-
-
 /// ============================================================================
 // AST_GENERATOR.C
 // =============================================================================
@@ -185,8 +181,6 @@ char	get_first_quote(char *content);
  * 
  */
 void	ast_generator(void);
-
-
 
 /// ============================================================================
 // AST_UTILS.C
@@ -217,8 +211,6 @@ char	**matrix_append(char **matrix, char *to_append);
  * @return int 
  */
 int		get_matrix_len(char **matrix);
-
-
 
 /// ============================================================================
 // EXPANDER.C

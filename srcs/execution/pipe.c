@@ -6,11 +6,24 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:02:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/17 20:17:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:11:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	pipe_connect(int ast_pos)
+{
+	if (sh()->nb_cmds < 2)
+		return ;
+	if (ast_pos && sh()->fd_in == STDIN_FILENO)
+		sh()->fd_in = sh()->pipes[ast_pos - 1][0];
+	if (ast_pos != sh()->nb_cmds - 1 && sh()->fd_out == STDOUT_FILENO)
+	{
+		sh()->fd_out = sh()->pipes[ast_pos][1];
+		close(sh()->pipes[ast_pos][0]);
+	}
+}
 
 void	pipe_create(void)
 {
@@ -25,18 +38,5 @@ void	pipe_create(void)
 		sh()->pipes[i] = ft_calloc(sizeof(int), 2);
 		if (pipe(sh()->pipes[i]))
 			print_error(errno, "pipe call", NULL);
-	}
-}
-
-void	pipe_connect(int ast_pos)
-{
-	if (sh()->nb_cmds < 2)
-		return ;
-	if (ast_pos && sh()->fd_in == STDIN_FILENO)
-		sh()->fd_in = sh()->pipes[ast_pos - 1][0];
-	if (ast_pos != sh()->nb_cmds - 1 && sh()->fd_out == STDOUT_FILENO)
-	{
-		sh()->fd_out = sh()->pipes[ast_pos][1];
-		close(sh()->pipes[ast_pos][0]);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/16 14:59:15 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:48:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,21 @@ static int	syntax_checker(void)
 
 	scanner(RESET);
 	if (scanner(READ)->type != OTHER)
-		return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN,
+		return (print_error(ERR_SYNTHAX, SYNTH_ERR_TOKEN,
 				scanner(READ)->content));
 	while (scanner(READ))
 	{
 		next = scanner(GET_NEXT);
-		if (scanner(READ)->type != OTHER && next && next->type != OTHER &&
-			scanner(READ)->type != SIMPLE_QUOTE && next->type != SIMPLE_QUOTE)
-			return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN,
+		if (scanner(READ)->type != OTHER && next && next->type != OTHER
+			&& scanner(READ)->type != SIMPLE_QUOTE
+			&& next->type != SIMPLE_QUOTE)
+			return (print_error(ERR_SYNTHAX, SYNTH_ERR_TOKEN,
 					scanner(READ)->content));
 		last = scanner(READ);
 		scanner(NEXT);
 	}
 	if (last->type != OTHER && last->type != SIMPLE_QUOTE)
-		return (print_error(SYNTAX_ERROR, SYNTH_ERR_TOKEN, last->content));
+		return (print_error(ERR_SYNTHAX, SYNTH_ERR_TOKEN, last->content));
 	return (EXIT_SUCCESS);
 }
 
@@ -67,7 +68,7 @@ int	parser(void)
 	if (is_empty(sh()->line))
 		return (EXIT_FAILURE);
 	if (has_enclosed_quotes(sh()->line))
-		return (print_error(SYNTAX_ERROR, ERR_UNCLOSED_QUOTES, NULL));
+		return (print_error(ERR_SYNTHAX, ERR_UNCLOSED_QUOTES, NULL));
 	get_token(sh()->line);
 	if (syntax_checker() != EXIT_SUCCESS)
 		return (EXIT_FAILURE);

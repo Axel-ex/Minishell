@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:31:57 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/13 14:37:40 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:57:24 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ typedef struct s_env
 	char	*key;
 	char	*value;
 }	t_env;
-
-
 
 /// ============================================================================
 // ENV_LST.C
@@ -48,7 +46,7 @@ char	*get_value(char *envp);
  * @param key The key of the environment variable.
  * @param value The value of the environment variable.
  */
-int	env_add_back(char *key, char *value);
+void	env_add_back(char *key, char *value);
 
 /**
  * @brief Populate the environment variable list from an array of strings.
@@ -58,9 +56,6 @@ int	env_add_back(char *key, char *value);
 void	get_env_list(char **envp);
 
 t_env	*env_find(char *key);
-
-
-
 
 /// ============================================================================
 // ENV_MANIP.C

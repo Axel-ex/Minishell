@@ -6,15 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:46:48 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/16 16:10:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:21:43 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-//	here really needs to be with cwd i tired geten_var but i was always getting the following path
-// PWD=/Users/jota/Desktop/Repos/Minishell
-// i bealieve the PWD of envv is not being correctly updated going to work on it later
 
 int	cd_update_old_pwd(void)
 {
@@ -66,7 +62,7 @@ int	run_cd(t_ast *ast)
 	else
 	{
 		if (chdir(ast->args[1]) != 0)
-			return (print_error(1, ERR_DIR, ast->args[1]));
+			return (print_error(1, DIR_NT_FOUND, ast->args[1]));
 		cd_update_old_pwd();
 	}
 	return (EXIT_SUCCESS);

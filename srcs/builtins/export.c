@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/16 20:14:36 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:40:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	validate_identifier(t_ast *ast)
 	i = 0;
 	if (ast->args[1][i] == '=' && ast->args[1][i + 1] == '\0')
 		print_error_export(1, "not a valid identifier\n", "export",
-				ast->args[1]);	
+			ast->args[1]);
 	while (ast->args[1][i] != '\0' && ast->args[1][i] != '=')
 	{
 		if ((i == 0 && !ft_isalpha(ast->args[1][i]) && ast->args[1][i] != '_')

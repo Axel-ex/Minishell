@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:05:52 by jgomes-v          #+#    #+#             */
-/*   Updated: 2023/11/30 14:07:42 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:40:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	run_pwd(void)
 {
-	char cwd[PATH_MAX];
+	char	cwd[PATH_MAX];
 
 	if (getcwd(cwd, PATH_MAX))
 	{

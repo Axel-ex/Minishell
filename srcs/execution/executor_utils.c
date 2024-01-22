@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/18 12:04:52 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:32:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ int	check_cmd_path(char *cmd)
 	if (ft_strchr(cmd, '/'))
 	{
 		if (stat(cmd, &stats) == -1)
-			return (print_error(127, ERR_DIR, cmd));
+			return (print_error(ERR_CMD, DIR_NT_FOUND, cmd));
 		if (!S_ISDIR(stats.st_mode) && !access(cmd, F_OK))
-			return (print_error(126, PERM_DEN, cmd));
-		return (print_error(126, "is a directory", cmd));
+			return (print_error(ERR_DIR, PERM_DEN, cmd));
+		return (print_error(ERR_DIR, IS_DIR, cmd));
 	}
 	cmd_path = get_cmd_path(cmd);
 	if (stat(cmd_path, &stats) == -1)
 	{
 		free(cmd_path);
-		return (print_error(CMD_NT_FD, ERR_CMD, cmd));
+		return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
 	}
 	if (!cmd_path || (S_ISDIR(stats.st_mode)))
-		return (print_error(CMD_NT_FD, ERR_CMD, cmd));
+		return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
 	free(cmd_path);
 	return (EXIT_SUCCESS);
 }

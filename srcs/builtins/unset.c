@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:30:06 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/18 14:58:09 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:44:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ void	run_unset(t_ast *ast)
 	while (curr)
 	{
 		if (ft_strncmp(ast->args[i], ((t_env *)(curr->content))->key,
-				ft_strlen(ast->args[i]) + 1) == 0)
-				return (remove_current_node(&sh()->env_lst, curr));
+			ft_strlen(ast->args[i]) + 1) == 0)
+			return (remove_current_node(&sh()->env_lst, curr));
 		curr = curr->next;
 	}
 }
-
 
 void	remove_current_node(t_list **head, t_list *current)
 {

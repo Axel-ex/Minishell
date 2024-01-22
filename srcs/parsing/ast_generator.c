@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:35 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/16 15:32:10 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:38:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	insert_redir(t_ast *cmd)
 t_ast	*parse_cmd(void)
 {
 	t_ast	*cmd;
-	
+
 	while (scanner(READ) && is_empty(scanner(READ)->content))
 		scanner(NEXT);
 	if (scanner(READ) == NULL)

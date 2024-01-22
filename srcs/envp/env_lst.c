@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:10:03 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/12 18:53:16 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:45:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,16 @@ char	*get_value(char *envp)
 	return (value);
 }
 
-int	env_add_back(char *key, char *value)
+void	env_add_back(char *key, char *value)
 {
 	t_env	*var;
 
 	var = (t_env *)malloc(sizeof(t_env));
 	if (!var)
-		return 0;
+		return ;
 	var->key = key;
 	var->value = value;
 	ft_lstadd_back(&sh()->env_lst, ft_lstnew(var));
-	return 1;
 }
 
 void	get_env_list(char **envp)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_exit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/12 17:21:16 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:01:53 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ typedef struct s_token	t_token;
 /// ============================================================================
 // ERROR CODE
 // =============================================================================
-# define SYNTAX_ERROR	2
-# define DIR_NT_FD		126
-# define CMD_NT_FD		127
+# define ERR_GEN		1
+# define ERR_SYNTHAX	2
+# define ERR_DIR		126
+# define ERR_CMD		127
 
 /// ============================================================================
 // ERROR MSG
 // =============================================================================
 # define ERR_UNCLOSED_QUOTES	"command contains unclosed quotes"
 # define SYNTH_ERR_TOKEN		"syntax error near unexpected token "
-# define ERR_CMD				"command not found"
-# define ERR_DIR				"No such file or directory"
+# define CMD_NT_FOUND			"command not found"
+# define DIR_NT_FOUND			"No such file or directory"
+# define IS_DIR					"is a directory"
 # define PERM_DEN				"Permission denied"
-
-
 
 /// ============================================================================
 // INIT.C
@@ -44,8 +44,6 @@ typedef struct s_token	t_token;
  * @return t_shell* 
  */
 void	init_shell(char **envp);
-
-
 
 /// ============================================================================
 // ERROR.C
@@ -67,8 +65,6 @@ int		print_error(int exit_status, char *msg, char *var);
  * @return void* NULL
  */
 void	*alloc_error(char *msg);
-
-
 
 /// ============================================================================
 // FREE.C
@@ -103,7 +99,6 @@ void	free_matrix(char **matrix);
  */
 void	free_pipes(int **pipes);
 
-int	print_error_export(int exit_status, char *msg, char *var,char *arg);
-
+int		print_error_export(int exit_status, char *msg, char *var, char *arg);
 
 #endif
