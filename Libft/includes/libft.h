@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:06:04 by axelc             #+#    #+#             */
-/*   Updated: 2024/01/02 13:37:28 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:02:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -445,7 +445,7 @@ char	*get_next_line(int fd);
  */
 int		ft_printf(char const *format, ...);
 
-void	*ft_realloc(void *ptr, size_t new_size);
+char	*ft_realloc_str(char *ptr, size_t new_size);
 char	*ft_alloc_fill(int size, char to_fill);
 void	ft_memdel(void **ap);
 int		ft_isnumeric(char *str);
