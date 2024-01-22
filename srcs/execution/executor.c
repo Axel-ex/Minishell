@@ -6,17 +6,19 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/18 11:51:18 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:14:43 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	match_cmd(t_ast *ast)
+void	match_cmd(t_ast *ast, bool already_slept)
 {
 	char	**args;
 
 	args = ast->args;
+	if (!ft_strncmp("sleep", args[0], 6) && already_slept)
+		return ;
 	if (!ft_strncmp("cd", args[0], 3))
 		run_cd(ast);
 	else if (!ft_strncmp("echo", args[0], 5))
@@ -37,6 +39,8 @@ void	match_cmd(t_ast *ast)
 
 void	execute_child(t_ast *ast)
 {
+	static bool	already_slept = false;
+
 	if (check_cmd_path(ast->args[0]) != EXIT_SUCCESS)
 		return ;
 	sh()->pid = fork();
@@ -46,11 +50,17 @@ void	execute_child(t_ast *ast)
 			free_shell(false);
 		pipe_connect(ast->pos);
 		redirect_io();
-		match_cmd(ast);
+		match_cmd(ast, already_slept);
 		free_shell(false);
 	}
-	if (!ft_strncmp(ast->args[0], "sleep", 5) && sh()->pid > 0)
+	else if (!ft_strncmp(ast->args[0], "sleep", 5) && sh()->pid > 0
+		&& !already_slept)
+	{
 		waitpid(sh()->pid, NULL, 0);
+		already_slept = true;
+	}
+	if (already_slept && ast->pos == sh()->nb_cmds - 1)
+		already_slept = false;
 	restore_io(ast->pos);
 }
 
@@ -74,7 +84,7 @@ void	execute_ast(t_ast *ast)
 	if (!is_operator(ast->token))
 	{
 		if (!is_forkable(ast->token->content))
-			match_cmd(ast);
+			match_cmd(ast, false);
 		else
 			execute_child(ast);
 		fail_redir = false;
