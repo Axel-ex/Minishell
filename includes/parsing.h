@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 12:01:24 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:45:36 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ t_token	*token_dup(t_token *token);
  * @param content 
  * @param type 
  */
-void	token_add_back(char *content, t_type type);
+void	token_add_back(char *content, t_type type, int count_space);
+
+void	token_content_append(char *to_append);
 
 /// ============================================================================
 // PARSER.C

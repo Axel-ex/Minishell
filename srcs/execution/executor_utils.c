@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:32:38 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:22:18 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ bool	is_forkable(char *cmd)
 	return (true);
 }
 
-bool	is_operator(t_token *token)
+bool	is_operator(t_type type)
 {
-	if (token->type == OTHER)
+	if (type == OTHER)
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:30:21 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:26:20 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:14:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_redirection(t_token *token)
 {
-	if (is_operator(token) && token->type != PIPE)
+	if (is_operator(token->type) && token->type != PIPE)
 		return (true);
 	return (false);
 }

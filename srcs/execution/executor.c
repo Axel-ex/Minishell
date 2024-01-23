@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 17:21:47 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:13:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	execute_ast(t_ast *ast)
 		return ;
 	execute_ast(ast->left);
 	execute_ast(ast->right);
-	if (!is_operator(ast->token))
+	if (!is_operator(ast->token->type))
 	{
 		if (!is_forkable(ast->token->content))
 			match_cmd(ast, false);

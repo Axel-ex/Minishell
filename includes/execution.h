@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 12:02:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:13:23 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_cmd_path(char *cmd);
  * @return true 
  * @return false 
  */
-bool	is_operator(t_token *token);
+bool	is_operator(t_type type);
 
 /**
  * @brief Get the cmd path, either absolute or relative

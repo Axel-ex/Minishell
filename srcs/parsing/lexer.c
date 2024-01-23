@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:47:31 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:37:01 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:35:22 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,21 @@ void	get_token(char *line)
 {
 	char	*content;
 	t_type	type;
+	int		count_space;
 
+	count_space = 0;
 	while (*line)
 	{
 		while (*line == ' ')
+		{
 			line++;
-		if (!*line)
-			break ;
+			count_space++;
+		}
 		content = get_token_content(line);
 		type = get_token_type(content);
 		line += ft_strlen(content);
-		token_add_back(content, type);
+		token_add_back(content, type, count_space);
+		count_space = 0;
 	}
 }
 
