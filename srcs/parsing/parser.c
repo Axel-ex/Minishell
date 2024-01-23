@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:48:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:26:33 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static bool	has_enclosed_quotes(char *line)
 
 bool	is_empty(char *line)
 {
+	if (!line)
+		return (true);
 	if (*line == '\0' || *line == '\n' || *line == '\t')
 		return (true);
 	return (false);

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/23 10:13:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:29:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 void	match_cmd(t_ast *ast, bool already_slept)
 {
-	char	**args;
-
-	args = ast->args;
-	if (!ft_strncmp("sleep", args[0], 6) && already_slept)
+	if (is_empty(ast->args[0]))
+	{
+		sh()->exit_status = 0;
 		return ;
-	if (!ft_strncmp("cd", args[0], 3))
+	}
+	if (!ft_strncmp("sleep", ast->args[0], 6) && already_slept)
+		return ;
+	if (!ft_strncmp("cd", ast->args[0], 3))
 		run_cd(ast);
-	else if (!ft_strncmp("echo", args[0], 5))
+	else if (!ft_strncmp("echo", ast->args[0], 5))
 		run_echo(ast);
-	else if (!ft_strncmp("exit", args[0], 5))
+	else if (!ft_strncmp("exit", ast->args[0], 5))
 		run_exit(ast);
-	else if (!ft_strncmp("pwd", args[0], 4))
+	else if (!ft_strncmp("pwd", ast->args[0], 4))
 		run_pwd();
-	else if (!ft_strncmp("env", args[0], 3))
+	else if (!ft_strncmp("env", ast->args[0], 3))
 		run_env();
-	else if (!ft_strncmp("unset", args[0], 6))
+	else if (!ft_strncmp("unset",ast-> args[0], 6))
 		run_unset(ast);
-	else if (!ft_strncmp("export", args[0], 7))
+	else if (!ft_strncmp("export", ast->args[0], 7))
 		run_export(ast);
 	else
 		execute_cmd(ast);
@@ -52,8 +54,8 @@ void	execute_child(t_ast *ast)
 		match_cmd(ast, already_slept);
 		free_shell(false);
 	}
-	else if (!ft_strncmp(ast->args[0], "sleep", 5) && sh()->pid > 0
-		&& !already_slept)
+	else if (ast->args[0] && !ft_strncmp(ast->args[0], "sleep", 5)
+		&& sh()->pid > 0 && !already_slept)
 	{
 		waitpid(sh()->pid, NULL, 0);
 		already_slept = true;

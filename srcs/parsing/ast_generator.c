@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:35 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 17:21:20 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 14:25:41 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ t_ast	*parse_cmd(void)
 {
 	t_ast	*cmd;
 
-	while (scanner(READ) && is_empty(scanner(READ)->content))
-		scanner(NEXT);
 	if (scanner(READ) == NULL)
 		return (NULL);
 	cmd = new_ast_node(token_dup(scanner(READ)));
@@ -42,10 +40,13 @@ t_ast	*parse_cmd(void)
 		if (scanner(READ)->type >= REDIR_IN
 			&& scanner(READ)->type <= REDIR2_OUT)
 			insert_redir(cmd);
-		else
-			if (!is_empty(scanner(READ)->content))
-				cmd->args = matrix_append(cmd->args,
-						ft_strdup(scanner(READ)->content));
+		else if (!is_empty(scanner(READ)->content))
+			cmd->args = matrix_append(cmd->args,
+					ft_strdup(scanner(READ)->content));
+		else if (is_empty(scanner(READ)->content)
+			&& (!scanner(GET_NEXT) || scanner(GET_NEXT)->type == PIPE))
+			cmd->args = matrix_append(cmd->args,
+					ft_strdup(scanner(READ)->content));
 		scanner(NEXT);
 	}
 	return (cmd);
