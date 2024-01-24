@@ -1,0 +1,33 @@
+
+$PWD
+$EMPTY
+$EMPTY echo hi
+./test_files/invalid_permission
+./missing.out
+missing.out
+"aaa"
+test_files
+./test_files
+/test_files
+minishell.h
+$
+$?
+README.md
+ECHO
+blabla
+echo -nnnnnnnnnnnnnnnnnnnnnnnn
+echo "'$USER'"
+echo "$USER""$USER""$USER"
+echo $USER=4
+echo text"$USER"
+echo ''$USER''
+echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
+echo $USER"$USER"text oui oui     oui  oui $USER oui      $USER ''
+echo $"yalalahihou"
+echo "'"'ola'"'"
+echo hello les gars $EMPTY ca va
+echo ~
+echo ~ hey
+echo -n -n -n -n
+ls "../"
+ls ""
