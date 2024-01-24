@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:49:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:18:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-char	*get_operator(char *s)
-{
-	if (!ft_strncmp(">>", s, 2))
-		return (ft_alloc_fill(2, '>'));
-	if (!ft_strncmp("<<", s, 2))
-		return (ft_alloc_fill(2, '<'));
-	if (!ft_strncmp(">", s, 1))
-		return (ft_alloc_fill(1, '>'));
-	if (!ft_strncmp("<", s, 1))
-		return (ft_alloc_fill(1, '<'));
-	if (!ft_strncmp("|", s, 1))
-		return (ft_alloc_fill(1, '|'));
-	else
-		return (NULL);
-}
 
 int	count_quotes(char *line)
 {
@@ -54,6 +38,32 @@ int	count_quotes(char *line)
 	return (quotes);
 }
 
+char	*correct_output(char *output)
+{
+	char	quote;
+	char	*res;
+	int		i;
+	int		j;
+
+	quote = '\'';
+	i = 0;
+	j = 0;
+	if (!ft_strchr(output, quote))
+		return (output);
+	res = (char *)malloc(sizeof(char) * (ft_strlen(output) - 1));
+	if (!res)
+		return (alloc_error("quotes"));
+	while (output[i])
+	{
+		if (output[i] == quote)
+			i++;
+		res[j++] = output[i++];
+	}
+	res[i] = '\0';
+	free(output);
+	return (res);
+}
+
 char	*remove_quotes(char *content)
 {
 	char	*res;
@@ -79,6 +89,7 @@ char	*remove_quotes(char *content)
 			res[j++] = content[i++];
 	}
 	res[j] = '\0';
+	res = correct_output(res);
 	return (res);
 }
 

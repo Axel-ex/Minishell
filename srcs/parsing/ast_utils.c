@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/29 11:21:09 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:18:43 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,20 @@ char	**matrix_append(char **matrix, char *to_append)
 	new[i] = to_append;
 	free_matrix(matrix);
 	return (new);
+}
+
+char	*get_operator(char *s)
+{
+	if (!ft_strncmp(">>", s, 2))
+		return (ft_alloc_fill(2, '>'));
+	if (!ft_strncmp("<<", s, 2))
+		return (ft_alloc_fill(2, '<'));
+	if (!ft_strncmp(">", s, 1))
+		return (ft_alloc_fill(1, '>'));
+	if (!ft_strncmp("<", s, 1))
+		return (ft_alloc_fill(1, '<'));
+	if (!ft_strncmp("|", s, 1))
+		return (ft_alloc_fill(1, '|'));
+	else
+		return (NULL);
 }

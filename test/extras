@@ -24,10 +24,18 @@ echo ''$USER''
 echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
 echo $USER"$USER"text oui oui     oui  oui $USER oui      $USER ''
 echo $"yalalahihou"
+echo '""'ola'""'
+echo ""'ola'""
 echo "'"'ola'"'"
+echo """ola"""
+echo '''ola'''
+echo "text"   "$USER"    "$USER"
 echo hello les gars $EMPTY ca va
 echo ~
 echo ~ hey
 echo -n -n -n -n
 ls "../"
 ls ""
+echo '              $USER          '
+echo               text "$USER"            "$USER"text
+echo """"""""$USER""""""""
