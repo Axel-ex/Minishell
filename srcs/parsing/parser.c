@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/23 14:56:24 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:06:45 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,22 @@ static int	syntax_checker(void)
 	return (EXIT_SUCCESS);
 }
 
-void	trim_tokens(void)
+void	trim_ast_content(t_ast *ast)
 {
 	char	*new_content;
+	int		i;
 
-	scanner(RESET);
-	while (scanner(READ))
+	if (!ast)
+		return ;
+	trim_ast_content(ast->left);
+	trim_ast_content(ast->right);
+	i = 0;
+	while (ast->args[i])
 	{
-		new_content = remove_quotes(scanner(READ)->content);
-		free(scanner(READ)->content);
-		scanner(READ)->content = new_content;
-		scanner(NEXT);
+		new_content = remove_quotes(ast->args[i]);
+		free(ast->args[i]);
+		ast->args[i] = new_content;
+		i++;
 	}
 }
 
@@ -75,7 +80,7 @@ int	parser(void)
 	if (syntax_checker() != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
 	expander();
-	trim_tokens();
 	ast_generator();
+	trim_ast_content(sh()->ast);
 	return (EXIT_SUCCESS);
 }

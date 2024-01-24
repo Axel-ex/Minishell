@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:35 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/23 15:01:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:28:13 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ t_ast	*parse_cmd(void)
 		if (scanner(READ)->type >= REDIR_IN
 			&& scanner(READ)->type <= REDIR2_OUT)
 			insert_redir(cmd);
-		else if (!is_empty(scanner(READ)->content))
-			cmd->args = matrix_append(cmd->args,
-					ft_strdup(scanner(READ)->content));
-		else if (is_empty(scanner(READ)->content)
-			&& !cmd->args)
+		else if (!is_empty(scanner(READ)->content)
+			|| (is_empty(scanner(READ)->content) && !cmd->args))
 			cmd->args = matrix_append(cmd->args,
 					ft_strdup(scanner(READ)->content));
 		scanner(NEXT);
