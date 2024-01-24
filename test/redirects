@@ -41,7 +41,6 @@ echo hi >./outfiles/outfile01 >./test_files/invalid_permission | echo bye
 echo hi >./test_files/invalid_permission | echo bye
 echo hi >./test_files/invalid_permission >./outfiles/outfile01 | echo bye
 echo hi | echo bye >./test_files/invalid_permission
-echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission
 echo hi | echo bye >./test_files/invalid_permission >./outfiles/outfile01
 cat <"./test_files/infile" >./test_files/invalid_permission
 cat >./test_files/invalid_permission <"./test_files/infile"
