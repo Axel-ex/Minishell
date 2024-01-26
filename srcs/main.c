@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:34:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/24 09:54:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:07:58 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	main_loop(void)
 {
 	while (42)
 	{
+		signals(1);
 		sh()->line = readline(PROMPT);
 		if (!sh()->line)
 			free_shell(false);
-		signals(1);
 		if (!is_empty(sh()->line))
 			add_history(sh()->line);
 		if (parser() == EXIT_SUCCESS)
