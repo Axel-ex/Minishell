@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/22 11:40:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:52:21 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,69 +25,82 @@ int	print_all_export(void)
 	return (EXIT_SUCCESS);
 }
 
-void	validate_identifier(t_ast *ast)
+void	validate_identifier(char *arg)
 {
-	int	i;
+    int	i;
 
-	i = 0;
-	if (ast->args[1][i] == '=' && ast->args[1][i + 1] == '\0')
-		print_error_export(1, "not a valid identifier\n", "export",
-			ast->args[1]);
-	while (ast->args[1][i] != '\0' && ast->args[1][i] != '=')
-	{
-		if ((i == 0 && !ft_isalpha(ast->args[1][i]) && ast->args[1][i] != '_')
-			||
-			(i > 0 && !ft_isalpha(ast->args[1][i]) && ast->args[1][i] != '_'
-					&& !ft_isdigit(ast->args[1][i])))
-		{
-			print_error_export(1, "not a valid identifier\n", "export",
-				ast->args[1]);
-			return ;
-		}
-		i++;
-	}
+    i = 0;
+    if (arg[i] == '=' && arg[i + 1] == '\0')
+        print_error_export(1, "not a valid identifier\n", "export", arg);
+    while (arg[i] != '\0' && arg[i] != '=')
+    {
+        if ((i == 0 && !ft_isalpha(arg[i]) && arg[i] != '_')
+            ||
+            (i > 0 && !ft_isalpha(arg[i]) && arg[i] != '_'
+                    && !ft_isdigit(arg[i])))
+        {
+            print_error_export(1, "not a valid identifier\n", "export", arg);
+            return ;
+        }
+        i++;
+    }
 }
 
-void	handle_export_with_equal(t_list *to_add, t_ast *ast)
+void	handle_export_with_equal(t_list *to_add, char *arg)
 {
-	((t_env *)to_add->content)->value = get_value(ast->args[1]);
-	((t_env *)to_add->content)->key = get_key(ast->args[1]);
-	env_add_back(((t_env *)to_add->content)->key,
-		((t_env *)to_add->content)->value);
+    char	*key;
+    char	*value;
+    char	*equal_pos;
+
+    equal_pos = ft_strchr(arg, '=');
+    *equal_pos = '\0';
+    key = ft_strdup(arg);
+    value = ft_strdup(equal_pos + 1);
+    *equal_pos = '=';
+
+    ((t_env *)to_add->content)->key = key;
+    ((t_env *)to_add->content)->value = value;
+    env_add_back(key, value);
 }
 
-void	handle_export_without_equal(t_list *to_add, t_ast *ast)
+void	handle_export_without_equal(t_list *to_add, char *arg)
 {
-	t_env	*existing_var;
+    t_env	*existing_var;
 
-	existing_var = env_find(ast->args[1]);
-	if (existing_var == NULL)
-	{
-		((t_env *)to_add->content)->value = ft_strdup("");
-		((t_env *)to_add->content)->key = ft_strdup(ast->args[1]);
-		env_add_back(((t_env *)to_add->content)->key,
-			((t_env *)to_add->content)->value);
-	}
+    existing_var = env_find(arg);
+    if (existing_var == NULL)
+    {
+        ((t_env *)to_add->content)->value = ft_strdup("");
+        ((t_env *)to_add->content)->key = ft_strdup(arg);
+        env_add_back(((t_env *)to_add->content)->key,
+            ((t_env *)to_add->content)->value);
+    }
 }
 
 void	run_export(t_ast *ast)
 {
-	t_list	*to_add;
+    t_list	*to_add;
+    int		i;
 
-	if (!ast->args[1])
-	{
-		print_all_export();
-		return ;
-	}
-	if (sh()->nb_cmds > 1)
-		return ;
-	validate_identifier(ast);
-	to_add = (t_list *)malloc(sizeof(t_list));
-	to_add->content = malloc(sizeof(t_env));
-	if (ft_strchr(ast->args[1], '=') != NULL)
-		handle_export_with_equal(to_add, ast);
-	else
-		handle_export_without_equal(to_add, ast);
-	free(to_add->content);
-	free(to_add);
+    if (!ast->args[1])
+    {
+        print_all_export();
+        return ;
+    }
+    if (sh()->nb_cmds > 1)
+        return ;
+    i = 1;
+    while (ast->args[i])
+    {
+        validate_identifier(ast->args[i]);
+        to_add = (t_list *)malloc(sizeof(t_list));
+        to_add->content = malloc(sizeof(t_env));
+        if (ft_strchr(ast->args[i], '=') != NULL)
+            handle_export_with_equal(to_add, ast->args[i]);
+        else
+            handle_export_without_equal(to_add, ast->args[i]);
+        free(to_add->content);
+        free(to_add);
+        i++;
+    }
 }
