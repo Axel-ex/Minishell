@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:57:00 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:08:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,7 @@ int		run_pwd(void);
  * @param ast 
  */
 void	run_exit(t_ast *ast);
+
+int	count_exit(void);
 
 #endif

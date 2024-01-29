@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/23 14:29:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:11:25 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ void	executor(void)
 	int	status;
 
 	status = 127;
+	if (count_exit() > 1)
+	{
+		sh()->exit_status = 0;
+		return ;
+	}
 	pipe_create();
 	execute_ast(sh()->ast);
 	while (wait(&status) > 0)

@@ -6,11 +6,29 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:49:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/11 10:31:31 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:25:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	count_exit(void)
+{
+	int		count;
+	char	*substr;
+
+	count = 0;
+	scanner(RESET);
+	while (scanner(READ))
+	{
+		substr = ft_strnstr(scanner(READ)->content, "exit",
+				ft_strlen(scanner(READ)->content));
+		if (substr)
+			count++;
+		scanner(NEXT);
+	}
+	return (count);
+}
 
 void	run_exit(t_ast *ast)
 {
