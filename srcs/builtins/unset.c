@@ -3,32 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:30:06 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/22 11:44:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:20:41 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	run_unset(t_ast *ast)
+void remove_env_variable(const char *key)
 {
-	int		i;
-	t_list	*curr;
+t_list *curr = sh()->env_lst;
 
-	if (!ast->args[1])
-		return ;
-	i = 1;
-	curr = sh()->env_lst;
-	while (curr)
-	{
-		if (ft_strncmp(ast->args[i], ((t_env *)(curr->content))->key,
-			ft_strlen(ast->args[i]) + 1) == 0)
-			return (remove_current_node(&sh()->env_lst, curr));
-		curr = curr->next;
-	}
+while (curr)
+{
+    if (ft_strncmp(key, ((t_env *)(curr->content))->key,
+        ft_strlen(key) + 1) == 0)
+    {
+        remove_current_node(&sh()->env_lst, curr);
+        return;
+    }
+    curr = curr->next;
 }
+
+}
+
+void run_unset(t_ast *ast)
+{
+	int i;
+	if (!ast->args[1])
+		return;
+
+	i = 1;
+		while (ast->args[i])
+		{
+			remove_env_variable(ast->args[i]);
+			i++;
+		}
+
+}
+
 
 void	remove_current_node(t_list **head, t_list *current)
 {
