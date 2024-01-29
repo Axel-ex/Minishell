@@ -15,6 +15,7 @@ echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<'
 echo "exit_code ->$? user ->$USER home -> $HOME"
 echo 'exit_code ->$? user ->$USER home -> $HOME'
 echo '$'
+echo "$"
 echo $
 echo $?
 echo $?HELLO
