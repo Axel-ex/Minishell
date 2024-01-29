@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 12:01:53 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:04:23 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 typedef struct s_shell	t_shell;
 typedef struct s_token	t_token;
+typedef struct s_env	t_env;
 
 /// ============================================================================
 // ERROR CODE
@@ -100,5 +101,7 @@ void	free_matrix(char **matrix);
 void	free_pipes(int **pipes);
 
 int		print_error_export(int exit_status, char *msg, char *var, char *arg);
+
+void	free_env_lst(t_env *env_lst);
 
 #endif

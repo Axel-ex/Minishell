@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:30:06 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 11:31:19 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:04:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	remove_current_node(t_list **head, t_list *current)
 	if (*head == current)
 	{
 		*head = current->next;
+		free_env_lst(current->content);
 		free(current);
 		return ;
 	}
@@ -62,5 +63,6 @@ void	remove_current_node(t_list **head, t_list *current)
 	if (prev->next == NULL)
 		return ;
 	prev->next = current->next;
+	free_env_lst(current->content);
 	free(current);
 }
