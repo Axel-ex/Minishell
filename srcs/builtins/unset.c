@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:30:06 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 10:20:41 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:31:19 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void run_unset(t_ast *ast)
 		}
 
 }
-
 
 void	remove_current_node(t_list **head, t_list *current)
 {
