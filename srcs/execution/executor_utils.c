@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/29 17:01:50 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:39:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_absolute_path(char *cmd)
 	int		i;
 
 	i = -1;
-	if (!getenv_var("PATH"))
+	if (!getenv_var("PATH") && !ft_strchr(cmd, '/'))
 		return (NULL);
 	if (!access(cmd, R_OK | F_OK | X_OK))
 		return (ft_strdup(cmd));

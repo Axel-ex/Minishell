@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/29 19:11:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:31:55 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	match_cmd(t_ast *ast, bool already_slept)
 		run_pwd();
 	else if (!ft_strncmp("env", ast->args[0], 3))
 		run_env();
-	else if (!ft_strncmp("unset",ast-> args[0], 6))
+	else if (!ft_strncmp("unset", ast-> args[0], 6))
 		run_unset(ast);
 	else if (!ft_strncmp("export", ast->args[0], 7))
 		run_export(ast);
