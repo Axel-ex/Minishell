@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 11:52:41 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:04:12 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char *expand_variable(char *cnt)
         }
         else if (*cnt == '$' && ((*(cnt + 1) >= '0' && *(cnt + 1) <= '9') || *(cnt + 1) == '\"'))
             cnt++;
-        else if (*cnt == '$' && *(cnt + 1) == '?')
+        else if (*cnt == '$' && *(cnt + 1) == '?' && !in_single_quotes)
         {
             new = append_value_to_content(new, ft_itoa(sh()->exit_status));
             cnt++;
