@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:30:06 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 14:09:33 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 16:49:19 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	remove_env_variable(const char *key)
 	curr = sh()->env_lst;
 	while (curr)
 	{
-		if (ft_strncmp(key, ((t_env *)(curr->content))->key,
-			ft_strlen(key) + 1) == 0)
+		if (ft_strncmp(key, ((t_env *)(curr->content))->key, ft_strlen(key)
+			+ 1) == 0)
 		{
 			remove_current_node(&sh()->env_lst, curr);
 			return ;
