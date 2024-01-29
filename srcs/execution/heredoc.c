@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:46:14 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:33:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:14:01 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	handle_heredoc(t_ast *ast)
 	while (42)
 	{
 		line = readline("> ");
+		if (!line)
+        {
+            ft_putstr_fd("minishell: warning: here-document at line delimited by end-of-file (wanted `", 2);
+            ft_putstr_fd(end_of_file, 2);
+            ft_putendl_fd("`)", 2);
+            free(line);
+			break ;
+        }
 		if (!ft_strncmp(line, end_of_file, ft_strlen(end_of_file) + 1))
 		{
 			free(line);
