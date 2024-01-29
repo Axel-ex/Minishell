@@ -19,7 +19,7 @@ void	remove_env_variable(const char *key)
 	curr = sh()->env_lst;
 	while (curr)
 	{
-		if (ft_strncmp(key, ((t_env *)(curr->content))->key, 
+		if (ft_strncmp(key, ((t_env *)(curr->content))->key,
 			ft_strlen(key) + 1) == 0)
 		{
 			remove_current_node(&sh()->env_lst, curr);
