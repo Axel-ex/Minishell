@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/26 11:51:26 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:46:29 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,36 +46,44 @@ char	*append_char_to_content(char *new_content, char c)
 	new_content[old_len + 1] = '\0';
 	return (new_content);
 }
-
-char	*expand_variable(char *cnt)
+char *expand_variable(char *cnt)
 {
-	char	*new;
-	char	*env_value;
-	char	*key;
+    char *new;
+    char *env_value;
+    char *key;
+    int in_single_quotes = 0;
 
-	new = ft_strdup("");
-	while (*cnt)
-	{
-		if (*cnt == '$' && ((ft_isalpha(*(cnt + 1))) || *(cnt + 1) == '_'))
-		{
-			key = get_key_expansion((&cnt));
-			env_value = getenv_var(key);
-			free(key);
-			if (env_value)
-				new = append_value_to_content(new, env_value);
-		}
+    new = ft_strdup("");
+
+    while (*cnt)
+    {
+        if (*cnt == '\'')
+        {
+            in_single_quotes = !in_single_quotes;
+        }
+
+        if (*cnt == '$' && !in_single_quotes && ((ft_isalpha(*(cnt + 1))) || *(cnt + 1) == '_'))
+        {
+            key = get_key_expansion((&cnt));
+            env_value = getenv_var(key);
+            free(key);
+            if (env_value)
+                new = append_value_to_content(new, env_value);
+        }
+		else if (*cnt == '$' && ((*(cnt + 1) >= '0' && *(cnt + 1) <= '9') || *(cnt + 1) == '\"'))
+			cnt++;
 		else if (*cnt == '$' && *(cnt + 1) == '?')
 		{
 			new = append_value_to_content(new, ft_itoa(sh()->exit_status));
 			cnt++;
-		}
-		else if (*cnt == '$' && ((*(cnt + 1) >= '0' && *(cnt + 1) <= '9') || *(cnt + 1) == '\"'))
-			cnt++;
-		else
-			new = append_char_to_content(new, *cnt);
-		cnt++;
-	}
-	return (new);
+		}	
+        else
+        {
+            new = append_char_to_content(new, *cnt);
+        }
+        cnt++;
+    }
+    return (new);
 }
 
 void	expander(void)
@@ -85,7 +93,7 @@ void	expander(void)
 	scanner(RESET);
 	while (scanner(READ))
 	{
-		if (scanner(READ)->type == OTHER)
+		if (scanner(READ)->type == OTHER ||scanner(READ)->type == SIMPLE_QUOTE)
 		{
 			temp = expand_variable(scanner(READ)->content);
 			free(scanner(READ)->content);
