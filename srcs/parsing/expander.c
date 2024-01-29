@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/22 11:04:53 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:51:26 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*expand_variable(char *cnt)
 			new = append_value_to_content(new, ft_itoa(sh()->exit_status));
 			cnt++;
 		}
+		else if (*cnt == '$' && ((*(cnt + 1) >= '0' && *(cnt + 1) <= '9') || *(cnt + 1) == '\"'))
+			cnt++;
 		else
 			new = append_char_to_content(new, *cnt);
 		cnt++;
