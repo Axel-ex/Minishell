@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 22:17:51 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:57:16 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	validate_identifier(char *arg)
 	int	i;
 
 	i = 0;
+	if (arg[0] == '\0')
+    {
+        print_error_export(1, "not a valid identifier\n", "export",  "`'");
+        return ;
+    }
 	if (arg[i] == '=' && arg[i + 1] == '\0')
 		print_error_export(1, "not a valid identifier\n", "export", arg);
 	while (arg[i] != '\0' && arg[i] != '=')
