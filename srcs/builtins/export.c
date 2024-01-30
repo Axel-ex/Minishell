@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 16:50:18 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/29 22:17:51 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,26 @@ void	handle_export_with_equal(t_list *to_add, char *arg)
 	char	*key;
 	char	*value;
 	char	*equal_pos;
+	t_env	*existing_var;
 
 	equal_pos = ft_strchr(arg, '=');
 	*equal_pos = '\0';
 	key = ft_strdup(arg);
 	value = ft_strdup(equal_pos + 1);
 	*equal_pos = '=';
-	((t_env *)to_add->content)->key = key;
-	((t_env *)to_add->content)->value = value;
+	existing_var = env_find(key);
+	
+	if(existing_var)
+	{
+		free(existing_var->value);
+		existing_var->value = value;
+		free(key);
+	}
+	else
+	{
+		((t_env *)to_add->content)->key = key;
+		((t_env *)to_add->content)->value = value;
+	}
 	env_add_back(key, value);
 }
 
