@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 16:14:52 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:36:13 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	handle_hang(int cat_count)
 	while (sh()->count < cat_count)
 	{
 		line = readline("");
+		if (!line)
+			break ;
 		printf("\n");
 		free(line);
 		sh()->count++;
