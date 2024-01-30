@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 12:04:22 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:45:19 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_shell
 	int			**pipes;
 	int			nb_cmds;
 	int			sigint_flag;
+	int			count;
 }	t_shell;
 
 #endif

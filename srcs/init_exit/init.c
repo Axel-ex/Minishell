@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:45:38 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/08 14:32:14 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:43:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	init_shell(char **envp)
 	sh()->fd_out = STDOUT_FILENO;
 	sh()->nb_cmds = 0;
 	sh()->exit_status = 0;
+	sh()->count = 0;
 }
