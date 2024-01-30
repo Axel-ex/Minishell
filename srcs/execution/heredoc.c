@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:46:14 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 11:09:08 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:03:54 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	sigint_handler(int sig)
+{
+    (void)sig;
+    sh()->sigint_flag = 1;
+}
 
 void	handle_heredoc(t_ast *ast)
 {
@@ -21,9 +27,17 @@ void	handle_heredoc(t_ast *ast)
 
 	end_of_file = ast->args[0];
 	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
+	signal(SIGINT, sigint_handler);
 	while (42)
 	{
 		line = readline("> ");
+        if (sh()->sigint_flag)
+        {
+            free(line);
+            line = NULL;
+            sh()->sigint_flag = 0;
+            break;
+        }
 		if (!line)
         {
             ft_putstr_fd("minishell: warning: here-document at line delimited by end-of-file (wanted `", 2);
