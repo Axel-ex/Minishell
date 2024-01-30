@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 15:44:33 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:14:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,23 @@ int	count_cat(void)
 	return (count);
 }
 
-void sigint_hand(int signo)
+void	sigint_hand(int signo)
 {
-    (void)signo; // to suppress the "unused parameter" warning
-    sh()->count++;
+	(void)signo;
+	sh()->count++;
 }
 
-void handle_hang(int cat_count)
+void	handle_hang(int cat_count)
 {
 	char	*line;
-    signal(SIGINT, sigint_hand);
 
-    while (sh()->count < cat_count)
-    {
-        line = readline("");
+	signal(SIGINT, sigint_hand);
+	while (sh()->count < cat_count)
+	{
+		line = readline("");
 		printf("\n");
 		free(line);
-         sh()->count++;
-    }
-
-    sh()->count = 0; // Reset for future use
+		sh()->count++;
+	}
+	sh()->count = 0;
 }
