@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/29 19:31:55 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:52:42 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	execute_cmd(t_ast *ast)
 {
 	char		*cmd_path;
 
+	if (count_cat() > 1 && ft_strnstr(ast->args[0], "cat",
+			ft_strlen(ast->args[0])))
+		return ;
 	cmd_path = get_cmd_path(ast->args[0]);
 	execve(cmd_path, ast->args, sh()->envp);
 	free(cmd_path);
@@ -106,6 +109,8 @@ void	executor(void)
 	}
 	pipe_create();
 	execute_ast(sh()->ast);
+	if (count_cat() > 1 && !only_cats())
+		handle_hang(count_cat());
 	while (wait(&status) > 0)
 		continue ;
 	if (WIFEXITED(status))

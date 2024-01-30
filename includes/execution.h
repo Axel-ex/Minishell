@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/23 10:13:23 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:54:31 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,37 @@ void	handle_heredoc(t_ast *ast);
  * @return false 
  */
 bool	is_redirection(t_token *token);
+
+/// ============================================================================
+// CAT_HELPER.C
+// =============================================================================
+/**
+ * @brief check if the pipeline contains only cat.
+ * 
+ * @return true 
+ * @return false 
+ */
+bool	only_cats(void);
+
+/**
+ * @brief count the number of cat command in the token list.
+ * 
+ * @return int 
+ */
+int	count_cat(void);
+
+/**
+ * @brief handle signal when prompt hangs for cat.
+ * 
+ * @param signo 
+ */
+void sigint_hand(int signo);
+
+/**
+ * @brief print a new line on ENTER press.
+ * 
+ * @param cat_count 
+ */
+void handle_hang(int cat_count);
 
 #endif
