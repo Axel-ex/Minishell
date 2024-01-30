@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 16:06:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:55:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	execute_child(t_ast *ast)
 {
 	static bool	already_slept = false;
 
+	if (sh()->sigint_flag)
+		return ;
 	check_cmd_path(ast->args[0]);
 	sh()->pid = fork();
 	if (!sh()->pid)
@@ -92,6 +94,7 @@ void	execute_ast(t_ast *ast)
 		else
 			execute_child(ast);
 		fail_redir = false;
+		sh()->sigint_flag = 0;
 	}
 	else if (is_redirection(ast->token))
 		handle_redir(ast, &fail_redir);

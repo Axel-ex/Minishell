@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:46:14 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 13:05:07 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:51:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	handle_heredoc(t_ast *ast)
 	end_of_file = ast->args[0];
 	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
 	signal(SIGINT,sigint_handler);
-	rl_catch_signals = 0;
 	while (42)
 	{
 		line = readline("> ");
@@ -36,7 +35,6 @@ void	handle_heredoc(t_ast *ast)
         {
             free(line);
             line = NULL;
-            sh()->sigint_flag = 0;
 			close(fd_temp);
 			unlink("tempfile");
             break;
@@ -59,7 +57,10 @@ void	handle_heredoc(t_ast *ast)
 		ft_putendl_fd(temp, fd_temp);
 		free(temp);
 	}
-	close(fd_temp);
-	fd_temp = open("tempfile", O_RDONLY);
-	sh()->fd_in = fd_temp;
+	if (!sh()->sigint_flag)
+	{
+		close(fd_temp);
+		fd_temp = open("tempfile", O_RDONLY);
+		sh()->fd_in = fd_temp;
+	}
 }
