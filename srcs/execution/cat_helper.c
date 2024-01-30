@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 16:36:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:51:18 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	count_cat(void)
 	{
 		substr = ft_strnstr(scanner(READ)->content, "cat",
 				ft_strlen(scanner(READ)->content));
-		if (substr)
+		if (substr && scanner(GET_NEXT) && scanner(GET_NEXT)->type != OTHER)
 			count++;
 		scanner(NEXT);
 	}

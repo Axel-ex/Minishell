@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:46:14 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 16:51:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:34:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ void	handle_heredoc(t_ast *ast)
 
 	end_of_file = ast->args[0];
 	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
-	signal(SIGINT,sigint_handler);
+	signal(SIGINT, sigint_handler);
 	while (42)
 	{
 		line = readline("> ");
 		if (sh()->sigint_flag)
         {
             free(line);
-            line = NULL;
 			close(fd_temp);
 			unlink("tempfile");
             break;
