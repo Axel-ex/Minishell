@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 15:54:31 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:55:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,20 +164,20 @@ bool	only_cats(void);
  * 
  * @return int 
  */
-int	count_cat(void);
+int		count_cat(void);
 
 /**
  * @brief handle signal when prompt hangs for cat.
  * 
  * @param signo 
  */
-void sigint_hand(int signo);
+void	sigint_hand(int signo);
 
 /**
  * @brief print a new line on ENTER press.
  * 
  * @param cat_count 
  */
-void handle_hang(int cat_count);
+void	handle_hang(int cat_count);
 
 #endif
