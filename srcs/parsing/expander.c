@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/29 16:47:57 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:11:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ char	*expand_variable(char *cnt)
 
 	in_single_quotes = 0;
 	in_double_quotes = 0;
+
+	if (!ft_strncmp("\"$\"", cnt, 4))
+		return (ft_strdup(cnt));
 	new = ft_strdup("");
 	while (*cnt)
 	{
