@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 11:15:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:27:25 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int		count_quotes(char *line);
  * @param content 
  * @return char* 
  */
-char	*remove_quotes(char *content);
+char	*remove_quotes(char *content, char quote);
 
 /**
  * @brief Get the first occuring quote to remove quotes of the line
