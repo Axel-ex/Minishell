@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:01:01 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 11:33:30 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:47:48 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	count_firstquotes(char *content, char quote)
 	i = -1;
 	while (content[++i] && content[i] == quote)
 		count++;
+	if (!content[i])
+		return (0);
 	return (count);
 }
 
