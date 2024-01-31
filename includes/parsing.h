@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 11:27:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:22:44 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,5 +256,9 @@ char	*expand_variable(char *content);
  * It skips tokens of type REDIR2_OUT.
  */
 void	expander(void);
+char	*get_key_expansion(char **temp);
+char	*append_value_to_content(char *new_content, char *value);
+char	*append_char_to_content(char *new_content, char c);
+char	*append_value_to_content_error(char *new_content, char *value);
 
 #endif
