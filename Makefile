@@ -50,6 +50,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/debug
 	@mkdir $(OBJ_DIR)/signals
 	@mkdir $(OBJ_DIR)/envp
+	@mkdir $(OBJ_DIR)/utils
 
 $(LIBFT):
 	@echo "[$(CYAN)compiling$(RESET)]:\t $@"

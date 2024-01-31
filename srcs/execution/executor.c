@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 21:47:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 10:48:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	execute_cmd(t_ast *ast)
 
 	if (count_cat() > 1 && ft_strnstr(ast->args[0], "cat",
 			ft_strlen(ast->args[0])) && ast->pos != sh()->nb_cmds - 1
-			&& !ast->args[1])
+		&& !ast->args[1])
 		exit(EXIT_SUCCESS);
 	cmd_path = get_cmd_path(ast->args[0]);
 	execve(cmd_path, ast->args, sh()->envp);
