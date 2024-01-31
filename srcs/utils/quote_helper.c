@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:01:01 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 11:19:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:33:30 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*pre_trim(char *content, char quote)
 
 	count = count_firstquotes(content, quote);
 	if (!count || count % 2 != 0)
-		return (content);
+		return (ft_strdup(content));
 	size = ft_strlen(content) - (2 * count) + 1;
 	new_content = (char *)malloc(sizeof(char) * size);
 	if (!new_content)
