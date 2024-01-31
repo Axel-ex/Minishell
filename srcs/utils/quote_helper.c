@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:01:01 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 10:40:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:19:58 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,13 @@ static int	count_firstquotes(char *content, char quote)
 	return (count);
 }
 
-char	*pre_trim(char *content)
+char	*pre_trim(char *content, char quote)
 {
 	char	*new_content;
 	int		count;
 	int		size;
-	char	quote;
 	size_t	i;
 
-	quote = get_first_quote(content);
 	count = count_firstquotes(content, quote);
 	if (!count || count % 2 != 0)
 		return (content);

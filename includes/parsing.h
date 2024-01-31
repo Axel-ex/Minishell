@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 10:47:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:15:32 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ bool	is_empty(char *line);
  * @param content 
  * @return char* 
  */
-char	*pre_trim(char *content);
+char	*pre_trim(char *content, char quote);
 /**
  * @brief Get the last quote position. the last quote is the same type
  * as the first one.

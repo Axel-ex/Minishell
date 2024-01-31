@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 10:28:55 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:15:18 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ char	*remove_quotes(char *content)
 	int		j;
 	int		count;
 
-	content = pre_trim(content);
 	quote = get_first_quote(content);
+	content = pre_trim(content, quote);
 	i = -1;
 	count = 0;
 	while (content[++i])
