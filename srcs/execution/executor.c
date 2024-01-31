@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 10:48:49 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:01:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void	execute_child(t_ast *ast)
 {
 	static bool	already_slept = false;
 
-	if (sh()->sigint_flag)
+	if (sh()->sigint_flag || check_cmd_path(ast->args[0]))
 		return ;
-	check_cmd_path(ast->args[0]);
 	sh()->pid = fork();
 	if (!sh()->pid)
 	{
