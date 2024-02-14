@@ -8,13 +8,37 @@ the program is executed as so:
 ```shell
 ./minishell
 ```
-The program will then prompt you for input. It is used exactly as a bash shell.
+The program will then prompt you for input. It is used exactly as a bash shell as such:
+
+```shell
+ls -l
+echo "Hello world"
+cat file.txt
+```
+
+
+# Key features
+- Command execution
+- I/O redirection
+- Pipelines
+- Variable expension
+- Command history
+- Tab completion
+- Signal handling
+- exit status handling
 
 # Implementation
-The program uses the readline library to prompt input to the user. the input is parsed into a list of tokens each holding a part of the input and an associated type. Synthax is checked using abastract synthax rules. Tokens are then parsed into an Abstract Synthax Tree (link) that will allow us to execute commands while taking into account input/output redirection.
+The program uses the readline library to prompt input to the user. the input is parsed into a list of tokens each holding a part of the input and an associated type. Synthax is checked using abastract synthax rules, preventing wrong sequence of symbol or unclosed quotes situations to happen. Tokens are then parsed into an Abstract Synthax Tree ([wiki](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) that allow the executon of commands while taking into account input/output redirection.
 <br/>
 
-<img src="demo.gif" width="100%"/>
+Simple version of some bash functions were implemented:
+- echo
+- cd
+- pwd
+- export
+- unset
+- env
+- exit
 
 # Testing
 `cd` into the test/ directory and run `./tester`. The tester was developed by Lucas Kuhn ([minishell tester](https://github.com/LucasKuhn/minishell_tester)) and was really usefull to rigouresly test for errors. Tests can be added in the "test/extras" file to cover more aspects of the shell.
