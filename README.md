@@ -12,6 +12,8 @@ The program will then prompt you for input. It is used exactly as a bash shell.
 
 # Implementation
 The program uses the readline library to prompt input to the user. the input is parsed into a list of tokens each holding a part of the input and an associated type. Synthax is checked using abastract synthax rules. Tokens are then parsed into an Abstract Synthax Tree (link) that will allow us to execute commands while taking into account input/output redirection.
+<br/>
+
 <img src="demo.gif" width="100%"/>
 
 # Testing
