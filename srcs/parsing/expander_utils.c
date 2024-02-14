@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 12:33:29 by jgomes-v          #+#    #+#             */
+/*   Updated: 2024/01/31 12:34:06 by jgomes-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -22,7 +33,6 @@ char	*append_value_to_content(char *new_content, char *value)
 	old_len = ft_strlen(new_content);
 	new_content = ft_realloc_str(new_content, old_len + ft_strlen(value) + 1);
 	ft_strlcat(new_content, value, old_len + ft_strlen(value) + 1);
-	//free(value);
 	return (new_content);
 }
 

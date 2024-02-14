@@ -3,59 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:46:14 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 21:34:58 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:43:27 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	sigint_handler(int sig)
+void	handle_heredoc_loop(int fd_temp, char *end_of_file)
 {
-    (void)sig;
-    sh()->sigint_flag = 1;
+	char	*line;
+
+	while (42)
+	{
+		line = readline("> ");
+		if (sh()->sigint_flag)
+		{
+			handle_sigint(line, fd_temp);
+			break ;
+		}
+		if (!line)
+		{
+			handle_null_line(line, end_of_file);
+			break ;
+		}
+		if (handle_end_of_file(line, end_of_file))
+			break ;
+		handle_line_processing(line, fd_temp);
+	}
 }
 
 void	handle_heredoc(t_ast *ast)
 {
-	char	*line;
-	char	*temp;
 	char	*end_of_file;
 	int		fd_temp;
 
 	end_of_file = ast->args[0];
 	fd_temp = open("tempfile", O_WRONLY | O_APPEND | O_CREAT, 0666);
 	signal(SIGINT, sigint_handler);
-	while (42)
-	{
-		line = readline("> ");
-		if (sh()->sigint_flag)
-        {
-            free(line);
-			close(fd_temp);
-			unlink("tempfile");
-            break;
-        }
-		if (!line)
-        {
-            ft_putstr_fd("minishell: warning: here-document at line delimited by end-of-file (wanted `", 2);
-            ft_putstr_fd(end_of_file, 2);
-            ft_putendl_fd("`)", 2);
-            free(line);
-			break ;
-        }
-		if (!ft_strncmp(line, end_of_file, ft_strlen(end_of_file) + 1))
-		{
-			free(line);
-			break ;
-		}
-		temp = expand_variable(line);
-		free(line);
-		ft_putendl_fd(temp, fd_temp);
-		free(temp);
-	}
+	handle_heredoc_loop(fd_temp, end_of_file);
 	if (!sh()->sigint_flag)
 	{
 		close(fd_temp);

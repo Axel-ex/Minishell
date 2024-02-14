@@ -31,10 +31,10 @@ void	validate_identifier(char *arg)
 
 	i = 0;
 	if (arg[0] == '\0')
-    {
-        print_error_export(1, "not a valid identifier\n", "export",  "`'");
-        return ;
-    }
+	{
+		print_error_export(1, "not a valid identifier\n", "export", "`'");
+		return ;
+	}
 	if (arg[i] == '=' && arg[i + 1] == '\0')
 		print_error_export(1, "not a valid identifier\n", "export", arg);
 	while (arg[i] != '\0' && arg[i] != '=')
@@ -62,8 +62,7 @@ void	handle_export_with_equal(t_list *to_add, char *arg)
 	value = ft_strdup(equal_pos + 1);
 	*equal_pos = '=';
 	existing_var = env_find(key);
-	
-	if(existing_var)
+	if (existing_var)
 	{
 		free(existing_var->value);
 		existing_var->value = value;

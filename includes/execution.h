@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 15:55:50 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:42:29 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,10 @@ void	sigint_hand(int signo);
  * @param cat_count 
  */
 void	handle_hang(int cat_count);
+void	sigint_handler(int sig);
+void	handle_sigint(char *line, int fd_temp);
+void	handle_null_line(char *line, char *end_of_file);
+int	    handle_end_of_file(char *line, char *end_of_file);
+void	handle_line_processing(char *line, int fd_temp);
 
 #endif
