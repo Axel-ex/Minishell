@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:01:08 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/29 18:01:33 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:51:19 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ static void	print_args(char	**args, int i)
 			i++;
 		}
 		else
-		{
 			printf("%s", args[i++]);
-		}
-		if (args[i])
+		if (!is_empty(args[i]))
 			printf(" ");
 	}
 }

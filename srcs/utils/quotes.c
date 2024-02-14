@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 11:52:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:40:57 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,6 @@ int	count_quotes(char *line)
 		line++;
 	}
 	return (quotes);
-}
-
-char	*remove_quotes(char *content, char quote)
-{
-	char	*res;
-	char	*pre;
-	int		i;
-	int		j;
-	int		count;
-
-	pre = pre_trim(content, quote);
-	quote = get_first_quote(pre);
-	i = -1;
-	count = 0;
-	while (pre[++i])
-		if (pre[i] == quote)
-			count++;
-	res = ft_calloc(sizeof(char), i - count + 1);
-	i = 0;
-	j = 0;
-	while (pre[i])
-	{
-		if (pre[i] == quote)
-			i++;
-		else
-			res[j++] = pre[i++];
-	}
-	res[j] = '\0';
-	return (free(pre), res);
 }
 
 char	get_first_quote(char *line)
@@ -101,4 +72,38 @@ int	get_last_quote_pos(char *line)
 			break ;
 	}
 	return (pos);
+}
+
+bool	is_quote(char c)
+{
+	if (c == '\'' || c == '"')
+		return (true);
+	return (false);
+}
+
+char	*remove_quotes(char *cnt)
+{
+	char	*origin;
+	char	*res;
+	char	quote;
+
+	origin = malloc(sizeof(char) * ft_strlen(cnt) + 1);
+	if (!origin)
+		return (NULL);
+	res = origin;
+	while (*cnt)
+	{
+		if (is_quote(*cnt))
+		{
+			quote = *cnt++;
+			while (*cnt && *cnt != quote)
+				*res++ = *cnt++;
+			if (*cnt)
+				cnt++;
+		}
+		else
+			*res++ = *cnt++;
+	}
+	*res = '\0';
+	return (origin);
 }

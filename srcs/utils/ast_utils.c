@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:39:40 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/29 13:23:05 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:13:41 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,28 @@ char	*get_operator(char *s)
 		return (ft_alloc_fill(1, '|'));
 	else
 		return (NULL);
+}
+
+char	**matrix_cleaner(char **mat)
+{
+	char	**new;
+	int		size;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (mat[i] && is_empty(mat[i]))
+		i++;
+	if (i == 0)
+		return (mat);
+	size = get_matrix_len(mat) - i;
+	new = (char **)malloc(sizeof(char *) * size + 1);
+	if (!new)
+		return (NULL);
+	j = 0;
+	while (j < size)
+		new[j++] = ft_strdup(mat[i++]);
+	new[j] = NULL;
+	free_matrix(mat);
+	return (new);
 }

@@ -3,84 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/31 12:28:22 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:17:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*handle_quotes(char *cnt, int *in_single_quotes, int *in_double_quotes)
+char	*get_key_exp(char *cnt)
 {
-	if (*cnt == '\'')
-	{
-		*in_single_quotes = !(*in_single_quotes);
-		if (!(*in_single_quotes) && *(cnt + 1) == '$')
-			*in_single_quotes = 2;
-	}
-	else if (*cnt == '\"')
-		*in_double_quotes = !(*in_double_quotes);
-	return (cnt);
+	char	*tmp;
+	int		len;
+
+	len = 0;
+	tmp = ft_strnstr(cnt, "$", ft_strlen(cnt));
+	if (tmp[1] == '?')
+		return (ft_strdup("$?"));
+	if (ft_isdigit(tmp[1]))
+		return (ft_substr(tmp, 0, 1));
+	while (ft_isalnum(tmp[len + 1]) || tmp[len + 1] == '_')
+		len++;
+	return (ft_substr(tmp, 1, len));
 }
 
-char	*handle_dollar(char **cnt, int in_single_quotes, int in_double_quotes,
-		char **new)
+char	*replace_var(char *cnt, char *key, char *value)
 {
-	char	*key;
-	char	*env_value;
+	char	*new;
+	char	*start;
+	char	*end;
+	int		size;
 
-	if (**cnt == '$' && (in_single_quotes != 1 || in_double_quotes)
-		&& ((ft_isalpha(*(*cnt + 1))) || *(*cnt + 1) == '_'))
-	{
-		key = get_key_expansion(cnt);
-		env_value = getenv_var(key);
-		free(key);
-		if (env_value)
-			*new = append_value_to_content(*new, env_value);
-	}
-	else if (**cnt == '$' && ((*(*cnt + 1) >= '0' && *(*cnt + 1) <= '9')
-			|| *(*cnt + 1) == '\"'))
-		(*cnt)++;
-	else if (**cnt == '$' && *(*cnt + 1) == '?' && !in_single_quotes)
-	{
-		*new = append_value_to_content_error(*new, ft_itoa(sh()->exit_status));
-		(*cnt)++;
-	}
-	return (*cnt);
+	if (!value)
+		value = "";
+	size = ft_strlen(cnt) - ft_strlen(key) + ft_strlen(value) + 1;
+	new = (char *)malloc(sizeof(char) * size);
+	if (!new)
+		return (NULL);
+	start = ft_strnstr(cnt, "$", ft_strlen(cnt)) + 1;
+	end = start + ft_strlen(key);
+	if (*start == '?')
+		end--;
+	ft_strlcpy(new, cnt, start - cnt);
+	ft_strlcat(new, value, size);
+	ft_strlcat(new, end, size);
+	return (new);
 }
 
-char	*handle_other(char **cnt, char **new)
+static int	count_first_quote(char *cnt)
 {
-	*new = append_char_to_content(*new, **cnt);
-	return (*cnt);
+	int		i;
+	char	quote;
+
+	i = 0;
+	quote = cnt[i];
+	while (cnt[i] && cnt[i] == quote)
+		i++;
+	return (i);
 }
 
 char	*expand_variable(char *cnt)
 {
-	char	*new;
-	int		in_single_quotes;
-	int		in_double_quotes;
+	char	*value;
+	char	*key;
+	char	*res;
 
-	in_single_quotes = 0;
-	in_double_quotes = 0;
-	if (!ft_strncmp("\"$\"", cnt, 4))
-		return (ft_strdup(cnt));
-	new = ft_strdup("");
-	while (*cnt)
+	res = ft_strdup(cnt);
+	if (*res == '\'' && count_first_quote(res) % 2)
+		return (res);
+	while (ft_strnstr(res, "$", ft_strlen(res)))
 	{
-		if (*cnt == '\'' || *cnt == '\"')
-			cnt = handle_quotes(cnt, &in_single_quotes, &in_double_quotes);
-		else if (*cnt == '$')
-			cnt = handle_dollar(&cnt, in_single_quotes, in_double_quotes, &new);
+		key = get_key_exp(res);
+		if (!key || is_empty(key))
+			break ;
+		if (!ft_strncmp(key, "$?", 2))
+			value = ft_itoa(sh()->exit_status);
 		else
-			cnt = handle_other(&cnt, &new);
-		if (in_single_quotes == 2)
-			in_single_quotes = 0;
-		cnt++;
+			value = getenv_var(key);
+		res = replace_var(res, key, value);
+		free(key);
+		if (value)
+			free(value);
 	}
-	return (new);
+	return (res);
 }
 
 void	expander(void)

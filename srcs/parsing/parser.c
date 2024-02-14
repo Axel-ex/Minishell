@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:50:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 11:27:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:17:57 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	trim_ast_content(t_ast *ast)
 	i = 0;
 	while (ast->args[i])
 	{
-		new_content = remove_quotes(ast->args[i],
-				get_first_quote(ast->args[i]));
+		new_content = remove_quotes(ast->args[i]);
 		free(ast->args[i]);
 		ast->args[i] = new_content;
 		i++;

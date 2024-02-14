@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 12:22:44 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:19:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,6 @@ bool	is_empty(char *line);
 // QUOTES.C
 // =============================================================================
 /**
- * @brief remove the first quotes if odd number.
- * 
- * @param content 
- * @return char* 
- */
-char	*pre_trim(char *content, char quote);
-/**
  * @brief Get the last quote position. the last quote is the same type
  * as the first one.
  * 
@@ -170,7 +163,7 @@ int		count_quotes(char *line);
  * @param content 
  * @return char* 
  */
-char	*remove_quotes(char *content, char quote);
+char	*remove_quotes(char *cnt);
 
 /**
  * @brief Get the first occuring quote to remove quotes of the line
@@ -179,6 +172,15 @@ char	*remove_quotes(char *content, char quote);
  * @return char 
  */
 char	get_first_quote(char *content);
+
+/**
+ * @brief assess if the char c is a quote.
+ * 
+ * @param c 
+ * @return true 
+ * @return false 
+ */
+bool	is_quote(char c);
 
 /// ============================================================================
 // AST_GENERATOR.C
@@ -220,21 +222,17 @@ char	**matrix_append(char **matrix, char *to_append);
  */
 int		get_matrix_len(char **matrix);
 
+/**
+ * @brief removes empty arguments from the beggining of the matrix.
+ * 
+ * @param mat 
+ * @return char** cleaned matrix
+ */
+char	**matrix_cleaner(char **mat);
+
 /// ============================================================================
 // EXPANDER.C
 // =============================================================================
-/**
- * @brief Retrieves the key for variable expansion.
- * 
- * This function takes a pointer to a string and extracts the key
- * for variable expansion. The key consists of alphanumeric characters
- * and underscores.
- * 
- * @param temp A pointer to the string containing the variable.
- * @return The key for variable expansion.
- */
-char	*get_key_expansion(char **temp);
-
 /**
  * @brief Expands variables in a token's content.
  * 
@@ -255,10 +253,7 @@ char	*expand_variable(char *content);
  * of type OTHER.
  * It skips tokens of type REDIR2_OUT.
  */
-void	expander(void);
-char	*get_key_expansion(char **temp);
-char	*append_value_to_content(char *new_content, char *value);
-char	*append_char_to_content(char *new_content, char c);
-char	*append_value_to_content_error(char *new_content, char *value);
+void	expander();
+
 
 #endif

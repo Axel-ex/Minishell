@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:30:04 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/18 14:40:35 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:37:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*getenv_var(char *key)
 	{
 		if (!ft_strncmp(scanner_env(READ)->key, key,
 				ft_strlen(scanner_env(READ)->key) + 1))
-			return (scanner_env(READ)->value);
+			return (ft_strdup(scanner_env(READ)->value));
 		scanner_env(NEXT);
 	}
 	return (NULL);
