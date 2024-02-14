@@ -6,11 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:49:57 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:50:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:32:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	rl_replace_line(const char *text, int clear_undo);
 void	back_to_prompt(int sig);

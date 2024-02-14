@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:41 by achabrer          #+#    #+#             */
-/*   Updated: 2024/02/14 14:19:34 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:23:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,44 +66,6 @@ char	*get_quoted_content(char *line);
  */
 char	*get_other(char *line);
 
-/// ============================================================================
-// TOKEN_UTILS.C
-// =============================================================================
-/**
- * @brief scans through the token list perform and operation specified by op
- * code on token list. READ returns a token, RESET resets pointer to list
- * 
- * @param op 
- * @return t_token* 
- */
-t_token	*scanner(t_operation op);
-
-/**
- * @brief creates a new_token containing content and type.
- * 
- * @param content 
- * @param type 
- * @return t_token* 
- */
-t_token	*new_token(char *content, t_type type);
-
-/**
- * @brief duplicates the token pointed to by *token.
- * 
- * @param token 
- * @return t_token* 
- */
-t_token	*token_dup(t_token *token);
-
-/**
- * @brief adds a new token to the list of tokens.
- * 
- * @param content 
- * @param type 
- */
-void	token_add_back(char *content, t_type type, int count_space);
-
-void	token_content_append(char *to_append);
 
 /// ============================================================================
 // PARSER.C
@@ -129,60 +91,6 @@ int		parser(void);
 bool	is_empty(char *line);
 
 /// ============================================================================
-// QUOTES.C
-// =============================================================================
-/**
- * @brief Get the last quote position. the last quote is the same type
- * as the first one.
- * 
- * @param line 
- * @return int 
- */
-int		get_last_quote_pos(char *line);
-
-/**
- * @brief returns a string containing the operator found in s.
- * (allocated on the heap)
- * 
- * @param s 
- * @return char* 
- */
-char	*get_operator(char *s);
-
-/**
- * @brief count quotes that are not found inside of quotes.
- * 
- * @param line 
- * @return int 
- */
-int		count_quotes(char *line);
-
-/**
- * @brief Removes the quotes from token content
- * 
- * @param content 
- * @return char* 
- */
-char	*remove_quotes(char *cnt);
-
-/**
- * @brief Get the first occuring quote to remove quotes of the line
- * 
- * @param line 
- * @return char 
- */
-char	get_first_quote(char *content);
-
-/**
- * @brief assess if the char c is a quote.
- * 
- * @param c 
- * @return true 
- * @return false 
- */
-bool	is_quote(char c);
-
-/// ============================================================================
 // AST_GENERATOR.C
 // =============================================================================
 /**
@@ -192,43 +100,6 @@ bool	is_quote(char c);
  */
 void	ast_generator(void);
 
-/// ============================================================================
-// AST_UTILS.C
-// =============================================================================
-/**
- * @brief creates a new ast node filled with the token pointed 
- * to by *token and returns it.
- * 
- * @param token 
- * @return t_ast* 
- */
-t_ast	*new_ast_node(t_token *token);
-
-/**
- * @brief creates a new matrix containing the element *to_append,
- * free the old matrix and returns the new.
- * 
- * @param matrix 
- * @param to_append 
- * @return char** 
- */
-char	**matrix_append(char **matrix, char *to_append);
-
-/**
- * @brief Get the len of a matrix.
- * 
- * @param matrix 
- * @return int 
- */
-int		get_matrix_len(char **matrix);
-
-/**
- * @brief removes empty arguments from the beggining of the matrix.
- * 
- * @param mat 
- * @return char** cleaned matrix
- */
-char	**matrix_cleaner(char **mat);
 
 /// ============================================================================
 // EXPANDER.C
@@ -253,7 +124,6 @@ char	*expand_variable(char *content);
  * of type OTHER.
  * It skips tokens of type REDIR2_OUT.
  */
-void	expander();
-
+void	expander(void);
 
 #endif

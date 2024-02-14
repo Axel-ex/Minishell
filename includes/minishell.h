@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 10:47:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:28:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@
 # include "../Libft/includes/libft.h"
 # include "init_exit.h"
 # include "parsing.h"
-# include "debug.h"
-# include "signals.h"
 # include "envp.h"
 # include "execution.h"
 # include "builtins.h"
+# include "utils.h"
 
 # define PROMPT "minishell> "
 # define MAX_TOKEN_LEN 100

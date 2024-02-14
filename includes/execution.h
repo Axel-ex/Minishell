@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/31 12:42:29 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:27:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,45 +50,6 @@ void	execute_child(t_ast *ast);
  * @return int 
  */
 void	execute_cmd(t_ast *ast);
-
-/// ============================================================================
-// EXECUTOR_UTIL.C
-// =============================================================================
-/**
- * @brief check cmd path and set exit_status accordingly
- * 
- * @param cmd 
- * @return int 
- */
-int		check_cmd_path(char *cmd);
-
-/**
- * @brief check if the token is an operator
- * 
- * @param token 
- * @return true 
- * @return false 
- */
-bool	is_operator(t_type type);
-
-/**
- * @brief Get the cmd path, either absolute or relative
- * 
- * @param cmd 
- * @return char* 
- */
-char	*get_cmd_path(char *cmd);
-
-/**
- * @brief check if a command is forkable. non forkable are command
- * that need to be executed by the main process for it's changes to be
- * reflected in the program
- * 
- * @param cmd 
- * @return true 
- * @return false 
- */
-bool	is_forkable(char *cmd);
 
 /// ============================================================================
 // PIPES.C
@@ -147,42 +108,5 @@ void	handle_heredoc(t_ast *ast);
  * @return false 
  */
 bool	is_redirection(t_token *token);
-
-/// ============================================================================
-// CAT_HELPER.C
-// =============================================================================
-/**
- * @brief check if the pipeline contains only cat.
- * 
- * @return true 
- * @return false 
- */
-bool	only_cats(void);
-
-/**
- * @brief count the number of cat command in the token list.
- * 
- * @return int 
- */
-int		count_cat(void);
-
-/**
- * @brief handle signal when prompt hangs for cat.
- * 
- * @param signo 
- */
-void	sigint_hand(int signo);
-
-/**
- * @brief print a new line on ENTER press.
- * 
- * @param cat_count 
- */
-void	handle_hang(int cat_count);
-void	sigint_handler(int sig);
-void	handle_sigint(char *line, int fd_temp);
-void	handle_null_line(char *line, char *end_of_file);
-int	    handle_end_of_file(char *line, char *end_of_file);
-void	handle_line_processing(char *line, int fd_temp);
 
 #endif
