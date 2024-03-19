@@ -53,7 +53,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)/utils
 
 $(LIBFT):
-	@echo "[$(CYAN)compiling$(RESET)]:\t $@"
+	@echo "[$(CYAN)linking$(RESET)]:\t $@"
 	@make -C $(LIBFT_DIR)
 
 clean:
