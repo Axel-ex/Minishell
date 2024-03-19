@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/19 16:44:57 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/19 16:50:11 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ int	check_cmd_path(char *cmd)
 		return (EXIT_SUCCESS);
 	}
 	cmd_path = get_cmd_path(cmd);
-	if (stat(cmd_path, &stats) == -1)
+	if (!cmd_path)
+		return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
+	if (stat(cmd_path, &stats) == -1 || (S_ISDIR(stats.st_mode)))
 	{
 		free(cmd_path);
 		return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
 	}
-	if (!cmd_path || (S_ISDIR(stats.st_mode)))
-		return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
-	free(cmd_path);
 	return (EXIT_SUCCESS);
 }
 
