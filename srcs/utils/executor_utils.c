@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/20 09:20:24 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/20 09:48:24 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ int check_cmd_path(char* cmd)
     if (is_empty(cmd))
         return (0);
     cmd_path = get_cmd_path(cmd);
+	stat(cmd_path, &stats);
     if (ft_strchr(cmd, '/') && stat(cmd, &stats) == -1)
 		return (print_error(ERR_CMD, DIR_NT_FOUND, cmd));
 	if (!cmd_path)
         return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
     if (access(cmd_path, F_OK | X_OK))
         print_error(ERR_DIR, PERM_DEN, cmd);
-	else if (S_ISDIR(stats.st_mode))
+	else if (S_ISDIR(stats.st_mode) && ft_strchr(cmd, '/'))
 		print_error(ERR_DIR, IS_DIR, cmd);
+	else if (S_ISDIR(stats.st_mode))
+		print_error(ERR_CMD, CMD_NT_FOUND, cmd);
     free(cmd_path);
     return (EXIT_SUCCESS);
 }
