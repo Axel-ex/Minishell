@@ -449,5 +449,6 @@ char	*ft_realloc_str(char *ptr, size_t new_size);
 char	*ft_alloc_fill(int size, char to_fill);
 void	ft_memdel(void **ap);
 int		ft_isnumeric(char *str);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

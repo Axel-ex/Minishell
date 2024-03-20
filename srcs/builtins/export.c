@@ -14,14 +14,20 @@
 
 int	print_all_export(void)
 {
-	scanner_env(RESET);
-	while (scanner_env(READ))
+	t_list *current;
+
+	copy_env_list(sh()->env_lst);
+	sort_copy_env_list();
+	current = sh()->copy_env_lst;
+
+	while (current)
 	{
 		ft_printf("declare -x ");
-		ft_printf("%s=", scanner_env(READ)->key);
-		ft_printf("\"%s\"\n", scanner_env(READ)->value);
-		scanner_env(NEXT);
+		ft_printf("%s=", ((t_env *)current->content)->key);
+		ft_printf("\"%s\"\n", ((t_env *)current->content)->value);
+		current = current->next;
 	}
+	free_copy_env_lst();
 	return (EXIT_SUCCESS);
 }
 
