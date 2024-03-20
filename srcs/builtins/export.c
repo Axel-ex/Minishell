@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/03/20 14:31:08 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/20 15:03:40 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	print_all_export(void)
 {
-	t_list *current;
+	t_list	*current;
 
 	copy_env_list();
 	sort_copy_env_list();
 	current = sh()->copy_env_lst;
-
 	while (current)
 	{
 		ft_printf("declare -x ");

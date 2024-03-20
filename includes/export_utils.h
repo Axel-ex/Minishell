@@ -1,5 +1,17 @@
-#ifndef MINISHELL_EXPORT_UTILS_H
-#define MINISHELL_EXPORT_UTILS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_utils.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/20 15:04:09 by jgomes-v          #+#    #+#             */
+/*   Updated: 2024/03/20 15:06:31 by jgomes-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef EXPORT_UTILS_H
+# define EXPORT_UTILS_H
 
 # include "minishell.h"
 
@@ -11,7 +23,7 @@
  *
  * @param env_list The environment list to be copied.
  */
-void copy_env_list(void);
+void	copy_env_list(void);
 
 /**
  * @brief Sorts the copied environment list.
@@ -19,7 +31,7 @@ void copy_env_list(void);
  * This function sorts the copied environment list stored in the shell's
  * copy_env_lst variable. The sorting is done in lexicographical order.
  */
-void sort_copy_env_list(void);
+void	sort_copy_env_list(void);
 
 /**
  * @brief Frees the copied environment list.
@@ -30,4 +42,4 @@ void sort_copy_env_list(void);
  */
 void	free_copy_env_lst(void);
 
-#endif //MINISHELL_EXPORT_UTILS_H
+#endif
