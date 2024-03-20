@@ -12,7 +12,6 @@ test_files
 minishell.h
 $
 $?
-README.md
 ECHO
 blabla
 echo -nnnnnnnnnnnnnnnnnnnnnnnn
