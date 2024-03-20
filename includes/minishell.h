@@ -33,6 +33,7 @@
 # include "execution.h"
 # include "builtins.h"
 # include "utils.h"
+# include "export_utils.h"
 
 # define PROMPT "minishell> "
 # define MAX_TOKEN_LEN 100
@@ -108,6 +109,7 @@ typedef struct s_shell
 	char		**path;
 	char		**envp;
 	t_list		*env_lst;
+	t_list		*copy_env_lst;
 	t_list		*token_lst;
 	t_ast		*ast;
 	int			**pipes;
