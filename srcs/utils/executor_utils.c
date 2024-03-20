@@ -6,85 +6,85 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/20 09:48:24 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/20 10:11:18 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 #include <stdlib.h>
 
-int check_cmd_path(char* cmd)
+int	check_cmd_path(char *cmd)
 {
-    char* cmd_path;
-    struct stat stats;
+	char		*cmd_path;
+	struct stat	stats;
 
-    if (is_empty(cmd))
-        return (0);
-    cmd_path = get_cmd_path(cmd);
+	if (is_empty(cmd))
+		return (0);
+	cmd_path = get_cmd_path(cmd);
 	stat(cmd_path, &stats);
-    if (ft_strchr(cmd, '/') && stat(cmd, &stats) == -1)
+	if (ft_strchr(cmd, '/') && stat(cmd, &stats) == -1)
 		return (print_error(ERR_CMD, DIR_NT_FOUND, cmd));
 	if (!cmd_path)
-        return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
-    if (access(cmd_path, F_OK | X_OK))
-        print_error(ERR_DIR, PERM_DEN, cmd);
+		return (print_error(ERR_CMD, CMD_NT_FOUND, cmd));
+	if (access(cmd_path, F_OK | X_OK))
+		print_error(ERR_DIR, PERM_DEN, cmd);
 	else if (S_ISDIR(stats.st_mode) && ft_strchr(cmd, '/'))
 		print_error(ERR_DIR, IS_DIR, cmd);
 	else if (S_ISDIR(stats.st_mode))
 		print_error(ERR_CMD, CMD_NT_FOUND, cmd);
-    free(cmd_path);
-    return (EXIT_SUCCESS);
+	free(cmd_path);
+	return (EXIT_SUCCESS);
 }
 
-bool is_forkable(char* cmd)
+bool	is_forkable(char *cmd)
 {
-    if (!ft_strncmp(cmd, "cd", 3) || !ft_strncmp(cmd, "export", 7) ||
-        !ft_strncmp(cmd, "unset", 6) || !ft_strncmp(cmd, "exit", 5))
-        return (false);
-    return (true);
+	if (!ft_strncmp(cmd, "cd", 3) || !ft_strncmp(cmd, "export", 7)
+		|| !ft_strncmp(cmd, "unset", 6) || !ft_strncmp(cmd, "exit", 5))
+		return (false);
+	return (true);
 }
 
-bool is_operator(t_type type)
+bool	is_operator(t_type type)
 {
-    if (type == OTHER)
-        return (false);
-    return (true);
+	if (type == OTHER)
+		return (false);
+	return (true);
 }
 
-char* get_absolute_path(char* cmd)
+char	*get_absolute_path(char *cmd)
 {
-    char* path1;
-    char* path;
-    int i;
+	char	*path1;
+	char	*path;
+	int		i;
 
-    i = -1;
-    if (!access(cmd, F_OK))
-        return (ft_strdup(cmd));
-    while (sh()->path[++i])
-    {
-        path1 = ft_strjoin(sh()->path[i], "/");
-        path = ft_strjoin(path1, cmd);
-        free(path1);
-        if (!access(path, F_OK))
-            return (path);
-        free(path);
-    }
-    return (NULL);
+	i = -1;
+	if (!access(cmd, F_OK))
+		return (ft_strdup(cmd));
+	while (sh()->path[++i])
+	{
+		path1 = ft_strjoin(sh()->path[i], "/");
+		path = ft_strjoin(path1, cmd);
+		free(path1);
+		if (!access(path, F_OK))
+			return (path);
+		free(path);
+	}
+	return (NULL);
 }
 
-char* get_cmd_path(char* cmd)
+char	*get_cmd_path(char *cmd)
 {
-    char* path;
-    char* cwd;
+	char	*path;
+	char	*cwd;
 
-    if (*cmd == '.')
-    {
-        cmd++;
-        cwd = getenv_var("PWD");
-        path = ft_strjoin(cwd, cmd);
+	if (*cmd == '.')
+	{
+		cmd++;
+		cwd = getenv_var("PWD");
+		path = ft_strjoin(cwd, cmd);
 		free(cwd);
-    }
-    else
-        path = get_absolute_path(cmd);
-    return (path);
+	}
+	else
+		path = get_absolute_path(cmd);
+	return (path);
 }
