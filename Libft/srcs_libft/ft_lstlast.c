@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:27:17 by axelc             #+#    #+#             */
-/*   Updated: 2023/11/01 17:57:43 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:30:15 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst == NULL)
-		return NULL;
-
 	while (lst)
 	{
 		if (!lst->next)

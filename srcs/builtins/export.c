@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/01/30 11:57:16 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:31:08 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_all_export(void)
 {
 	t_list *current;
 
-	copy_env_list(sh()->env_lst);
+	copy_env_list();
 	sort_copy_env_list();
 	current = sh()->copy_env_lst;
 

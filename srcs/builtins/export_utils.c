@@ -18,22 +18,37 @@ void	free_copy_env_lst(void)
 	sh()->copy_env_lst = NULL;
 }
 
-
-void copy_env_list(t_list *env_list)
+// void copy_env_list(t_list *env_list)
+// {
+// 	t_list *copy_list = NULL;
+// 	t_list *temp;
+//
+// 	while (env_list)
+// 	{
+// 		temp = (t_list *)malloc(sizeof(t_list));
+// 		temp->content = (t_env *)malloc(sizeof(t_env));
+// 		((t_env *)temp->content)->key = ft_strdup(((t_env *)env_list->content)->key);
+// 		((t_env *)temp->content)->value = ft_strdup(((t_env *)env_list->content)->value);
+// 		printf("key: %s, content: %s", ((t_env *)(temp->content))->key, ((t_env *)temp->content)->value);
+// 		ft_lstadd_back(&copy_list, temp);
+// 		env_list = env_list->next;
+// 	}
+// 	sh()->copy_env_lst = copy_list;
+// }
+void	copy_env_list(void)
 {
-	t_list *copy_list = NULL;
-	t_list *temp;
-
-	while (env_list)
+	t_env	*temp;
+	
+	sh()->copy_env_lst = NULL;
+	scanner_env(RESET);
+	while(scanner_env(READ))
 	{
-		temp = (t_list *)malloc(sizeof(t_list));
-		temp->content = malloc(sizeof(t_env));
-		((t_env *)temp->content)->key = ft_strdup(((t_env *)env_list->content)->key);
-		((t_env *)temp->content)->value = ft_strdup(((t_env *)env_list->content)->value);
-		ft_lstadd_back(&copy_list, temp);
-		env_list = env_list->next;
+		temp = (t_env *)malloc(sizeof(t_env));
+		temp->key = ft_strdup(scanner_env(READ)->key);
+		temp->value = ft_strdup(scanner_env(READ)->value);
+		ft_lstadd_back(&sh()->copy_env_lst, ft_lstnew(temp));
+		scanner_env(NEXT);
 	}
-	sh()->copy_env_lst = copy_list;
 }
 
 void sort_copy_env_list(void)

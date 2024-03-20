@@ -11,7 +11,7 @@
  *
  * @param env_list The environment list to be copied.
  */
-void copy_env_list(t_list *env_list);
+void copy_env_list(void);
 
 /**
  * @brief Sorts the copied environment list.
