@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 10:12:00 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/29 19:08:03 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:07:30 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ int		run_pwd(void);
  */
 void	run_exit(t_ast *ast);
 
-int	count_exit(void);
+int		count_exit(void);
 
 #endif

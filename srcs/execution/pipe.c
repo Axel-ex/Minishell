@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:02:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/02/15 09:53:47 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:12:16 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	pipe_create(void)
 	int	i;
 
 	i = -1;
-	sh()->pipes = ft_calloc(sizeof(int *), sh()->nb_cmds);
+	sh()->pipes = ft_calloc(sizeof(int *),sh()->nb_cmds);
 	if (!sh()->pipes)
 		return ;
 	while (++i < sh()->nb_cmds)
