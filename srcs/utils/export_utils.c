@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:02:39 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/03/20 15:02:42 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:47:25 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	copy_env_list(void)
 	{
 		temp = (t_env *)malloc(sizeof(t_env));
 		if (!temp)
-			return (alloc_error("copy env lst"));
+			return ;
 		temp->key = ft_strdup(scanner_env(READ)->key);
 		temp->value = ft_strdup(scanner_env(READ)->value);
 		ft_lstadd_back(&sh()->copy_env_lst, ft_lstnew(temp));
