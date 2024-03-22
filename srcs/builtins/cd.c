@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:46:48 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/22 11:21:43 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/22 09:53:52 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	run_cd(t_ast *ast)
 {
 	if (!ast->args[1])
 		return (cd_goto_home());
+	if (ast->args[2])
+		return (print_error(ERR_GEN, TOO_MANY_ARGS, ast->args[0]));
 	if (ft_strncmp(ast->args[1], "-", 2) == 0)
 		cd_goto_old_pwd();
 	else

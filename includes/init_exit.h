@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/10 21:41:52 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/22 09:54:50 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ typedef struct s_env	t_env;
 // =============================================================================
 # define ERR_UNCLOSED_QUOTES	"command contains unclosed quotes"
 # define SYNTH_ERR_TOKEN		"syntax error near unexpected token "
+# define TOO_MANY_ARGS			"too many arguments"
 # define CMD_NT_FOUND			"command not found"
 # define DIR_NT_FOUND			"No such file or directory"
 # define PERM_DEN				"Permission denied"
-# define IS_DIR					"is a directory"
+# define IS_DIR					"Is a directory"
 
 /// ============================================================================
 // INIT.C
