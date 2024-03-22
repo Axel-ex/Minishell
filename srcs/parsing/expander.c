@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/02/14 14:17:39 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:39:46 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,13 @@ char	*expand_variable(char *cnt)
 	while (ft_strnstr(res, "$", ft_strlen(res)))
 	{
 		key = get_key_exp(res);
-		if (!key || is_empty(key))
+		if (!key)
 			break ;
+		if (is_empty(key))
+		{
+			free(key);
+			break ;
+		}
 		if (!ft_strncmp(key, "$?", 2))
 			value = ft_itoa(sh()->exit_status);
 		else
