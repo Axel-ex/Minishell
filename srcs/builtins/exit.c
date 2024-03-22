@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:49:54 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/22 10:13:13 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/22 10:21:57 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	run_exit(t_ast *ast)
 		sh()->exit_status = ft_atoi(ast->args[1]) % 256;
 	else if (ast->args[1] && !ft_isnumeric(ast->args[1]))
 	{
-		printf("minishell: exit: %s: numeric argument required\n", ast->args[1]);
+		write(2, "minishell: exit: ", 17);
+		write(2, ast->args[1], ft_strlen(ast->args[1]));
+		write(2, ": numeric argument required\n", 29);
 		sh()->exit_status = ERR_SYNTHAX;
 	}
 	printf("exit\n");
