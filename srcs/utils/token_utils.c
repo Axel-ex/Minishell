@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:47:53 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/23 18:12:11 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/23 18:27:32 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	token_add_back(char *content, t_type type, int count_space)
 	t_token			*new;
 
 	if (!count_space && sh()->token_lst
-		&& !get_operator(content) && !is_operator(last_type))
+		&& !is_operator(*content) && !is_operator(last_type))
 	{
 		token_content_append(content);
 		return ;
