@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:47:53 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/23 10:21:53 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:12:11 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void	token_content_append(char *to_append)
 	ft_strlcpy(new_content, last->content, ft_strlen(last->content) + 1);
 	ft_strlcpy(new_content + curr_size, to_append, ft_strlen(to_append) + 1);
 	free(last->content);
+	free(to_append);
 	last->content = new_content;
 }
