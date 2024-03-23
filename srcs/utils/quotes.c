@@ -14,9 +14,9 @@
 
 int	count_quotes(char *line)
 {
-	int		quotes;
-	int		in_squote;
-	int		in_dquote;
+	int	quotes;
+	int	in_squote;
+	int	in_dquote;
 
 	quotes = 0;
 	in_squote = 0;
@@ -49,22 +49,21 @@ char	get_first_quote(char *line)
 	return (*line);
 }
 
-
-int get_last_quote_pos(char *line)
+int	get_last_quote_pos(char *line)
 {
-    int i;
-    char quote;
-    int pos;
+	int		i;
+	char	quote;
+	int		pos;
 
-    quote = get_first_quote(line);
-    pos = -1;
-    i = -1;
-    while (line[++i])
-    {
-        if (line[i] == quote)
-            pos = i;
-    }
-    return pos;
+	quote = get_first_quote(line);
+	pos = -1;
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == quote)
+			pos = i;
+	}
+	return (pos);
 }
 
 bool	is_quote(char c)

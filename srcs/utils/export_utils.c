@@ -62,7 +62,7 @@ void	sort_copy_env_list(void)
 		while (index != NULL)
 		{
 			if (ft_strcmp(((t_env *)current->content)->key,
-							((t_env *)index->content)->key) > 0)
+					((t_env *)index->content)->key) > 0)
 			{
 				temp = current->content;
 				current->content = index->content;
