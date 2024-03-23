@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:03:26 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/20 15:07:53 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:03:35 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,36 @@ void	ctrl_c(int sig);
 void	back_slash(int sig);
 
 /// ============================================================================
+// EXPORT_UTILS.C
+// =============================================================================
+/**
+ * @brief Copies the environment list.
+ *
+ * This function creates a copy of the environment list passed as a parameter.
+ * The copy is stored in the shell's copy_env_lst variable.
+ *
+ * @param env_list The environment list to be copied.
+ */
+void	copy_env_list(void);
+
+/**
+ * @brief Sorts the copied environment list.
+ *
+ * This function sorts the copied environment list stored in the shell's
+ * copy_env_lst variable. The sorting is done in lexicographical order.
+ */
+void	sort_copy_env_list(void);
+
+/**
+ * @brief Frees the copied environment list.
+ *
+ * This function frees the memory allocated for the copied environment list
+ * stored in the shell's copy_env_lst variable. It also sets the copy_env_lst
+ * variable to NULL to indicate that the list has been freed.
+ */
+void	free_copy_env_lst(void);
+
+/// ============================================================================
 // HEREDOC_UTILS.C
 // =============================================================================
 void	handle_hang(int cat_count);
@@ -273,5 +303,14 @@ void	handle_sigint(char *line, int fd_temp);
 void	handle_null_line(char *line, char *end_of_file);
 int		handle_end_of_file(char *line, char *end_of_file);
 void	handle_line_processing(char *line, int fd_temp);
+
+/// ============================================================================
+// EXPANDER_UTILS.C
+// =============================================================================
+void	free_resources(char *old_res, char *key, char *value);
+char	*expand_variable(char *cnt);
+int		count_first_quote(char *cnt);
+char	*get_key_exp(char *cnt);
+char	*replace_var(char *cnt, char *key, char *value);
 
 #endif

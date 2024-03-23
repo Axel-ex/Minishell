@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:32:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/23 19:37:47 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/03/23 20:04:24 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@
 # include "execution.h"
 # include "builtins.h"
 # include "utils.h"
-# include "export_utils.h"
-# include "expander_utils.h"
 
 # define PROMPT "minishell> "
 # define MAX_TOKEN_LEN 100
