@@ -21,7 +21,6 @@ echo text"$USER"
 echo '""'ola'""'
 echo """ola"""
 echo '''ola'''
-echo "text"   "$USER"    "$USER"
 echo ~
 echo ~ hey
 echo -n -n -n -n
@@ -29,7 +28,6 @@ ls "../"
 ls ""
 echo '              $USER          '
 echo "'$USER'"
-echo               text "$USER"            "$USER"text
 echo """"""""$USER""""""""
 echo $USER=thallard
 echo $PWD/file
