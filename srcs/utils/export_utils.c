@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:02:39 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/03/22 09:47:25 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/23 19:40:38 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	sort_copy_env_list(void)
 		while (index != NULL)
 		{
 			if (ft_strcmp(((t_env *)current->content)->key,
-					((t_env *)index->content)->key) > 0)
+							((t_env *)index->content)->key) > 0)
 			{
 				temp = current->content;
 				current->content = index->content;

@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:57:01 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/03/20 15:03:40 by jgomes-v         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:22:20 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	handle_export_with_equal(t_list *to_add, char *arg)
 	{
 		((t_env *)to_add->content)->key = key;
 		((t_env *)to_add->content)->value = value;
+		env_add_back(key, value);
 	}
-	env_add_back(key, value);
 }
 
 void	handle_export_without_equal(t_list *to_add, char *arg)

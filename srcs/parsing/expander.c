@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:49:43 by jgomes-v          #+#    #+#             */
-/*   Updated: 2024/03/22 16:39:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:30:50 by jgomes-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*replace_var(char *cnt, char *key, char *value)
 	return (new);
 }
 
-static int	count_first_quote(char *cnt)
+int	count_first_quote(char *cnt)
 {
 	int		i;
 	char	quote;
@@ -61,37 +61,6 @@ static int	count_first_quote(char *cnt)
 	while (cnt[i] && cnt[i] == quote)
 		i++;
 	return (i);
-}
-
-char	*expand_variable(char *cnt)
-{
-	char	*value;
-	char	*key;
-	char	*res;
-
-	res = ft_strdup(cnt);
-	if (*res == '\'' && count_first_quote(res) % 2)
-		return (res);
-	while (ft_strnstr(res, "$", ft_strlen(res)))
-	{
-		key = get_key_exp(res);
-		if (!key)
-			break ;
-		if (is_empty(key))
-		{
-			free(key);
-			break ;
-		}
-		if (!ft_strncmp(key, "$?", 2))
-			value = ft_itoa(sh()->exit_status);
-		else
-			value = getenv_var(key);
-		res = replace_var(res, key, value);
-		free(key);
-		if (value)
-			free(value);
-	}
-	return (res);
 }
 
 void	expander(void)
