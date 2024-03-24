@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:47:36 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/23 17:56:29 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/24 08:09:20 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,22 @@ int	get_last_quote_pos(char *line)
 	int		i;
 	char	quote;
 	int		pos;
+	int		quotes_count;
 
+	quotes_count = 0;
 	quote = get_first_quote(line);
-	pos = -1;
+	pos = 0;
 	i = -1;
 	while (line[++i])
 	{
 		if (line[i] == quote)
+		{
 			pos = i;
+			quotes_count++;
+		}
+		if ((line[i] == ' ' || line[i] == '>' || line[i] == '<'
+				|| line[i] == '|') && quotes_count % 2 == 0)
+			break ;
 	}
 	return (pos);
 }
