@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:46:48 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/22 09:53:52 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/25 10:12:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	cd_goto_old_pwd(void)
 		ft_printf("%s", "minishell : cd: OLDPWD not set\n");
 		return (EXIT_FAILURE);
 	}
-	if (chdir(oldpwd_path) == 0)
+	if (chdir(oldpwd_path))
 	{
 		ft_printf("%s", "minishell : cd: error changing directory\n");
+		free(oldpwd_path);
 		return (EXIT_FAILURE);
 	}
 	cd_update_old_pwd();
+	free(oldpwd_path);
 	return (EXIT_SUCCESS);
 }
 
