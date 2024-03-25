@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/30 21:51:18 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:09 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,11 @@ void	handle_hang(int cat_count)
 	}
 	sh()->count = 0;
 }
+
+bool	is_echo_pwd(char *s)
+{
+	if (!ft_strncmp(s, "echo", 5) || !ft_strncmp(s, "pwd", 4))
+		return (true);
+	return (false);
+}
+

@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 11:19:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:50:22 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	check_cmd_path(char *cmd)
 	struct stat	stats;
 
 	if (is_empty(cmd))
-		return (0);
+		return (EXIT_SUCCESS);
+	if (is_echo_pwd(cmd))
+		return (EXIT_SUCCESS);
 	cmd_path = get_cmd_path(cmd);
 	stat(cmd_path, &stats);
 	if (ft_strchr(cmd, '/') && stat(cmd, &stats) == -1)
