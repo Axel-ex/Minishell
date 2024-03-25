@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:46:48 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 10:22:25 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:39:37 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ int	cd_goto_old_pwd(void)
 
 int	cd_goto_home(void)
 {
+	char	*home;
+
+	home = getenv_var("HOME");
 	cd_update_old_pwd();
-	chdir(getenv_var("HOME"));
+	chdir(home);
+	free(home);
 	return (EXIT_SUCCESS);
 }
 
