@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:55:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:09 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:54:16 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,3 @@ bool	is_echo_pwd(char *s)
 		return (true);
 	return (false);
 }
-

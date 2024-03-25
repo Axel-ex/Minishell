@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:03:26 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:55:27 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,7 +304,6 @@ void	handle_null_line(char *line, char *end_of_file);
 int		handle_end_of_file(char *line, char *end_of_file);
 void	handle_line_processing(char *line, int fd_temp);
 bool	is_echo_pwd(char *s);
-
 
 /// ============================================================================
 // EXPANDER_UTILS.C

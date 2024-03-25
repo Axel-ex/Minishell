@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:44:42 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 11:18:32 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:53:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_pipes(int **pipes)
 	free(pipes);
 }
 
-void	update_path()
+void	update_path(void)
 {
 	char	*path;
 
