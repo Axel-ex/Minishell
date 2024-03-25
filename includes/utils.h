@@ -6,7 +6,7 @@
 /*   By: jgomes-v <jgomes-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:03:26 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 11:55:27 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:58:23 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,37 +192,6 @@ char	*get_cmd_path(char *cmd);
 bool	is_forkable(char *cmd);
 
 /// ============================================================================
-// CAT_HELPER.C
-// =============================================================================
-/**
- * @brief check if the pipeline contains only cat.
- * 
- * @return true 
- * @return false 
- */
-bool	only_cats(void);
-
-/**
- * @brief count the number of cat command in the token list.
- * 
- * @return int 
- */
-int		count_cat(void);
-
-/**
- * @brief handle signal when prompt hangs for cat.
- * 
- * @param signo 
- */
-void	sigint_hand(int signo);
-
-/**
- * @brief print a new line on ENTER press.
- * 
- * @param cat_count 
- */
-
-/// ============================================================================
 // DEBUG
 // =============================================================================
 /**
@@ -260,7 +229,6 @@ void	print_ast(t_ast *ast, int position);
 // =============================================================================
 void	rl_replace_line(const char *text, int clear_undo);
 void	signals(int sig);
-//void	back_to_prompt(int sig);
 void	ctrl_c(int sig);
 void	back_slash(int sig);
 
@@ -297,13 +265,11 @@ void	free_copy_env_lst(void);
 /// ============================================================================
 // HEREDOC_UTILS.C
 // =============================================================================
-void	handle_hang(int cat_count);
 void	sigint_handler(int sig);
 void	handle_sigint(char *line, int fd_temp);
 void	handle_null_line(char *line, char *end_of_file);
 int		handle_end_of_file(char *line, char *end_of_file);
 void	handle_line_processing(char *line, int fd_temp);
-bool	is_echo_pwd(char *s);
 
 /// ============================================================================
 // EXPANDER_UTILS.C

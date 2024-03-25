@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 11:50:44 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:50:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,6 @@ void	execute_child(t_ast *ast)
 		match_cmd(ast, already_slept);
 		free_shell(false);
 	}
-	else if (ast->args[0] && !ft_strncmp(ast->args[0], "sleep", 5)
-		&& sh()->pid > 0 && !already_slept)
-	{
-		waitpid(sh()->pid, NULL, 0);
-		already_slept = true;
-	}
-	if (already_slept && ast->pos == sh()->nb_cmds - 1)
-		already_slept = false;
 	restore_io(ast->pos);
 }
 
@@ -70,10 +62,6 @@ void	execute_cmd(t_ast *ast)
 {
 	char		*cmd_path;
 
-	if (count_cat() > 1 && ft_strnstr(ast->args[0], "cat",
-			ft_strlen(ast->args[0])) && ast->pos != sh()->nb_cmds - 1
-		&& !ast->args[1])
-		exit(EXIT_SUCCESS);
 	cmd_path = get_cmd_path(ast->args[0]);
 	execve(cmd_path, ast->args, sh()->envp);
 	free(cmd_path);
@@ -105,15 +93,8 @@ void	executor(void)
 	int	status;
 
 	status = 127;
-	if (count_exit() > 1)
-	{
-		sh()->exit_status = 0;
-		return ;
-	}
 	pipe_create();
 	execute_ast(sh()->ast);
-	if (count_cat() > 1 && !only_cats())
-		handle_hang(count_cat());
 	while (wait(&status) > 0)
 		continue ;
 	if (WIFEXITED(status))
