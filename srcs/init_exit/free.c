@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:02:05 by achabrer          #+#    #+#             */
-/*   Updated: 2024/01/02 13:48:50 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:50:20 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	free_env_lst(t_env *env_lst)
 void	free_shell(bool keep_iterating)
 {
 	ft_lstclear(&sh()->token_lst, (void (*))free_token);
+	update_path();
 	free(sh()->line);
 	free_ast(sh()->ast);
 	free_pipes(sh()->pipes);

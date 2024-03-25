@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:41:58 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/22 10:14:00 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/25 10:49:59 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void	free_pipes(int **pipes);
 int		print_error_export(int exit_status, char *msg, char *var, char *arg);
 
 void	free_env_lst(t_env *env_lst);
+void	update_path();
 
 #endif

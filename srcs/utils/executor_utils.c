@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:34:51 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/20 10:11:18 by Axel             ###   ########.fr       */
+/*   Updated: 2024/03/25 11:19:51 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*get_absolute_path(char *cmd)
 	i = -1;
 	if (!access(cmd, F_OK))
 		return (ft_strdup(cmd));
+	if (!sh()->path)
+		return (NULL);
 	while (sh()->path[++i])
 	{
 		path1 = ft_strjoin(sh()->path[i], "/");
