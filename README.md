@@ -1,5 +1,5 @@
 # About
- Minishell is a UNIX-like shell implemented in C, aiming to provide a basic replica of a bash-like shell. It supports a variety of features including command execution, I/O redirection, pipelines, variable expansion, command history, tab completion, signal handling, and exit status handling. Find a detailed list of requirements for this project here: [subject.pdf](https://github.com/Axel-ex/Minishell/blob/main/subject.pdf)
+Minishell is a UNIX-like shell implemented in C, aiming to provide a basic replica of a bash-like shell. It supports a variety of features including command execution, I/O redirection, pipelines, variable expansion, command history, tab completion, signal handling, and exit status handling. Find a detailed list of requirements for this project here: [subject.pdf](https://github.com/Axel-ex/Minishell/blob/main/subject.pdf).
 
 # Usage
 `git clone` this project `cd` into it and `make`.
@@ -15,7 +15,6 @@ ls -l
 echo "Hello world"
 cat file.txt
 ```
-<img src="demo.gif" width="100%"/>
 
 # Key features
 - Command execution
