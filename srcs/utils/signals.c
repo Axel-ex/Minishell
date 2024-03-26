@@ -6,13 +6,13 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:49:57 by achabrer          #+#    #+#             */
-/*   Updated: 2024/02/14 14:32:50 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/26 08:50:02 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	rl_replace_line(const char *text, int clear_undo);
+// void	rl_replace_line(const char *text, int clear_undo);
 void	back_to_prompt(int sig);
 
 void	signals(int sig)
@@ -38,7 +38,7 @@ void	back_to_prompt(int sig)
 {
 	sh()->exit_status = 142;
 	write(1, "\n", 1);
-	rl_replace_line("", 0);
+	// rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 	(void)sig;

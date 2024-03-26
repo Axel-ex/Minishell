@@ -6,21 +6,19 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 11:48:06 by achabrer          #+#    #+#             */
-/*   Updated: 2024/03/25 16:50:29 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:47:57 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	match_cmd(t_ast *ast, bool already_slept)
+void	match_cmd(t_ast *ast)
 {
 	if (is_empty(ast->args[0]))
 	{
 		sh()->exit_status = 0;
 		return ;
 	}
-	if (!ft_strncmp("sleep", ast->args[0], 6) && already_slept)
-		return ;
 	if (!ft_strncmp("cd", ast->args[0], 3))
 		run_cd(ast);
 	else if (!ft_strncmp("echo", ast->args[0], 5))
@@ -41,8 +39,6 @@ void	match_cmd(t_ast *ast, bool already_slept)
 
 void	execute_child(t_ast *ast)
 {
-	static bool	already_slept = false;
-
 	if (sh()->sigint_flag || check_cmd_path(ast->args[0]))
 		return ;
 	sh()->pid = fork();
@@ -52,7 +48,7 @@ void	execute_child(t_ast *ast)
 			free_shell(false);
 		pipe_connect(ast->pos);
 		redirect_io();
-		match_cmd(ast, already_slept);
+		match_cmd(ast);
 		free_shell(false);
 	}
 	restore_io(ast->pos);
@@ -60,7 +56,7 @@ void	execute_child(t_ast *ast)
 
 void	execute_cmd(t_ast *ast)
 {
-	char		*cmd_path;
+	char	*cmd_path;
 
 	cmd_path = get_cmd_path(ast->args[0]);
 	execve(cmd_path, ast->args, sh()->envp);
@@ -78,7 +74,7 @@ void	execute_ast(t_ast *ast)
 	if (!is_operator(ast->token->type))
 	{
 		if (!is_forkable(ast->token->content))
-			match_cmd(ast, false);
+			match_cmd(ast);
 		else
 			execute_child(ast);
 		fail_redir = false;

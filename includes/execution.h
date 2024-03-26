@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:06:20 by achabrer          #+#    #+#             */
-/*   Updated: 2024/02/14 14:27:56 by achabrer         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:47:03 by Axel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	executor(void);
  * 
  * @param ast 
  */
-void	match_cmd(t_ast *ast, bool already_slept);
+void	match_cmd(t_ast *ast);
 
 /**
  * @brief executes forkable commands. the function first checks if the command
