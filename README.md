@@ -15,6 +15,7 @@ ls -l
 echo "Hello world"
 cat file.txt
 ```
+<img src="demo.gif" width="100%"/>
 
 # Key features
 - Command execution
