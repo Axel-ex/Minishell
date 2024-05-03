@@ -53,3 +53,15 @@ The program uses the readline library to prompt input to the user and can be div
 
 # Testing
 `cd` into the test/ directory and run `./tester`. The tester was developed by Lucas Kuhn ([minishell tester](https://github.com/LucasKuhn/minishell_tester)) and was really usefull to rigouresly test for errors. Tests can be added in the "test/extras" file to cover more aspects of the shell.
+
+
+# Norme
+
+All 42 projects must be written following the **Norme**.
+
+	- No for, do while, switch, case or goto are allowed
+	- No more than 25 lines per function and 5 functions per file
+	- No assigns and declarations in the same line (unless static)
+ 	- Each line must be at most 80 columns wide, comments included
+	- A function can take 4 named parameters maximum
+	- No more than 5 variables in 1 function
